@@ -1,0 +1,5462 @@
+[
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 1,
+    "char_count": 65,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1291,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "E_mixed",
+    "route_reason": "文本量中等（65 字符，覆盖 12.9%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 2,
+    "char_count": 1741,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2193,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1741 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 3,
+    "char_count": 782,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2236,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 782 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 4,
+    "char_count": 630,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1863,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 630 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 18.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 5,
+    "char_count": 494,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1471,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 494 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 14.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 6,
+    "char_count": 188,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0649,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "E_mixed",
+    "route_reason": "文本量中等（188 字符，覆盖 6.5%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 7,
+    "char_count": 1399,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3617,
+    "image_coverage": 0.0,
+    "rule_line_density": 51,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 51 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 8,
+    "char_count": 821,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1787,
+    "image_coverage": 0.0,
+    "rule_line_density": 106,
+    "block_count": 39,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 106 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 9,
+    "char_count": 699,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.235,
+    "image_coverage": 0.0,
+    "rule_line_density": 55,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 55 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 10,
+    "char_count": 697,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1591,
+    "image_coverage": 0.0,
+    "rule_line_density": 128,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 128 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 11,
+    "char_count": 933,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1841,
+    "image_coverage": 0.0,
+    "rule_line_density": 123,
+    "block_count": 33,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 123 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 12,
+    "char_count": 849,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2186,
+    "image_coverage": 0.0,
+    "rule_line_density": 65,
+    "block_count": 34,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 65 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 13,
+    "char_count": 1325,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2392,
+    "image_coverage": 0.0,
+    "rule_line_density": 73,
+    "block_count": 48,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 73 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 14,
+    "char_count": 580,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1509,
+    "image_coverage": 0.0521,
+    "rule_line_density": 7,
+    "block_count": 28,
+    "has_images": true,
+    "min_font_size": 6.96,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 580 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 15.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 15,
+    "char_count": 895,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2547,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 895 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 16,
+    "char_count": 984,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2786,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 984 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 27.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 17,
+    "char_count": 300,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1091,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 22,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 300 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 10.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 18,
+    "char_count": 774,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2158,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 774 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 19,
+    "char_count": 819,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2208,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 29,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 819 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 20,
+    "char_count": 1056,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3113,
+    "image_coverage": 0.0,
+    "rule_line_density": 25,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1056 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 31.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 21,
+    "char_count": 906,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2666,
+    "image_coverage": 0.0,
+    "rule_line_density": 35,
+    "block_count": 35,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 906 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 22,
+    "char_count": 843,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2555,
+    "image_coverage": 0.0,
+    "rule_line_density": 60,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 60 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 23,
+    "char_count": 1040,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.245,
+    "image_coverage": 0.0,
+    "rule_line_density": 58,
+    "block_count": 35,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 58 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 24,
+    "char_count": 995,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2604,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 995 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 25,
+    "char_count": 864,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.226,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 864 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 26,
+    "char_count": 963,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2553,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 963 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 27,
+    "char_count": 936,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2651,
+    "image_coverage": 0.0,
+    "rule_line_density": 43,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 43 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 28,
+    "char_count": 736,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2169,
+    "image_coverage": 0.0,
+    "rule_line_density": 36,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 736 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 29,
+    "char_count": 887,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2562,
+    "image_coverage": 0.0,
+    "rule_line_density": 77,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 77 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 30,
+    "char_count": 1056,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2614,
+    "image_coverage": 0.0,
+    "rule_line_density": 115,
+    "block_count": 47,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 115 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 31,
+    "char_count": 747,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2157,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 747 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 32,
+    "char_count": 831,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2221,
+    "image_coverage": 0.0,
+    "rule_line_density": 132,
+    "block_count": 39,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 132 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 33,
+    "char_count": 1312,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2918,
+    "image_coverage": 0.0,
+    "rule_line_density": 157,
+    "block_count": 46,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 157 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 34,
+    "char_count": 842,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2338,
+    "image_coverage": 0.0,
+    "rule_line_density": 36,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 842 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 35,
+    "char_count": 1029,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.298,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1029 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 29.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 36,
+    "char_count": 1114,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3157,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1114 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 31.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 37,
+    "char_count": 795,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2345,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 795 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 38,
+    "char_count": 793,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1695,
+    "image_coverage": 0.0,
+    "rule_line_density": 208,
+    "block_count": 77,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 208 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 39,
+    "char_count": 857,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2461,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 857 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 24.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 40,
+    "char_count": 820,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2317,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 820 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 41,
+    "char_count": 549,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1583,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 29,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 549 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 15.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 42,
+    "char_count": 813,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2366,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 813 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 43,
+    "char_count": 932,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2624,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 932 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 44,
+    "char_count": 699,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2066,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 699 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 20.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 45,
+    "char_count": 746,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2204,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 746 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 46,
+    "char_count": 948,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2644,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 948 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 47,
+    "char_count": 857,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2471,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 857 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 24.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 48,
+    "char_count": 820,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2346,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 820 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 49,
+    "char_count": 641,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1727,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 21,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 641 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 17.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 50,
+    "char_count": 1096,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2936,
+    "image_coverage": 0.0,
+    "rule_line_density": 130,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 130 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 51,
+    "char_count": 530,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1579,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 23,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 530 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 15.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 52,
+    "char_count": 427,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1098,
+    "image_coverage": 0.0,
+    "rule_line_density": 98,
+    "block_count": 33,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 98 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 53,
+    "char_count": 828,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2363,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 828 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 54,
+    "char_count": 930,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2314,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 930 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 55,
+    "char_count": 774,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2228,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 774 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 56,
+    "char_count": 900,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2576,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 900 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 57,
+    "char_count": 828,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.242,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 828 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 24.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 58,
+    "char_count": 874,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2534,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 874 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 59,
+    "char_count": 928,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2673,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 928 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 60,
+    "char_count": 987,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2839,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 987 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 28.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 61,
+    "char_count": 678,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2191,
+    "image_coverage": 0.0,
+    "rule_line_density": 134,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 134 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 62,
+    "char_count": 915,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2627,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 915 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 63,
+    "char_count": 893,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2524,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 893 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 64,
+    "char_count": 966,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2734,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 966 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 27.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 65,
+    "char_count": 894,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2511,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 894 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 66,
+    "char_count": 891,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.254,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 891 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 67,
+    "char_count": 1056,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2644,
+    "image_coverage": 0.0,
+    "rule_line_density": 119,
+    "block_count": 38,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 119 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 68,
+    "char_count": 738,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2117,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 738 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 69,
+    "char_count": 290,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0806,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 290 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 8.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 70,
+    "char_count": 736,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2179,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 736 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 21.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 71,
+    "char_count": 868,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2472,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 868 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 24.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 72,
+    "char_count": 275,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.075,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 275 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 7.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 73,
+    "char_count": 684,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.196,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 684 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 19.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 74,
+    "char_count": 692,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1985,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 692 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 19.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 75,
+    "char_count": 662,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1887,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 662 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 18.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 76,
+    "char_count": 778,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1839,
+    "image_coverage": 0.0,
+    "rule_line_density": 101,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 101 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 77,
+    "char_count": 651,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.29,
+    "image_coverage": 0.0,
+    "rule_line_density": 171,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 171 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 78,
+    "char_count": 630,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1764,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 630 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 17.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 79,
+    "char_count": 787,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2282,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 787 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 80,
+    "char_count": 259,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0709,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 259 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 7.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 81,
+    "char_count": 1148,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.26,
+    "image_coverage": 0.0,
+    "rule_line_density": 175,
+    "block_count": 42,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 175 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 82,
+    "char_count": 1072,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2973,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1072 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 29.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 83,
+    "char_count": 1006,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.281,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1006 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 28.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 84,
+    "char_count": 1099,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2981,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1099 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 29.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 85,
+    "char_count": 836,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.221,
+    "image_coverage": 0.0,
+    "rule_line_density": 85,
+    "block_count": 33,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 85 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 86,
+    "char_count": 1029,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2529,
+    "image_coverage": 0.0,
+    "rule_line_density": 129,
+    "block_count": 40,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 129 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 87,
+    "char_count": 1010,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2846,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 32,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1010 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 28.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 88,
+    "char_count": 913,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2541,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 913 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 89,
+    "char_count": 684,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2004,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 684 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 20.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 90,
+    "char_count": 485,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2253,
+    "image_coverage": 0.0,
+    "rule_line_density": 81,
+    "block_count": 29,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 81 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 91,
+    "char_count": 585,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.167,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 25,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 585 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 16.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 92,
+    "char_count": 1363,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.185,
+    "image_coverage": 0.0,
+    "rule_line_density": 105,
+    "block_count": 84,
+    "has_images": false,
+    "min_font_size": 8.52,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 105 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 93,
+    "char_count": 867,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1579,
+    "image_coverage": 0.0,
+    "rule_line_density": 117,
+    "block_count": 55,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 117 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 94,
+    "char_count": 880,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2093,
+    "image_coverage": 0.0,
+    "rule_line_density": 77,
+    "block_count": 68,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 77 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 95,
+    "char_count": 648,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.206,
+    "image_coverage": 0.0,
+    "rule_line_density": 57,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 57 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 96,
+    "char_count": 327,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.079,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 327 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 7.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 97,
+    "char_count": 1321,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3921,
+    "image_coverage": 0.0,
+    "rule_line_density": 23,
+    "block_count": 48,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1321 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 39.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 98,
+    "char_count": 1059,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.21,
+    "image_coverage": 0.0,
+    "rule_line_density": 88,
+    "block_count": 45,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 88 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 99,
+    "char_count": 943,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2615,
+    "image_coverage": 0.0,
+    "rule_line_density": 48,
+    "block_count": 41,
+    "has_images": false,
+    "min_font_size": 6.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 48 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 100,
+    "char_count": 857,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2437,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 857 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 24.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 101,
+    "char_count": 1241,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4762,
+    "image_coverage": 0.0074,
+    "rule_line_density": 0,
+    "block_count": 17,
+    "has_images": true,
+    "min_font_size": 5.52,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1241 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 47.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 102,
+    "char_count": 543,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2525,
+    "image_coverage": 0.002,
+    "rule_line_density": 18,
+    "block_count": 25,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 543 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 25.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 103,
+    "char_count": 557,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3927,
+    "image_coverage": 0.002,
+    "rule_line_density": 18,
+    "block_count": 17,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 557 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 39.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 104,
+    "char_count": 663,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2782,
+    "image_coverage": 0.0019,
+    "rule_line_density": 0,
+    "block_count": 18,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 663 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 27.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 105,
+    "char_count": 643,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4264,
+    "image_coverage": 0.0019,
+    "rule_line_density": 0,
+    "block_count": 11,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 643 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 106,
+    "char_count": 404,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4327,
+    "image_coverage": 0.002,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 404 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 43.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 107,
+    "char_count": 1191,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5581,
+    "image_coverage": 0.0,
+    "rule_line_density": 46,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 46 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 108,
+    "char_count": 1410,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5155,
+    "image_coverage": 0.0,
+    "rule_line_density": 69,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 69 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 109,
+    "char_count": 1806,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5014,
+    "image_coverage": 0.0,
+    "rule_line_density": 69,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 69 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 110,
+    "char_count": 2023,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5673,
+    "image_coverage": 0.0,
+    "rule_line_density": 97,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 97 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 111,
+    "char_count": 1767,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5187,
+    "image_coverage": 0.0,
+    "rule_line_density": 106,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 6.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 106 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 112,
+    "char_count": 1111,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4205,
+    "image_coverage": 0.0,
+    "rule_line_density": 83,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 83 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 113,
+    "char_count": 815,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4492,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 815 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 114,
+    "char_count": 802,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4478,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 802 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 115,
+    "char_count": 936,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5676,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 936 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 56.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 116,
+    "char_count": 1085,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5996,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1085 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 60.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 117,
+    "char_count": 787,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5421,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 787 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 54.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 118,
+    "char_count": 1035,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5784,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1035 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 57.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 119,
+    "char_count": 1004,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5416,
+    "image_coverage": 0.0,
+    "rule_line_density": 15,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1004 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 54.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 120,
+    "char_count": 860,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4734,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 860 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 47.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 121,
+    "char_count": 1024,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.6035,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1024 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 60.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 122,
+    "char_count": 1007,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5959,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1007 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 59.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 123,
+    "char_count": 885,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.521,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 885 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 52.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 124,
+    "char_count": 1092,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5726,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1092 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 57.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 125,
+    "char_count": 956,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5783,
+    "image_coverage": 0.0,
+    "rule_line_density": 14,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 956 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 57.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 126,
+    "char_count": 1161,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.6061,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1161 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 60.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 127,
+    "char_count": 1002,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5837,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1002 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 58.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 128,
+    "char_count": 1044,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5535,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1044 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 55.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 129,
+    "char_count": 1101,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5886,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1101 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 58.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 130,
+    "char_count": 1030,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5845,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1030 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 58.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 131,
+    "char_count": 1136,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.6042,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1136 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 60.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 132,
+    "char_count": 921,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5466,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 921 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 54.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 133,
+    "char_count": 856,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.528,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 856 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 52.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 134,
+    "char_count": 1007,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5949,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1007 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 59.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 135,
+    "char_count": 961,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5643,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 961 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 56.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 136,
+    "char_count": 1057,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5462,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1057 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 54.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 137,
+    "char_count": 867,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5091,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 867 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 50.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 138,
+    "char_count": 897,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4654,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 897 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 46.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 139,
+    "char_count": 1282,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4783,
+    "image_coverage": 0.0,
+    "rule_line_density": 11,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1282 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 47.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 140,
+    "char_count": 729,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3241,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 7,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 729 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 32.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 141,
+    "char_count": 1375,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2923,
+    "image_coverage": 0.0,
+    "rule_line_density": 40,
+    "block_count": 79,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 40 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 142,
+    "char_count": 929,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5169,
+    "image_coverage": 0.0,
+    "rule_line_density": 58,
+    "block_count": 23,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 58 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 143,
+    "char_count": 1025,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.507,
+    "image_coverage": 0.0,
+    "rule_line_density": 127,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 127 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 144,
+    "char_count": 994,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4165,
+    "image_coverage": 0.0,
+    "rule_line_density": 97,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 97 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 145,
+    "char_count": 622,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3279,
+    "image_coverage": 0.0,
+    "rule_line_density": 17,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 622 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 32.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 146,
+    "char_count": 1279,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4859,
+    "image_coverage": 0.0,
+    "rule_line_density": 186,
+    "block_count": 25,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 186 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 147,
+    "char_count": 763,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4769,
+    "image_coverage": 0.0,
+    "rule_line_density": 73,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 73 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 148,
+    "char_count": 1227,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3375,
+    "image_coverage": 0.0,
+    "rule_line_density": 58,
+    "block_count": 60,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 58 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 149,
+    "char_count": 995,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.331,
+    "image_coverage": 0.0,
+    "rule_line_density": 91,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 91 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 150,
+    "char_count": 1707,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5928,
+    "image_coverage": 0.0,
+    "rule_line_density": 92,
+    "block_count": 26,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 92 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 151,
+    "char_count": 1326,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4476,
+    "image_coverage": 0.0,
+    "rule_line_density": 104,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 104 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 152,
+    "char_count": 563,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1981,
+    "image_coverage": 0.0,
+    "rule_line_density": 68,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 68 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 153,
+    "char_count": 1305,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5627,
+    "image_coverage": 0.0,
+    "rule_line_density": 51,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 51 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 154,
+    "char_count": 1247,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5669,
+    "image_coverage": 0.0,
+    "rule_line_density": 51,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 51 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 155,
+    "char_count": 816,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2917,
+    "image_coverage": 0.0,
+    "rule_line_density": 51,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 7.56,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 51 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 156,
+    "char_count": 987,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5077,
+    "image_coverage": 0.0,
+    "rule_line_density": 65,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 65 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 157,
+    "char_count": 820,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4649,
+    "image_coverage": 0.0,
+    "rule_line_density": 60,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 60 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 158,
+    "char_count": 854,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4605,
+    "image_coverage": 0.0,
+    "rule_line_density": 46,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 46 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 159,
+    "char_count": 903,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.412,
+    "image_coverage": 0.0,
+    "rule_line_density": 50,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 50 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 160,
+    "char_count": 774,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4199,
+    "image_coverage": 0.0,
+    "rule_line_density": 62,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 62 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 161,
+    "char_count": 891,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4988,
+    "image_coverage": 0.0,
+    "rule_line_density": 71,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 71 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 162,
+    "char_count": 1033,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5059,
+    "image_coverage": 0.0,
+    "rule_line_density": 49,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 49 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 163,
+    "char_count": 1325,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4984,
+    "image_coverage": 0.0,
+    "rule_line_density": 62,
+    "block_count": 42,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 62 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 164,
+    "char_count": 1022,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3837,
+    "image_coverage": 0.0,
+    "rule_line_density": 71,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 71 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 165,
+    "char_count": 971,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5139,
+    "image_coverage": 0.0,
+    "rule_line_density": 44,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 44 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 166,
+    "char_count": 979,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.45,
+    "image_coverage": 0.0,
+    "rule_line_density": 44,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 44 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 167,
+    "char_count": 819,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4413,
+    "image_coverage": 0.0,
+    "rule_line_density": 86,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 86 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 168,
+    "char_count": 1701,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5479,
+    "image_coverage": 0.0,
+    "rule_line_density": 133,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 133 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 169,
+    "char_count": 1180,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5039,
+    "image_coverage": 0.0,
+    "rule_line_density": 134,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 134 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 170,
+    "char_count": 678,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4042,
+    "image_coverage": 0.0,
+    "rule_line_density": 62,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 62 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 171,
+    "char_count": 711,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4286,
+    "image_coverage": 0.0,
+    "rule_line_density": 66,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 66 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 172,
+    "char_count": 601,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4293,
+    "image_coverage": 0.0,
+    "rule_line_density": 68,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 68 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 173,
+    "char_count": 825,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4785,
+    "image_coverage": 0.0,
+    "rule_line_density": 74,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 74 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 174,
+    "char_count": 941,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4406,
+    "image_coverage": 0.0,
+    "rule_line_density": 44,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 44 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 175,
+    "char_count": 559,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3583,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 559 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 35.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 176,
+    "char_count": 1488,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.511,
+    "image_coverage": 0.0,
+    "rule_line_density": 97,
+    "block_count": 22,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 97 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 177,
+    "char_count": 702,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3944,
+    "image_coverage": 0.0,
+    "rule_line_density": 31,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 702 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 39.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 178,
+    "char_count": 930,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3351,
+    "image_coverage": 0.0,
+    "rule_line_density": 50,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 50 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 179,
+    "char_count": 1331,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4539,
+    "image_coverage": 0.0,
+    "rule_line_density": 80,
+    "block_count": 23,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 80 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 180,
+    "char_count": 1009,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5185,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1009 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 51.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 181,
+    "char_count": 907,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5463,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 907 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 54.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 182,
+    "char_count": 1056,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5908,
+    "image_coverage": 0.0,
+    "rule_line_density": 56,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 56 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 183,
+    "char_count": 555,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3443,
+    "image_coverage": 0.0,
+    "rule_line_density": 56,
+    "block_count": 11,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 56 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 184,
+    "char_count": 480,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2942,
+    "image_coverage": 0.0,
+    "rule_line_density": 67,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 67 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 185,
+    "char_count": 899,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4253,
+    "image_coverage": 0.0,
+    "rule_line_density": 8,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 899 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 186,
+    "char_count": 780,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3318,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 5,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 780 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 33.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 187,
+    "char_count": 1308,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5354,
+    "image_coverage": 0.0,
+    "rule_line_density": 23,
+    "block_count": 11,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1308 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 53.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 188,
+    "char_count": 712,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4278,
+    "image_coverage": 0.0,
+    "rule_line_density": 11,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 712 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 189,
+    "char_count": 788,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4764,
+    "image_coverage": 0.0,
+    "rule_line_density": 24,
+    "block_count": 21,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 788 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 47.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 190,
+    "char_count": 873,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4585,
+    "image_coverage": 0.0,
+    "rule_line_density": 11,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 873 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 45.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 191,
+    "char_count": 644,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3342,
+    "image_coverage": 0.0,
+    "rule_line_density": 21,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 5.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 644 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 33.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 192,
+    "char_count": 337,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2055,
+    "image_coverage": 0.0,
+    "rule_line_density": 2,
+    "block_count": 7,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 337 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 20.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 193,
+    "char_count": 796,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2354,
+    "image_coverage": 0.0072,
+    "rule_line_density": 1,
+    "block_count": 16,
+    "has_images": true,
+    "min_font_size": 5.52,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 796 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 194,
+    "char_count": 522,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1573,
+    "image_coverage": 0.0021,
+    "rule_line_density": 18,
+    "block_count": 20,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 522 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 15.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 195,
+    "char_count": 546,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.166,
+    "image_coverage": 0.0021,
+    "rule_line_density": 18,
+    "block_count": 18,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 546 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 16.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 196,
+    "char_count": 639,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2323,
+    "image_coverage": 0.0021,
+    "rule_line_density": 0,
+    "block_count": 16,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 639 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 197,
+    "char_count": 608,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2387,
+    "image_coverage": 0.0021,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 608 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 198,
+    "char_count": 606,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2244,
+    "image_coverage": 0.0021,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 606 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 22.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 199,
+    "char_count": 319,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1076,
+    "image_coverage": 0.0021,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 319 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 10.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 200,
+    "char_count": 1264,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5093,
+    "image_coverage": 0.0,
+    "rule_line_density": 57,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 57 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 201,
+    "char_count": 1509,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5403,
+    "image_coverage": 0.0,
+    "rule_line_density": 52,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 52 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 202,
+    "char_count": 781,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3433,
+    "image_coverage": 0.0,
+    "rule_line_density": 22,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 781 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 34.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 203,
+    "char_count": 988,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3581,
+    "image_coverage": 0.0,
+    "rule_line_density": 30,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 988 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 35.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 204,
+    "char_count": 1377,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4104,
+    "image_coverage": 0.0,
+    "rule_line_density": 76,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 76 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 205,
+    "char_count": 1056,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5669,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1056 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 56.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 206,
+    "char_count": 930,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5163,
+    "image_coverage": 0.0,
+    "rule_line_density": 12,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 930 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 51.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 207,
+    "char_count": 951,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4432,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 951 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 208,
+    "char_count": 863,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5173,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 863 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 51.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 209,
+    "char_count": 864,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5014,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 864 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 50.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 210,
+    "char_count": 966,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4691,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 966 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 46.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 211,
+    "char_count": 718,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3419,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 718 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 34.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 212,
+    "char_count": 1029,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5226,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1029 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 52.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 213,
+    "char_count": 992,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5062,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 992 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 50.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 214,
+    "char_count": 855,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4588,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 855 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 45.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 215,
+    "char_count": 907,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4873,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 907 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 48.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 216,
+    "char_count": 1001,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4278,
+    "image_coverage": 0.0,
+    "rule_line_density": 14,
+    "block_count": 25,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1001 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 217,
+    "char_count": 1004,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5742,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1004 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 57.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 218,
+    "char_count": 1019,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5324,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1019 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 53.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 219,
+    "char_count": 962,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.557,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 962 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 55.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 220,
+    "char_count": 863,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.539,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 863 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 53.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 221,
+    "char_count": 764,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4402,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 764 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 222,
+    "char_count": 837,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5043,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 13,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 837 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 50.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 223,
+    "char_count": 1011,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5173,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1011 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 51.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 224,
+    "char_count": 829,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4255,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 829 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 225,
+    "char_count": 876,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4396,
+    "image_coverage": 0.0,
+    "rule_line_density": 43,
+    "block_count": 23,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 43 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 226,
+    "char_count": 939,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5308,
+    "image_coverage": 0.0,
+    "rule_line_density": 43,
+    "block_count": 19,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 43 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 227,
+    "char_count": 859,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.408,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 859 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 40.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 228,
+    "char_count": 1940,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4871,
+    "image_coverage": 0.0,
+    "rule_line_density": 186,
+    "block_count": 43,
+    "has_images": false,
+    "min_font_size": 6.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 186 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 229,
+    "char_count": 1069,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4897,
+    "image_coverage": 0.0,
+    "rule_line_density": 30,
+    "block_count": 36,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1069 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 49.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 230,
+    "char_count": 557,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3293,
+    "image_coverage": 0.0,
+    "rule_line_density": 36,
+    "block_count": 29,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 557 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 32.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 231,
+    "char_count": 1104,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4295,
+    "image_coverage": 0.0,
+    "rule_line_density": 66,
+    "block_count": 43,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 66 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 232,
+    "char_count": 1093,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3472,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1093 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 34.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 233,
+    "char_count": 1100,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4121,
+    "image_coverage": 0.0,
+    "rule_line_density": 36,
+    "block_count": 25,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1100 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 41.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 234,
+    "char_count": 973,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3231,
+    "image_coverage": 0.0,
+    "rule_line_density": 17,
+    "block_count": 17,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 973 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 32.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 235,
+    "char_count": 1793,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3367,
+    "image_coverage": 0.0,
+    "rule_line_density": 148,
+    "block_count": 45,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 148 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 236,
+    "char_count": 992,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4329,
+    "image_coverage": 0.0,
+    "rule_line_density": 34,
+    "block_count": 20,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 992 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 43.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 237,
+    "char_count": 1716,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4644,
+    "image_coverage": 0.0,
+    "rule_line_density": 121,
+    "block_count": 49,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 121 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 238,
+    "char_count": 1842,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.507,
+    "image_coverage": 0.0,
+    "rule_line_density": 108,
+    "block_count": 33,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 108 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 239,
+    "char_count": 1100,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5026,
+    "image_coverage": 0.0,
+    "rule_line_density": 21,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1100 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 50.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 240,
+    "char_count": 1473,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2956,
+    "image_coverage": 0.0,
+    "rule_line_density": 144,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 7.56,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 144 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 241,
+    "char_count": 1136,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4401,
+    "image_coverage": 0.0,
+    "rule_line_density": 90,
+    "block_count": 39,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 90 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 242,
+    "char_count": 1272,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4582,
+    "image_coverage": 0.0,
+    "rule_line_density": 83,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 83 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 243,
+    "char_count": 720,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3823,
+    "image_coverage": 0.0,
+    "rule_line_density": 74,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 74 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 244,
+    "char_count": 1307,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4765,
+    "image_coverage": 0.0,
+    "rule_line_density": 93,
+    "block_count": 37,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 93 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 245,
+    "char_count": 813,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4144,
+    "image_coverage": 0.0,
+    "rule_line_density": 34,
+    "block_count": 23,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 813 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 41.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 246,
+    "char_count": 910,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4516,
+    "image_coverage": 0.0,
+    "rule_line_density": 53,
+    "block_count": 22,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 53 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 247,
+    "char_count": 906,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4121,
+    "image_coverage": 0.0,
+    "rule_line_density": 57,
+    "block_count": 30,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 57 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 248,
+    "char_count": 995,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.446,
+    "image_coverage": 0.0,
+    "rule_line_density": 17,
+    "block_count": 18,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 995 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 249,
+    "char_count": 993,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3504,
+    "image_coverage": 0.0,
+    "rule_line_density": 61,
+    "block_count": 33,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 61 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 250,
+    "char_count": 773,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3643,
+    "image_coverage": 0.0,
+    "rule_line_density": 42,
+    "block_count": 24,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 42 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 251,
+    "char_count": 757,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.363,
+    "image_coverage": 0.0,
+    "rule_line_density": 34,
+    "block_count": 21,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 757 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 36.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 252,
+    "char_count": 869,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4138,
+    "image_coverage": 0.0,
+    "rule_line_density": 21,
+    "block_count": 28,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 869 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 41.4%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 253,
+    "char_count": 594,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3219,
+    "image_coverage": 0.0,
+    "rule_line_density": 44,
+    "block_count": 27,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 44 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 254,
+    "char_count": 1079,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4413,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1079 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 44.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 255,
+    "char_count": 1250,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4984,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 7,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1250 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 49.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 256,
+    "char_count": 772,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4827,
+    "image_coverage": 0.0,
+    "rule_line_density": 32,
+    "block_count": 25,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 772 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 48.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 257,
+    "char_count": 1208,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4177,
+    "image_coverage": 0.0,
+    "rule_line_density": 59,
+    "block_count": 39,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 59 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 258,
+    "char_count": 1408,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3803,
+    "image_coverage": 0.0,
+    "rule_line_density": 96,
+    "block_count": 35,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 96 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 259,
+    "char_count": 1090,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4954,
+    "image_coverage": 0.0,
+    "rule_line_density": 45,
+    "block_count": 16,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 45 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 260,
+    "char_count": 395,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1451,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 395 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 14.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 261,
+    "char_count": 1011,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4966,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 11,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 1011 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 49.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 262,
+    "char_count": 780,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3496,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 780 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 35.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 263,
+    "char_count": 910,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4991,
+    "image_coverage": 0.0,
+    "rule_line_density": 36,
+    "block_count": 10,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 910 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 49.9%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 264,
+    "char_count": 934,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5351,
+    "image_coverage": 0.0,
+    "rule_line_density": 54,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 54 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 265,
+    "char_count": 900,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.5177,
+    "image_coverage": 0.0,
+    "rule_line_density": 68,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 8.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "D_table",
+    "route_reason": "检测到 68 条表框线段（>= 40），判定为表格页，走三引擎表决"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 266,
+    "char_count": 759,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.3653,
+    "image_coverage": 0.0,
+    "rule_line_density": 37,
+    "block_count": 12,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 759 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 36.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 267,
+    "char_count": 693,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.4254,
+    "image_coverage": 0.0,
+    "rule_line_density": 22,
+    "block_count": 15,
+    "has_images": false,
+    "min_font_size": 0.96,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 693 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 42.5%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 268,
+    "char_count": 433,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2314,
+    "image_coverage": 0.0,
+    "rule_line_density": 28,
+    "block_count": 9,
+    "has_images": false,
+    "min_font_size": 2.04,
+    "size": [
+      595.3,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 433 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 269,
+    "char_count": 369,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1566,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 31,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 369 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 15.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 270,
+    "char_count": 229,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.073,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 22,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 229 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 7.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 271,
+    "char_count": 413,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1318,
+    "image_coverage": 0.0053,
+    "rule_line_density": 0,
+    "block_count": 27,
+    "has_images": true,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 413 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 13.2%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 272,
+    "char_count": 250,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0773,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 14,
+    "has_images": false,
+    "min_font_size": 9.0,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 250 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 7.7%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "file": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "rel_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf",
+    "page": 273,
+    "char_count": 401,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2393,
+    "image_coverage": 0.0966,
+    "rule_line_density": 0,
+    "block_count": 26,
+    "has_images": true,
+    "min_font_size": 6.48,
+    "size": [
+      595.3,
+      841.9
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 401 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 23.9%），直取最高置信"
+  }
+]

@@ -1,0 +1,296 @@
+:root{
+  --ink:#11161c; --ink-2:#4a5561; --ink-3:#8a94a0;
+  --bg:#fff; --bg-2:#f7f8fa; --rule:#e3e6ea; --rule-2:#eef0f3;
+  /* 重点考察实测表（`_criteria.html`）要的两个：表头下沿比普通分隔线重一档，
+     以及那个记号 × 的暗红。★ × 不复用 --bad —— 那是「这一列有毛病」的红，
+     与「这一条没达标」的记号不是一件事，同色会让整张表看着像在报警。 */
+  --rule-strong:#8a97a2; --stamp:#9b3a31;
+  --accent:#1a56db; --ok:#1a7f37; --bad:#c0392b; --warn:#9a6700;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:13.5px;line-height:1.6;padding:0 22px 70px;
+}
+h1,h2,h3,h4{margin:0;font-weight:600}
+code,.mono{font-family:var(--mono)}
+
+header.top{
+  position:sticky;top:0;z-index:20;background:var(--bg);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:10px 0;border-bottom:1px solid var(--rule);
+}
+header.top .brand{font-weight:700;font-size:15px}
+header.top .sub{color:var(--ink-3)}
+header.top .grow{flex:1}
+select,input[type=text],input[type=file]{
+  font:inherit;padding:4px 8px;border:1px solid var(--rule);background:var(--bg);
+  color:var(--ink);border-radius:0;
+}
+button{
+  font:inherit;padding:5px 14px;border:1px solid var(--ink);background:var(--ink);
+  color:#fff;cursor:pointer;border-radius:0;
+}
+button.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+button:disabled{background:transparent;color:var(--ink-3);border-color:var(--rule);cursor:default}
+.pill{
+  font-family:var(--mono);font-size:11.5px;padding:2px 8px;
+  border:1px solid var(--rule);color:var(--ink-2);
+}
+.pill.ok{border-color:var(--ok);color:var(--ok)}
+.pill.bad{border-color:var(--bad);color:var(--bad)}
+.pill.warn{border-color:var(--warn);color:var(--warn)}
+.pill.live{border-color:var(--accent);color:var(--accent)}
+
+nav.tabs{
+  position:sticky;top:41px;z-index:19;background:var(--bg);
+  display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--ink);
+}
+nav.tabs .tab{
+  display:flex;align-items:baseline;gap:8px;
+  padding:7px 14px;border:1px solid var(--rule);border-bottom:none;
+  color:var(--ink-2);text-decoration:none;background:var(--bg-2);
+  margin-bottom:-1px;
+}
+nav.tabs .tab:hover{color:var(--ink);text-decoration:none;background:var(--bg)}
+nav.tabs .tab.on{
+  background:var(--bg);color:var(--ink);font-weight:600;
+  border-color:var(--ink);border-bottom:1px solid var(--bg);
+}
+nav.tabs .tab.off{opacity:.5}
+nav.tabs .tl{font-size:13px}
+nav.tabs .tb{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+nav.tabs .tab.on .tb{color:var(--accent)}
+.wrap{padding-top:4px}
+
+section{border-bottom:1px solid var(--rule);padding:20px 0 24px}
+section:last-of-type{border-bottom:none}
+h2.sec{
+  display:flex;align-items:baseline;gap:10px;
+  font-size:15px;letter-spacing:.01em;margin:26px 0 12px;
+}
+section > h2.sec:first-child{margin-top:0}
+h2.sec .n{
+  font-family:var(--mono);font-size:12px;color:var(--bg);background:var(--ink);
+  padding:1px 7px;
+}
+h2.sec .dim{margin-left:2px}
+.strong{font-weight:700;font-size:15px}
+h3.blk{font-size:14px;margin:18px 0 8px;display:flex;gap:10px;align-items:baseline}
+h3.blk:first-of-type{margin-top:0}
+.dim{color:var(--ink-3);font-weight:400}
+.small{font-size:12px}
+
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:8px 0}
+.row.tight{gap:8px;margin:6px 0}
+.grow{flex:1}
+.note{border-left:3px solid var(--rule);padding:6px 12px;color:var(--ink-2);background:var(--bg-2)}
+.note.bad{border-color:var(--bad);color:var(--bad)}
+.note.ok{border-color:var(--ok)}
+
+.stages{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0 4px}
+.stages .st{
+  font-family:var(--mono);font-size:11.5px;padding:3px 8px;
+  border:1px solid var(--rule);color:var(--ink-3);
+}
+.stages .st.done{border-color:var(--ok);color:var(--ok)}
+.stages .st.run{border-color:var(--accent);color:var(--accent);font-weight:600}
+.stages .st.fail{border-color:var(--bad);color:var(--bad)}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{
+  font:inherit;font-size:11.5px;padding:2px 9px;background:transparent;
+  color:var(--ink-3);border:1px solid var(--rule);cursor:pointer;
+}
+.chip.on{border-color:var(--ink);color:var(--ink);font-weight:600}
+ol.trail{
+  list-style:none;margin:0;padding:0;max-height:340px;overflow:auto;
+  border:1px solid var(--rule-2);background:var(--bg);
+}
+ol.trail li{
+  display:grid;grid-template-columns:16px 62px 60px 190px 1fr auto;
+  gap:8px;align-items:baseline;padding:3px 10px;border-bottom:1px solid var(--rule-2);
+  font-size:12.5px;
+}
+ol.trail li:last-child{border-bottom:none}
+ol.trail .mk{font-family:var(--mono);text-align:center}
+ol.trail .mk-v{color:var(--ok)}
+ol.trail .mk-x{color:var(--bad)}
+ol.trail .mk-o{color:var(--ink-3)}
+ol.trail .tm{color:var(--ink-3);font-family:var(--mono);font-size:11.5px}
+ol.trail .kd{color:var(--ink-3)}
+ol.trail .wh{font-family:var(--mono);overflow-wrap:anywhere}
+ol.trail .dt{color:var(--ink-2);overflow-wrap:anywhere}
+ol.trail .mt{color:var(--ink-3);font-family:var(--mono);font-size:11.5px}
+pre.log{
+  margin:8px 0 0;padding:10px;background:var(--bg-2);border:1px solid var(--rule-2);
+  max-height:240px;overflow:auto;font-family:var(--mono);font-size:11.5px;
+  color:var(--ink-2);white-space:pre-wrap;
+}
+
+.hero{display:flex;align-items:baseline;gap:10px;margin:4px 0 10px}
+.hero b{font-family:var(--mono);font-size:30px;font-weight:600;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.hero span{color:var(--ink-3)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{
+  text-align:left;font-weight:600;font-size:11.5px;color:var(--ink-3);
+  border-bottom:1px solid var(--rule);padding:5px 8px 5px 0;white-space:nowrap;
+}
+td{border-bottom:1px solid var(--rule-2);padding:4px 8px 4px 0;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono)}
+td.mono{font-family:var(--mono)}
+tbody tr:last-child td{border-bottom:none}
+table.tight td{padding:3px 8px 3px 0}
+table.tight th{padding:4px 8px 4px 0}
+
+/* 重点考察实测表（`_criteria.html`，三题共用）。三栏：考察点 / 实测 / 记号。
+   上面那套 `th`/`td` 是控制台自己的窄间距，这张表要宽一档 —— 它排在每一页
+   最上面，是这一页唯一一处「结论 + 评分点」并排的地方。 */
+.ledger{width:100%;border-collapse:collapse;font-size:13.5px}
+.ledger th{
+  background:var(--bg-2);color:var(--ink-2);font-size:12.5px;font-weight:500;
+  padding:5px 10px;border-bottom:1px solid var(--rule-strong);
+  text-align:left;white-space:nowrap;
+}
+.ledger td{
+  padding:6px 10px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+.ledger td.t{font-family:var(--sans);font-size:13.5px}
+.ledger .idx{color:var(--ink-3);width:1%;white-space:nowrap}
+.ledger .n{text-align:right}
+.ledger .mk{text-align:center;width:1%;font-size:15px}
+.ledger tbody tr:last-child td{border-bottom:none}
+
+/* 记号 √ ◐ ○ ×。★ ◐ 必须留在 sans 字体里：它是个几何符号，掉进等宽字体会
+   渲染成一个认不出的细圆圈。图例（`.dim2` 那一行）里那几个记号走同一套颜色。 */
+.ledger .mk,.dim2 .mk{font-family:var(--sans);font-style:normal;font-weight:600}
+.mk-v{color:var(--ink)}
+.mk-h{color:var(--ink-2)}
+.mk-o{color:var(--ink-3)}
+.mk-x{color:var(--stamp)}
+.dim2{color:var(--ink-3)}
+.dot{
+  display:inline-block;width:6px;height:6px;margin-right:7px;
+  border-radius:50%;background:var(--ink-3);vertical-align:middle;
+}
+.dot.done{background:var(--ok)}
+.dot.run{background:var(--accent)}
+.dot.warn{background:var(--warn)}
+.dot.fail{background:var(--bad)}
+.hit{background:var(--bg-2)}
+.sev{font-family:var(--mono);font-size:11.5px}
+.sev.confirmed{color:var(--bad)}
+.sev.suspected{color:var(--warn)}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 16px}
+/* 产物入口：一个标签页最多一个（R1 是 facts.json，R4 是估值报告），它是这一页
+   所有读数的**出处**。所以尺寸按「按钮」给，不按「小标签」给 —— 演示时鼠标要
+   一眼找到它，而不是在表格底下找一个灰边框的小字。 */
+.dl a{
+  display:inline-block;font-family:var(--mono);font-size:14px;font-weight:600;
+  padding:7px 18px;border:1px solid var(--accent);color:var(--accent);background:var(--bg);
+}
+.dl a:hover{background:var(--accent);color:#fff;text-decoration:none}
+/* R4 的四张交付图：两列排开，一眼看全。图是产品级的 PNG（192dpi ≈ 1400px 宽），
+   缩到半幅后格子里的细字读不动 —— 所以每张都套一个链接，点开在新标签页看原图，
+   本页不动（演示时不能一点就离开控制台）。
+   ★ 试过一列铺满（每张 ~1470px，图里每个数都读得清），但整页被撑到 5136px、
+   光图表块就占四屏 —— 演示时"翻四屏才看完图"的成本大过"看清图上小字"的收益，
+   退回两列。要看清哪张，点开看原图。 */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin:6px 0 2px}
+.chart{margin:0}
+.chart a{display:block}
+.chart img{
+  display:block;width:100%;height:auto;
+  border:1px solid var(--rule);background:#fff;
+}
+.chart a:hover img{border-color:var(--ink)}
+.chart figcaption{font-size:11.5px;color:var(--ink-3);padding-top:4px}
+details{border-top:1px solid var(--rule-2);padding:7px 0}
+details summary{cursor:pointer;color:var(--ink-2);font-size:12.5px}
+details .inner{padding:8px 0 0}
+.inner h1{font-size:17px;margin:14px 0 6px}
+.inner h2{font-size:15px;margin:14px 0 6px}
+.inner h3{font-size:14px;margin:12px 0 4px}
+.inner h4{font-size:13.5px;margin:10px 0 4px}
+.inner p{margin:5px 0}
+.inner ul{margin:5px 0;padding-left:20px}
+.inner blockquote{margin:6px 0;padding:4px 12px;border-left:3px solid var(--rule);color:var(--ink-2)}
+.inner blockquote p{margin:2px 0}
+.inner hr{border:none;border-top:1px solid var(--rule);margin:12px 0}
+.inner table{margin:8px 0}
+.scroll{overflow:auto;max-width:100%}
+.scroll.tall{max-height:62vh}
+.empty{color:var(--ink-3);padding:6px 0}
+
+.layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 400px;
+  gap:0 26px;align-items:start;
+}
+.rail{
+  position:sticky;top:41px;
+  height:calc(100vh - 41px);
+  display:flex;flex-direction:column;
+  border-left:1px solid var(--rule);padding-left:16px;
+}
+.rail-head{display:flex;align-items:center;gap:8px;padding:8px 0 4px}
+.rail-head .rtitle{font-weight:600}
+.rail-sub{padding-bottom:2px}
+.rail-note{
+  border-left:3px solid var(--warn);color:var(--warn);
+  padding:4px 8px;margin:4px 0;background:var(--bg-2);
+}
+ol.activity{
+  list-style:none;margin:4px 0 0;padding:0 4px 12px 0;flex:1;
+  overflow-y:auto;overflow-x:hidden;
+}
+li.act{border-bottom:1px solid var(--rule-2);padding:6px 0}
+li.act .ah{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.ab{
+  font-size:10.5px;padding:0 5px;border:1px solid currentColor;
+  font-family:var(--mono);white-space:nowrap;
+}
+.ab-llm{color:var(--accent)}
+.ab-tool{color:var(--ink-2)}
+.ab-stage{color:var(--warn)}
+li.act .who{font-size:12px;overflow-wrap:anywhere}
+li.act .mdl,li.act .stg{font-size:11px}
+li.act .meta{font-family:var(--mono);font-size:11px}
+li.act .mk{font-family:var(--mono);font-size:12px}
+li.act details{border-top:none;padding:2px 0 0}
+li.act details summary{font-size:11.5px;color:var(--ink-3)}
+li.act details .inner{padding:3px 0 2px}
+li.act-stage{
+  background:var(--bg-2);border-top:2px solid var(--rule);padding:5px 8px;
+}
+pre.act-pre{
+  margin:3px 0;padding:5px 7px;background:var(--bg-2);border:1px solid var(--rule-2);
+  font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink-2);
+  white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;
+}
+li.act .msg{margin:4px 0}
+li.act .mrole{font-family:var(--mono)}
+li.act .imgph{font-family:var(--mono);font-size:11px}
+li.act .cutnm{font-family:var(--mono);font-size:11px;padding-top:2px}
+li.act .errline{color:var(--bad);overflow-wrap:anywhere}
+
+@media (max-width:1180px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .rail{
+    position:static;height:auto;max-height:70vh;
+    border-left:none;border-top:1px solid var(--ink);padding:0;margin-top:16px;
+  }
+}
+
+@media (max-width:760px){
+  ol.trail li{grid-template-columns:14px 54px 1fr;grid-auto-rows:auto}
+  ol.trail .wh,ol.trail .dt,ol.trail .mt{grid-column:3}
+  .hero b{font-size:22px}
+  /* 窄屏两列的图只有一百多像素宽，等于看不见 —— 退回一列 */
+  .charts{grid-template-columns:1fr}
+}

@@ -1,0 +1,828 @@
+/* ==========================================================================
+   金融投研智能体 — 演示台样式
+   视觉方向：**底稿 · 复核记号**（审计底稿 / 复核人盖章）
+
+   三条贯穿全站的原则，改样式前先读：
+
+   ① 全站只有一种墨（--ink 蓝黑 #16232F）。重要性由「记号 + 格线 + 字号」
+      承担，不由颜色承担。整块屏上除一个印章红之外别无颜色 ——
+      所以评委从五米外看见红色的那一瞬间就知道出事了。
+
+   ② 暖色预算 ≤ 屏面 1.5%。--stamp 的授权形态是**穷举**的（见下），
+      违规不是「配色不好看」，是「超出了 token 的授权形态」。
+      赛题要求「风险审慎」，满屏红黄会让真正的告警淹没在噪声里。
+
+   ③ 绿与黄不存在。「通过」是常态，常态不上色，只用 √ 记号 + 签字栏。
+      三级区分靠冗余通道（左条 + 记号 + 排序 + 折叠），不靠色相 ——
+      这同时就是色盲可读性验收：把 --stamp 改成 --ink，页面仍然可读。
+
+   自包含，无外部字体/CDN 依赖（契合「受控数据环境」要求）。
+   字体栈全部是系统字体。
+   ========================================================================== */
+
+:root{
+  /* ---------------------------------------------------------------- 纸墨 */
+  --ground:#E9EEF1;      /* 全站页面底色。冷调蓝灰 —— 必须偏冷，
+                            任何朝 #F5F2EC 的漂移就是 AI 生成设计的头号破绽 */
+  --sheet:#FFFFFF;       /* 表格 / 面板 / 图表承载面。无圆角、无四边描边、无阴影 */
+  --sheet-2:#F4F7F9;     /* 次级纸面：表头带、行 hover、斑马纹 */
+
+  --ink:#16232F;         /* 正文 / 标题 / 图表单墨填充。档案蓝黑，像蓝黑墨水 */
+  --ink-2:#4A5A68;       /* 表头、单位、注释、次要正文。实色降权，**不用 opacity** */
+  --ink-3:#5C6C79;       /* 计数徽标、脚注、未选中导航、未检出项 */
+
+  --rule:#A3B0BC;        /* 1px 表格线 / 分区线 / 面板上下沿。压深过，
+                            否则投影仪一洗白 1px 线就消失 */
+  --rule-strong:#8A97A2; /* 2px 合计线 / 结论区上下沿 / 章节上沿 / 签字栏上沿 */
+  --rule-soft:#E3E8EC;   /* 图表网格线。**只许出现在图内**，不得用于表行分隔 */
+
+  --stamp:#9B3A31;       /* 全站唯一的暖色，也是唯一的语义色。
+                            去饱和成印泥质感 —— 读起来像「复核人盖的章」，
+                            不是「系统报警」。授权形态见下方 .mk-x / .stamp */
+  --accent:#1B5788;      /* 链接 / 当前导航 / 选中行 / focus 环。
+                            与 --ink 只差 2.1:1（色相可辨但明度接近），
+                            故链接**一律同时带下划线**，颜色只做强化 */
+
+  /* ------------------------------------------------- 图墨阶（--s1 … --s5）
+     单一蓝黑墨的五级明度阶，像双色印刷的网点，**不含任何色相差异**。
+     对比度（vs 白纸）s1 12.68 / s2 6.13 / s3 3.25 / s4 2.15 / s5 1.55。
+     s4、s5 低于非文本图形 3:1 的下限，因此追加两条补偿铁律：
+       · 每个图元一律带 1px stroke:var(--rule) —— 形状永远可辨
+       · 每个图元必须另有数值文字
+     三条用法铁律：只用于**有序**数据；类别型一律单墨 s1；
+     单类别时用**最深**一阶 s1，禁止用最浅一阶（那正是「整圈填淡」的畸形来源）。 */
+  --s1:#16354F; --s2:#3F6588; --s3:#6E93B0; --s4:#9BB4C9; --s5:#C2D2DE;
+
+  /* ------------------------------------------------------------------ 字体 */
+  /* 两族制，分工由**信息性质**决定，不是「标题用 A 正文用 B」：
+     界面在说话用无衬线，文档在说话用衬线。这是可追溯性的排版实现。 */
+  --sans:"Segoe UI","Microsoft YaHei UI","Microsoft YaHei","PingFang SC",
+         "Hiragino Sans GB",system-ui,sans-serif;
+  /* 仿宋/宋体是中文公文与审计报告正文的实际字体 —— 用它标记
+     「以下是源文档的原话，不是我们的分析」，比任何图标都快。
+     栈内显式列全 CJK 回退，并在 .inverse 给第二重编码（左墨条 + --sheet-2 底），
+     字体回退时语义不丢失。 */
+  --serif:FangSong,"FangSong_GB2312","Songti SC",STSong,SimSun,
+          "Noto Serif CJK SC",serif;
+  /* ⚠️ 栈内显式写 CJK 字体是必须的：Consolas/Cascadia 都**没有中文字形**，
+     缺了雅黑则同列中英混排必然错位。 */
+  --mono:ui-monospace,"Cascadia Mono",SFMono-Regular,"SF Mono",Menlo,Consolas,
+         "Microsoft YaHei UI","Microsoft YaHei",monospace;
+
+  /* --------------------------------------------------------------- 字号阶梯
+     层级靠**字号的一次跳变**建立（34 → 25 → 18 → 14.5），
+     不靠权重、不靠颜色。中文标题权重上限 600 —— 雅黑 Bold 在小字号会糊。 */
+  --t-verdict:34px; --t-h1:25px; --t-h2:18px; --t-h3:15px;
+  --t-body:14.5px; --t-table:13.5px; --t-label:12.5px; --t-ref:12px;
+
+  --nav-h:53px;
+  --stick:var(--nav-h);   /* 结论带的 sticky 偏移，由顶栏高度驱动 */
+
+  /* ============================================================ 兼容别名
+     模板与 web/*.py 里仍在用旧变量名（共 ~200 处）。这里把它们**映射到**
+     新墨阶，而不是逐个改模板 —— 一处收口，且旧代码不会解析失败。
+     语义映射是刻意的：ok→墨（常态不上色）、warn→次级墨、bad→印章红。 */
+  --bg:var(--ground);
+  --panel:var(--sheet); --panel2:var(--sheet-2);
+  --fg:var(--ink); --dim:var(--ink-2); --dim2:var(--ink-3);
+  --line:var(--rule);
+  --ok:var(--ink); --warn:var(--ink-2); --bad:var(--stamp);
+  --l1:var(--s1); --l2:var(--s2); --l3:var(--s3); --l4:var(--s4);
+  --s-alarm:var(--stamp); --s-caution:var(--ink-2);
+  --grid:var(--rule-soft); --axis:var(--rule);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font:var(--t-body)/1.75 var(--sans);
+  padding-bottom:40px;
+}
+/* 中文永不设 letter-spacing（伪字距会让 CJK 变稀、行气散掉）。
+   卡片壳全部拆掉后，分组完全依赖对齐 —— 所以列槽必须严格对齐。 */
+code{
+  font-family:var(--mono);font-size:.9em;background:var(--sheet-2);
+  border:1px solid var(--rule);padding:0 4px;
+}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+a:hover{color:var(--ink)}
+b,strong{font-weight:600}
+
+/* ---------------------------------------------------------------- 顶栏 */
+.topbar{
+  display:flex;align-items:center;gap:16px;padding:9px 20px;min-height:var(--nav-h);
+  background:var(--sheet);border-bottom:1px solid var(--rule-strong);
+  position:sticky;top:0;z-index:50;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;white-space:nowrap}
+/* 墨块标志：CSS 画的 10×10 方块。原用的 ◧ (U+25E7) 在部分中文字体里
+   走回退会变成方框 —— 用一个**永远不会缺字形**的画法替掉它。 */
+.logo{
+  width:10px;height:10px;background:var(--ink);display:inline-block;
+  flex:none;font-size:0;line-height:0;overflow:hidden;
+}
+.brand .tag{
+  font-family:var(--mono);font-weight:400;font-size:11px;color:var(--ink-3);
+  border-left:1px solid var(--rule-strong);padding-left:10px;
+}
+.mainnav{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.mainnav a{
+  padding:6px 11px;color:var(--ink-3);font-size:13.5px;text-decoration:none;
+}
+.mainnav a:hover{background:var(--sheet-2);color:var(--ink)}
+.mainnav a.active{
+  color:var(--accent);font-weight:500;text-decoration:underline;
+}
+
+/* 分组导航：每组一条竖格线 + 一行组名。
+   ⚠️ 组名保留**真实赛题号** 1 / 4 / 5 —— 不得改成 ①②③，
+   那样会把选题四、五错编成 2、3。 */
+.navgroup{
+  display:flex;align-items:center;gap:1px;
+  padding-left:9px;margin-left:6px;border-left:1px solid var(--rule);
+}
+.navgroup .glabel{
+  font-family:var(--mono);font-size:11px;color:var(--ink-3);
+  padding:0 7px 0 0;white-space:nowrap;
+}
+.navhome{padding:6px 11px;color:var(--ink-3);font-size:13.5px;text-decoration:none}
+/* 主按钮 = 全站唯一实心块。原为 #238636 绿色实心 —— 绿已撤销。 */
+.navcta{
+  margin-left:auto;padding:5px 13px !important;
+  border:1px solid var(--ink);background:var(--ink);color:var(--sheet) !important;
+  font-size:13px;white-space:nowrap;text-decoration:none;
+}
+.navcta:hover{background:var(--ink-2) !important;border-color:var(--ink-2)}
+.navcta.active{background:var(--accent) !important;border-color:var(--accent)}
+@media(max-width:1200px){.navcta{margin-left:6px}}
+.runpicker{margin-left:auto;display:flex;align-items:center;gap:7px;
+  font-size:var(--t-label);color:var(--ink-3)}
+.runpicker select{
+  background:var(--sheet);color:var(--ink);border:1px solid var(--rule);
+  padding:4px 8px;font-size:12.5px;font-family:var(--mono);max-width:230px;
+}
+
+/* ---------------------------------------------------------------- 状态条
+   八个「标签 值」改为键值对 + 1px 竖格线分隔，不用中点串；.pill 三色底撤销。 */
+.statusbar{
+  display:flex;align-items:center;gap:0;padding:0 20px;flex-wrap:wrap;
+  background:var(--sheet);border-bottom:1px solid var(--rule);
+  font-size:var(--t-label);
+}
+.statusbar .meta{
+  color:var(--ink-3);padding:7px 13px;border-right:1px solid var(--rule-soft);
+}
+.statusbar .meta:first-child{padding-left:0}
+.statusbar .meta b{color:var(--ink);font-weight:600;font-family:var(--mono);
+  font-variant-numeric:tabular-nums}
+.statusbar .dim{color:var(--ink-3)}
+.spacer{flex:1}
+/* 状态徽标：单墨框 + 记号。失败态用左侧 3px 印章条（授权形态之一）。 */
+.pill{
+  padding:3px 10px;font-size:var(--t-label);font-weight:500;
+  border:1px solid var(--rule);color:var(--ink);font-family:var(--mono);
+}
+.pill.success{background:transparent;color:var(--ink);border-color:var(--rule)}
+.pill.partial{background:transparent;color:var(--ink-2);border-color:var(--rule-strong)}
+.pill.failed{
+  background:transparent;color:var(--stamp);
+  border-color:var(--rule);border-left:3px solid var(--stamp);
+}
+
+/* ---------------------------------------------------------------- 布局 */
+main{padding:20px 20px 40px;max-width:1180px;margin:0 auto}
+footer{padding:14px 20px;border-top:1px solid var(--rule);color:var(--ink-3);
+  font-size:var(--t-label);max-width:1180px;margin:0 auto}
+
+/* 章节靠**格线与编号**定位，不靠大字号。h2 的 2px 上格线是底稿的分节线。 */
+h1{font-size:var(--t-h1);line-height:1.35;margin:0 0 6px;font-weight:600}
+h2{
+  font-size:var(--t-h2);line-height:1.4;margin:38px 0 12px;font-weight:600;
+  padding-top:10px;border-top:2px solid var(--rule-strong);
+}
+h3{font-size:var(--t-h3);line-height:1.5;margin:22px 0 8px;font-weight:600}
+h4{font-size:var(--t-label);margin:16px 0 6px;font-weight:600;color:var(--ink-2)}
+p{margin:9px 0;max-width:78ch}
+.pagehead{margin-bottom:16px}
+.pagehead .sub{color:var(--ink-2);font-size:var(--t-label);max-width:88ch}
+
+/* ---------------------------------------------------- 结论带（常驻）
+   每页顶部一个，mono 34px 单一读数。sticky 保证评委下翻看折叠证据时
+   结论仍在视野内 —— 这是本方案唯一一处 sticky，别处不用。 */
+.verdict{
+  position:sticky;top:var(--stick);z-index:40;
+  background:var(--sheet);border-top:2px solid var(--rule-strong);
+  border-bottom:2px solid var(--rule-strong);
+  padding:11px 0;margin:0 0 18px;
+}
+.verdict .vk{font-size:var(--t-label);color:var(--ink-2)}
+.verdict .vv{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:var(--t-verdict);font-weight:600;line-height:1.15;
+  letter-spacing:-.01em;color:var(--ink);
+}
+.verdict .vv .u{font-size:var(--t-h3);font-weight:400;color:var(--ink-2);margin-left:6px}
+.verdict .vs{font-size:var(--t-label);color:var(--ink-2);margin-top:3px}
+.verdict .vs .sep{color:var(--rule-strong);margin:0 8px}
+
+/* ---------------------------------------------------------------- 卡片
+   `.card` / `.kpi` 保留类名（模板仍在用），但壳已拆掉：
+   改为「纸面 + 上下格线」，不再是圆角盒子。
+   数字默认单墨 —— 原来的 .ok 绿 / .warn 黄 / .bad 红是三色语义，
+   「层号被当成了好坏」，撤销。 */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));
+  gap:0;margin:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.card{
+  background:transparent;border:none;border-right:1px solid var(--rule-soft);
+  padding:11px 14px 11px 0;
+}
+.card:last-child{border-right:none}
+.card .k{color:var(--ink-2);font-size:var(--t-label);font-weight:500}
+.card .v{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:23px;font-weight:600;margin-top:3px;color:var(--ink);line-height:1.25;
+}
+.card .note{color:var(--ink-3);font-size:var(--t-ref);margin-top:3px}
+.card.ok .v,.card.warn .v,.card.bad .v{color:var(--ink)}
+.card.warn .v::after,.card.bad .v::after{content:"";display:none}
+
+.panel{
+  background:var(--sheet);border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding:14px 0;margin:14px 0;
+}
+.panel.tight{padding:0;overflow:hidden}
+.panel>h3:first-child,.panel>h4:first-child{margin-top:0}
+
+/* ------------------------------------------- 底稿汇总表（Lead Schedule）
+   替代 KPI 卡片组的正解：一张**有索引列、合计线、记号列**的表。
+   六张卡片的「□ 标签 / 大数字」把「层号」和「好坏」绑在了一起 ——
+   底稿表让读者自己看「条数」和「依据」，不预设判断。 */
+.ledger{width:100%;border-collapse:collapse;font-size:var(--t-table)}
+.ledger th{
+  background:var(--sheet);color:var(--ink-2);font-size:var(--t-label);font-weight:500;
+  padding:5px 10px;border-bottom:1px solid var(--rule-strong);text-align:left;
+  white-space:nowrap;position:static;
+}
+.ledger td{
+  padding:6px 10px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+}
+.ledger td.t{font-family:var(--sans);font-size:13.5px}
+.ledger tr.tot td{border-top:1px solid var(--rule-strong);border-bottom:none;font-weight:600}
+.ledger .idx{color:var(--ink-3);width:1%;white-space:nowrap}
+.ledger .n{text-align:right}
+.ledger .mk{text-align:center;width:1%}
+
+/* ---------------------------------------------------------------- 表格 */
+table{width:100%;border-collapse:collapse;font-size:var(--t-table)}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+th{
+  color:var(--ink-2);font-weight:500;font-size:var(--t-label);
+  background:var(--sheet-2);border-bottom:1px solid var(--rule-strong);
+}
+tbody tr:hover{background:var(--sheet-2)}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+table.compact th,table.compact td{padding:5px 9px;font-size:12.5px}
+/* ⚠️ 表头粘性偏移只能是 0 —— 在 overflow:auto 容器内它本就相对滚动视口生效。
+   原来写死的 106px（顶栏高度）会让表头**浮在表格中部**、行从上方滚过。
+   /valuation /facts /runs /extract /library /analyze 六页受累。 */
+.tablewrap{max-height:70vh;overflow:auto}
+.tablewrap th{top:0;z-index:2}
+
+/* ------------------------------------------- 表格网格（单元格级裁决结果）
+   原先是四种底色（整格淡红/淡黄/淡灰）。撤销 —— 改成左上角一个 6×6px
+   方记号 + 1px 格线。只有 cell-fix 用印章红方记号，其余全是墨。
+   50 个格子里 3 个红方块，信息量远大于「3 个格子淡红 + 47 个淡黄」。 */
+table.grid{font-size:12.5px;table-layout:fixed}
+table.grid td{
+  padding:5px 8px;border:1px solid var(--rule);vertical-align:top;
+  overflow-wrap:anywhere;white-space:pre-wrap;line-height:1.5;
+  position:relative;font-family:inherit;
+}
+table.grid td.cell-fix,table.grid td.cell-norm,
+table.grid td.cell-rej,table.grid td.cell-ok{background:transparent}
+table.grid td.cell-fix{
+  border-color:var(--rule-strong);
+  box-shadow:inset 0 0 0 0 transparent;
+}
+table.grid td.cell-fix::before{
+  content:"";position:absolute;top:0;left:0;
+  width:6px;height:6px;background:var(--stamp);
+}
+table.grid td.cell-norm::before{
+  content:"";position:absolute;top:0;left:0;
+  width:6px;height:6px;background:var(--ink-2);
+}
+table.grid td.cell-rej::before{
+  content:"";position:absolute;top:0;left:0;
+  width:6px;height:6px;background:var(--rule);
+}
+table.grid tbody tr:hover{background:var(--sheet-2)}
+img.crop{
+  max-width:190px;max-height:64px;border:1px solid var(--rule);
+  background:#fff;display:block;
+}
+img.crop:hover{border-color:var(--rule-strong)}
+
+/* ---------------------------------------------------------------- 记号
+   全站统一的复核记号体系。**记号取代颜色**是这套视觉的核心机制：
+     × 已确认错误 / 失败断言 / 产物不一致（--stamp）
+     ◐ 疑似 / 需人工判断（--ink-2）
+     ○ 提示 / 未检出（--ink-3）
+     √ 通过（--ink，常态不上色）
+   ⚠️ 记号是内容不是装饰 —— 用它的地方要补 aria-label，否则读屏用户拿不到语义。
+
+   ★ 字体走 --sans 而不是 --mono，字号比正文大一档：这三个字形（√ ◐ ○ ×）
+   都不是等宽字体自带的，会掉到栈尾的中文字体上去 —— 实测在 Cascadia/Consolas
+   下 ◐ 被渲染成一个几乎认不出的细圈，而它恰好是「疑似、须人工判断」的唯一载体。
+   记号既然取代了颜色，就不能是全表最弱的一格。 */
+.mk{font-family:var(--sans);font-size:15px;font-weight:600;font-style:normal}
+.mk-x{color:var(--stamp)}
+.mk-h{color:var(--ink-2)}
+.mk-o{color:var(--ink-3)}
+.mk-v{color:var(--ink)}
+.mr-x{color:var(--stamp)}
+
+/* 行级授权形态：左条。只有「已确认错误 / 失败 / 不一致」用印章红左条。 */
+.leftbar{border-left:3px solid var(--stamp);padding-left:9px}
+.greybar{border-left:3px solid var(--rule-strong);padding-left:9px}
+
+/* ---------------------------------------------------------------- 印章
+   程序化触发（模板读断言失败数 / 冲突数 / 产物校验结果），不手填。
+   一页最多一个，只有描边**永不填充**，面积 ≤1.5%。
+   干净页面上一个也不许有 —— 一旦出现在不失败的页面上，克制就崩了。 */
+.stamp{
+  border:2px double var(--stamp);color:var(--stamp);
+  font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.08em;
+  padding:5px 11px;transform:rotate(-6deg);display:inline-block;
+  line-height:1.25;white-space:nowrap;
+}
+
+/* ---------------------------------------------------------------- 签字栏
+   页脚升格：不是装饰，是「这份底稿谁编的、谁复核的、编号多少」。 */
+.footsig{
+  border-top:2px solid var(--rule-strong);margin-top:14px;padding-top:9px;
+  display:flex;gap:18px;flex-wrap:wrap;align-items:baseline;
+  font-size:var(--t-label);color:var(--ink-2);
+}
+.footsig .lg{
+  margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--ink-3);
+}
+
+/* ---------------------------------------------------------------- 标签
+   抽取路径 / 错误类型 / 严重度全部**去色**。它们是**标识符**，
+   不是好坏判断 —— L1 恒绿 / L2 恒黄 / L3 恒红与数据无关。 */
+.tag{
+  display:inline-block;padding:1px 7px;font-size:11px;
+  border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap;
+  font-weight:500;font-family:var(--mono);background:transparent;
+}
+.tag.L1,.tag.L2,.tag.L3,.tag.L4,
+.tag.A_text_only,.tag.B_scanned,.tag.C_garbled,.tag.D_table,.tag.E_mixed{
+  color:var(--ink-2);border-color:var(--rule);
+}
+/* 严重度：三色 → 记号 + 单墨。已确认行另有左条（见 .leftbar）。 */
+.tag.sev-confirmed,.tag.sev-suspected,.tag.sev-advisory{
+  background:transparent;color:var(--ink-2);border-color:var(--rule);
+}
+.tag.sev-confirmed{color:var(--stamp);border-color:var(--stamp)}
+
+.conf{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+.conf.hi,.conf.mid,.conf.lo{color:var(--ink)}
+/* 置信度是那一屏的关键读数，给一档更大的字号（原先模板里写 inline 18px）。 */
+.conf.big{font-size:19px;font-weight:600}
+.review{color:var(--ink-2)}
+
+/* ---------------------------------------------------------------- 溯源面板 */
+.trace{display:grid;grid-template-columns:minmax(min(360px,100%),1fr) minmax(min(420px,100%),1.05fr);
+  gap:18px;align-items:start}
+@media(max-width:1080px){.trace{grid-template-columns:1fr}}
+.pageframe{
+  background:#fff;border:1px solid var(--rule);
+  min-height:420px;display:flex;align-items:center;justify-content:center;
+}
+.pageframe img{width:100%;display:block}
+.pageframe .none{color:var(--ink-3);padding:40px;text-align:center;font-size:var(--t-label)}
+
+/* 墨底 = **机器原始输出**。凡深色即「不可改写的原始输入」，
+   与纸面结论形成认知分区 —— 这不是新增装饰，是给现存元素定性。 */
+.pagetext{
+  background:var(--ink);border:1px solid var(--ink);padding:14px;
+  max-height:520px;overflow:auto;white-space:pre-wrap;font-size:12.5px;
+  font-family:var(--mono);line-height:1.85;color:#C8D4DE;
+}
+/* 墨底上的反向高亮 —— 原为深黄底 + 亮黄字，是暗底方案的遗留。 */
+.pagetext mark{background:var(--sheet);color:var(--ink);padding:1px 3px;font-weight:600}
+
+/* 来源原文：衬线 + 第二重编码（左墨条 + --sheet-2 底）。
+   即使仿宋在未装中文字体包的机器上静默回退，这层语义也不丢失。 */
+.inverse{
+  background:var(--sheet-2);border-left:3px solid var(--ink);
+  font-family:var(--serif);font-size:14px;line-height:1.9;
+  padding:10px 13px;color:var(--ink);margin:9px 0;
+}
+
+.factdetail{background:var(--sheet);border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);padding:14px 0}
+/* ⚠️ 中文不进等宽：值列若把「贵州茅台」「现金流量表附注」丢进 Cascadia，
+   两者都无中文字形，浏览器退回不确定的默认字体 —— 同列中英混排必然错位。
+   故 dd 默认走比例字体，**只有纯数值**才加 .num。 */
+.kv{display:grid;grid-template-columns:96px 1fr;gap:5px 12px;font-size:13.5px;margin-bottom:12px}
+.kv dt{color:var(--ink-2);font-size:var(--t-label)}
+.kv dd{margin:0;word-break:break-word;font-family:inherit}
+.kv dd.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.kv dd.big{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:19px;font-weight:600;color:var(--ink);
+}
+details{margin-top:9px}
+summary{cursor:pointer;color:var(--accent);font-size:var(--t-label);user-select:none}
+summary:hover{color:var(--ink)}
+pre{
+  background:var(--ink);border:1px solid var(--ink);padding:10px 12px;
+  overflow:auto;font-size:11.5px;color:#C8D4DE;max-height:300px;margin:8px 0 0;
+  font-family:var(--mono);line-height:1.55;
+}
+.mono{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+
+/* ---------------------------------------------------------------- 通道对比 */
+.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
+  gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.chan{
+  background:transparent;border:none;border-right:1px solid var(--rule-soft);
+  padding:12px 14px 12px 0;
+}
+.chan:last-child{border-right:none}
+/* 高亮用 3px 墨左条，不用 accent 边框 —— 边框会把「并排的五栏」变成
+   「四个盒子 + 一个高亮的盒子」。 */
+.chan.hl{border-left:3px solid var(--ink);padding-left:11px}
+.chan h4{margin:0 0 8px;font-size:13px;font-weight:600;color:var(--ink);
+  display:flex;justify-content:space-between;gap:8px}
+.chan .body{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);
+  max-height:230px;overflow:auto;white-space:pre-wrap}
+.chan .stat{color:var(--ink-3);font-size:11.5px;margin-top:7px}
+.bar{height:4px;background:var(--rule-soft);overflow:hidden;margin:5px 0}
+.bar span{display:block;height:100%;background:var(--ink)}
+
+/* ---------------------------------------------------------------- 图表 */
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));
+  gap:0 22px;border-top:1px solid var(--rule)}
+.chart{background:transparent;border:none;border-bottom:1px solid var(--rule);
+  padding:13px 0}
+.chart h4{margin:0 0 10px;font-size:var(--t-label);font-weight:600;color:var(--ink-2)}
+.chart img{width:100%;background:#fff}
+
+/* 内联 SVG 图：宽度自适应，窄屏横向滚动而不是压扁文字。
+   `height:auto` 是关键 —— SVG 带 viewBox，不写会被拉伸变形。 */
+.chart svg{display:block;width:100%;height:auto}
+.chart.scroll{overflow-x:auto}
+.charts.pairs{grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr))}
+/* 独占一行的图不要拉满整页 —— 图会被放大、说明文字离图越来越远。
+   给一个上限列宽，图与题注落在同一个阅读栏内（SVG 自身的 max-width
+   在 charts._svg 里，两处一起才拦得住 2 倍以上的放大）。 */
+.charts > .chart:only-child{max-width:780px}
+.chart .cap{color:var(--ink-3);font-size:var(--t-ref);margin:7px 0 0;line-height:1.55}
+
+/* ------------------------------------------------- 结论区 / 论据区（折叠）
+   页面结构统一为「先给结论，论据默认折叠」：
+   评审扫一眼就拿到数字，要深挖再展开。零信息丢失。 */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));
+  gap:0;margin:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.kpi{background:transparent;border:none;border-right:1px solid var(--rule-soft);
+  padding:11px 14px 11px 0}
+.kpi:last-child{border-right:none}
+.kpi .k{color:var(--ink-2);font-size:var(--t-label)}
+.kpi .v{font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:22px;font-weight:600;margin-top:2px;line-height:1.25;color:var(--ink)}
+.kpi .n{color:var(--ink-3);font-size:var(--t-ref);margin-top:3px}
+.kpi.ok .v,.kpi.warn .v,.kpi.bad .v{color:var(--ink)}
+/* 值不是数字时的两个修饰类 —— 22px 的 mono 阶梯只留给**读数**。
+   `run_id` / `状态` / `引擎名` 这类字符串在 22px mono 下会撑破格子，
+   模板里原先靠 inline `style="font-size:15px/16px/18px"` 各处打补丁，
+   字号阶梯接管后统一到这里：`.id` 是标识符（仍走 mono），
+   `.txt` 是自然语言（走 sans）。 */
+.kpi .v.id{font-size:var(--t-h3);line-height:1.5}
+.kpi .v.txt{font-family:var(--sans);font-size:var(--t-h3);font-weight:600;line-height:1.5}
+
+/* 论据折叠块：标题行本身就把「里面有多少东西」说清楚，
+   否则用户没有理由点开。 */
+details.ev{
+  background:transparent;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:11px 0;margin:0;
+}
+details.ev+details.ev{border-top:none}
+details.ev>summary{
+  color:var(--ink);font-size:13.5px;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;gap:9px;list-style:none;
+}
+details.ev>summary::-webkit-details-marker{display:none}
+details.ev>summary::before{content:"▸";color:var(--ink-2);font-size:12px}
+details.ev[open]>summary::before{content:"▾"}
+details.ev>summary:hover{color:var(--accent)}
+details.ev>summary .cnt{margin-left:auto;color:var(--ink-3);font-size:var(--t-ref);font-weight:400}
+details.ev[open]>summary{margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
+details.ev .inner{margin-top:2px}
+
+/* ------------------------------------------------------------ 折叠附页 .fold
+   ★ 这一节是全站的**信息架构**，不只是样式，所以把理由写在这里。
+
+   评审现场只有几十秒看一屏。此前的问题不是内容不对，是**顺序不对**：
+   任务一的结构化输出（事实清单）排在页面第 398 行、最底部，
+   首屏全是质量汇总与图表 —— 正好和「马上看到最终结果」相反。
+
+   于是定一条规矩：**结论在外，明细在内**。
+   `.fold` 的 `<summary>` 不是一个「标题」，而是**这一节的一句话结论**：
+   编号 · 标题 · 结论 · 记号，四段都在摘要行里。折起来丢的是明细，
+   不是信息 —— 没有任何内容被删除，只是不再抢首屏。这是「对用户友好」
+   与赛题「可核验」之间唯一诚实的折中：想看的人随时展开，且 Ctrl+F
+   在折叠内容里照样能搜到（原生 details 的行为，白拿）。
+
+   用原生 `<details>` / `<summary>`，**零 JS**：赛题要求受控数据环境，
+   不能引任何外部脚本；原生元素还自带键盘可达与读屏语义。 */
+details.fold{
+  border-top:2px solid var(--rule-strong);   /* 与 h2 同一条分节线，视觉上仍是「一章」 */
+  margin:38px 0 0;
+}
+details.fold>summary{
+  /* 记号 · 编号 · 标题 · 一句话结论 · 计数。
+     `1fr` 给结论，让它吃掉剩余宽度 —— 它是这一行里最该被读到的东西。 */
+  display:grid;
+  grid-template-columns:auto 46px minmax(0,auto) minmax(0,1fr) auto;
+  align-items:baseline;gap:0 11px;
+  padding:10px 2px;cursor:pointer;list-style:none;user-select:none;
+  font-size:var(--t-h2);font-weight:600;line-height:1.4;color:var(--ink);
+}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:"▸";font-size:12px;font-weight:400;color:var(--ink-3)}
+details.fold[open]>summary::before{content:"▾"}
+/* hover 反馈用底色而不是变色：`details.fold>summary` 的优先级高于全站
+   那条 `summary:hover{color:...}`，改色会被吃掉，底色不会。 */
+details.fold>summary:hover{background:var(--sheet-2)}
+details.fold>summary .idx{
+  font-family:var(--mono);font-size:var(--t-ref);font-weight:400;
+  color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+/* 结论降一号字号、降一阶墨 —— 它是**摘要**，不能与标题抢层级；
+   但也绝不能更淡到读不清：它承载的正是被折叠起来的那个结论。 */
+details.fold>summary .fsum{
+  font-size:var(--t-label);font-weight:400;color:var(--ink-3);
+}
+details.fold>summary .fsum b{color:var(--ink-2);font-weight:600}
+details.fold>summary .cnt{
+  font-family:var(--mono);font-size:var(--t-ref);font-weight:400;
+  color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+details.fold[open]>summary{border-bottom:1px solid var(--rule);margin-bottom:14px}
+/* 展开后的正文：左缩进一格，与摘要行的「标题」列对齐，
+   让「这属于上面那一条」一眼可见。 */
+details.fold>.fbody{padding:0 0 4px 57px}
+details.fold>.fbody>h3:first-child,
+details.fold>.fbody>h4:first-child,
+details.fold>.fbody>.panel:first-child{margin-top:0}
+/* 折页**不吸顶**：`.verdict` 已经是全站唯一的 sticky，再加一个会互相压。 */
+
+/* ---------------------------------------------------------------- 分页 */
+.pager{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:14px 0;
+  font-size:var(--t-label)}
+.pager a,.pager span.pg{
+  padding:4px 10px;border:1px solid var(--rule);background:transparent;
+  color:var(--ink-2);font-family:var(--mono);text-decoration:none;
+}
+.pager a:hover{border-color:var(--ink);color:var(--ink)}
+.pager .cur{background:transparent;border-color:var(--ink);color:var(--ink);
+  font-weight:600;box-shadow:inset 3px 0 0 var(--ink)}
+.pager .info{color:var(--ink-3);margin-right:auto}
+
+/* ---------------------------------------------------------------- 总览页 */
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));
+  gap:0 22px;margin:14px 0;border-top:1px solid var(--rule)}
+.ovcard{
+  background:transparent;border:none;border-bottom:1px solid var(--rule);
+  padding:14px 0;display:flex;flex-direction:column;gap:9px;
+}
+.ovcard h3{margin:0;font-size:var(--t-h3);font-weight:600;color:var(--ink)}
+/* 选题号用 mono 编号 —— 原来是个圆角药丸，且带 accent 描边。 */
+.ovcard .topic{
+  font-family:var(--mono);font-size:11px;color:var(--ink-2);
+  border-left:2px solid var(--ink);padding-left:8px;align-self:flex-start;
+}
+.ovcard p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.7}
+/* 卡片的第一行是**结论**（一句话答案，如「每股价值 12.1554 – 14.0394 元」），
+   要压过它下面那一格格的读数：结论走 --ink 实色 + 600，读数仍是 --ink-3 灰。
+   全站只此一处用 `.ans`，它是首页卡片的专用行，不是通用正文样式。 */
+.ovcard p.ans{color:var(--ink);font-weight:600;font-size:14.5px;line-height:1.6}
+/* ★ 固定 2×2 网格，不用 flex-wrap（2026-09-27 改）。
+   原来是 `display:flex;flex-wrap:wrap` —— 每张卡片里数值宽度不同，换行点就不同：
+   实测「可比公司 6」被挤到第三行，左边空一大片，而左右两张卡片的同一行还停在
+   第二行。**数字对不齐，读者会以为它们是两类东西。**
+   网格的列宽由容器决定（.ovgrid 的列是等宽的），三张卡片因此行结构完全一致。
+   格子里的值仍可能偏长，故给 b 留了 `overflow-wrap` 与 `.long` 降字号。 */
+.ovcard .stat{display:grid;grid-template-columns:1fr 1fr;gap:11px 16px;margin-top:2px}
+.ovcard .stat div{font-size:var(--t-label);color:var(--ink-3);min-width:0}
+.ovcard .stat b{display:block;font-family:var(--mono);font-size:17px;color:var(--ink);
+  font-variant-numeric:tabular-nums;font-weight:600;line-height:1.35;
+  overflow-wrap:anywhere}
+/* 长值（如估值区间「12.1554 – 14.0394」）降一档，避免在 1fr 格子里折行。
+   只动字号，**值一个字符没改**。 */
+.ovcard .stat b.long{font-size:14.5px;letter-spacing:-.01em}
+.ovcard .go{
+  margin-top:auto;align-self:flex-start;padding:0;background:transparent;border:none;
+  font-size:13.5px;text-decoration:underline;color:var(--accent);
+}
+.ovcard .go:hover{color:var(--ink)}
+
+/* ---------------------------------------------------------------- 表单 */
+form.stack{display:flex;flex-direction:column;gap:14px;max-width:620px}
+.dropzone{
+  border:2px dashed var(--rule);padding:38px 20px;text-align:center;
+  background:transparent;cursor:pointer;
+}
+.dropzone:hover{border-color:var(--ink);background:var(--sheet-2)}
+/* 投放区的首行提示。原先模板里写 inline `font-size:15px;font-weight:600`。 */
+.dropzone .dz-lead{font-size:var(--t-h3);font-weight:600;color:var(--ink)}
+.dropzone input{display:block;margin:12px auto 0;color:var(--ink-3);font-size:12.5px}
+/* 主按钮 = 全站唯一实心块（墨底纸字）。原为绿色实心。 */
+button{
+  background:var(--ink);color:var(--sheet);border:1px solid var(--ink);
+  padding:9px 18px;font-size:13.5px;font-weight:500;cursor:pointer;
+  font-family:var(--sans);
+}
+button:hover{background:var(--ink-2);border-color:var(--ink-2)}
+button.ghost{background:transparent;border:1px solid var(--rule);color:var(--ink)}
+button.ghost:hover{background:var(--sheet-2);border-color:var(--ink)}
+
+/* ---------------------------------------------------------------- 杂项 */
+.empty{
+  text-align:center;padding:60px 20px;color:var(--ink-2);
+  background:transparent;border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);margin:40px auto;max-width:640px;
+}
+.empty h2{border:none;margin:0 0 12px}
+/* 提示块：左侧 3px 竖条 + 无底色。原来的整块淡色底在投影仪上是一团脏。 */
+.note{
+  padding:9px 0 9px 12px;font-size:var(--t-note);margin:12px 0;
+  border:none;border-left:3px solid var(--ink-2);color:var(--ink-2);
+  background:transparent;line-height:1.7;
+}
+.note.info{border-left-color:var(--ink-2);color:var(--ink-2)}
+.note.warn{border-left-color:var(--ink);color:var(--ink)}
+.note.bad{border-left-color:var(--stamp);color:var(--ink)}
+.note.ok{border-left-color:var(--rule-strong);color:var(--ink-2)}
+.muted{color:var(--ink-2)}
+.dim2{color:var(--ink-3)}
+.small{font-size:var(--t-ref)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:9px 0}
+.chip{
+  padding:3px 10px;font-size:var(--t-label);
+  background:transparent;border:1px solid var(--rule);color:var(--ink-2);
+}
+.chip.on{border-color:var(--ink);color:var(--ink);font-weight:500}
+.chip:hover{border-color:var(--ink);color:var(--ink);text-decoration:none}
+/* E1–E6 能力清单：未检出的类型**保留并弱化**，只做视觉降权，不隐藏 ——
+   隐藏会让「本次没查到 E4」被误读成「不支持 E4」。
+   ⚠️ 降权用**实色 --ink-3**，不用 opacity：opacity:.42 在投影仪上等于直接消失，
+   而这里恰是「本次没查到」的重要证据。 */
+.chip.zero{color:var(--ink-3);border-color:var(--rule)}
+.chip.hit{background:transparent;border-color:var(--ink);color:var(--ink);font-weight:500}
+/* 「本轮未实现」必须与「本次未检出」在视觉上可分：前者是能力缺口，后者是本次结果。
+   用**虚线圈**而非颜色区分 —— 不占语义色，也不与 zero 的降权冲突；
+   且它比 zero 更弱（无填充），避免读者把它当成一个"正常的 0"。 */
+.chip.todo{
+  color:var(--ink-3);background:transparent;
+  border:1px dashed var(--rule);font-style:normal;
+}
+blockquote{
+  margin:10px 0;padding:8px 14px;border-left:3px solid var(--rule);
+  background:var(--sheet-2);color:var(--ink-2);font-size:13.5px;margin-left:0;
+}
+blockquote p{margin:3px 0}
+hr{border:none;border-top:1px solid var(--rule);margin:22px 0}
+
+/* ---------------------------------------------------------------- 开始分析页 */
+/* 阶段进度列表：11 个阶段一眼看完，谁在跑、谁过了、谁没过都要看得见。
+   四色底（绿/蓝/红）→ 单墨 + 记号 √ ▶ × ○。
+   ⚠️ minmax(0,210px) 而非 210px —— 固定列宽在窄屏会撑破容器。 */
+.stages{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:2px}
+.stages .stage{
+  display:grid;grid-template-columns:22px minmax(0,210px) minmax(0,1fr);
+  gap:8px;align-items:baseline;
+  padding:5px 8px;font-size:12.5px;color:var(--ink-3);
+  border-left:3px solid transparent;
+}
+.stages .stage code{font-size:12px;color:var(--ink-2);font-family:var(--mono);
+  overflow-wrap:anywhere}
+.stages .stage.done{background:transparent;border-left-color:var(--rule-soft)}
+.stages .stage.done code{color:var(--ink)}
+.stages .stage.running{background:var(--sheet-2);border-left-color:var(--ink)}
+.stages .stage.running code{color:var(--ink);font-weight:600}
+.stages .stage.failed{background:transparent;border-left-color:var(--stamp)}
+.stages .stage.failed code{color:var(--stamp)}
+/* skipped 用实色降权，不用 opacity（投影仪上 opacity 会直接消失）。 */
+.stages .stage.skipped{color:var(--ink-3)}
+.stages .stage .ic{text-align:center;font-family:var(--mono)}
+.logtail{
+  max-height:320px;overflow:auto;background:var(--ink);border:1px solid var(--ink);
+  padding:10px 12px;color:#C8D4DE;white-space:pre-wrap;margin:8px 0 0;
+  font-family:var(--mono);font-size:11.5px;line-height:1.6;
+}
+form.stack input[type=text]{
+  background:var(--sheet);border:1px solid var(--rule);
+  color:var(--ink);padding:7px 10px;font-size:13px;font-family:inherit;
+}
+form.stack input[type=text]:focus{outline:none;border-color:var(--ink)}
+button:disabled{background:transparent;color:var(--ink-3);
+  border-color:var(--rule);cursor:not-allowed}
+button:disabled:hover{background:transparent;border-color:var(--rule)}
+
+/* ---------------------------------------------------------------- 可访问性 */
+/* 全站此前只有一条 focus 规则且是 outline:none —— 键盘用户完全失去焦点指示。 */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* 记号取代文字后对读屏不友好，故记号元素一律配 aria-label（模板侧保证）。 */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+  white-space:nowrap}
+
+@media(max-width:560px){
+  main{padding:14px 12px 32px}
+  .topbar{padding:8px 12px}
+  .statusbar{padding:0 12px}
+  .statusbar .meta{padding:6px 9px}
+  h2{margin-top:28px}
+  /* 折叠页在窄屏折成两行：记号+编号+标题一行，结论另起一行占满。
+     五列硬挤进 360px 会把结论压成一条竖线 —— 而结论正是要读的那一段。 */
+  details.fold>summary{grid-template-columns:auto 46px minmax(0,1fr) auto}
+  details.fold>summary .fsum{grid-column:2 / -1;padding-top:3px}
+  details.fold>.fbody{padding-left:0}
+}
+
+/* ==========================================================================
+   运行轨迹抽屉（.drawer）
+   —— 全站唯一一个 position:fixed 的组件。它是**调试面板**，不是正文：
+      默认收起、不占版心、拉开后压在右侧，正文宽度一像素都不动。
+   —— 复用现有记号体系（√ / × / ○ / ·）与墨阶，不引入新颜色。
+   ========================================================================== */
+.drawer-toggle{
+  position:fixed;right:0;top:42%;z-index:40;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  padding:12px 6px;font-size:12px;letter-spacing:.08em;
+  font-family:var(--sans);color:var(--ink);
+  background:var(--sheet);border:1px solid var(--rule-strong);border-right:none;
+  cursor:pointer;
+}
+.drawer-toggle:hover{border-color:var(--ink)}
+.drawer-toggle .badge{font-family:var(--mono);color:var(--ink-3);font-size:11px}
+.drawer-body{
+  position:fixed;right:0;top:0;bottom:0;z-index:41;
+  width:min(560px,94vw);display:flex;flex-direction:column;
+  background:var(--sheet);border-left:1px solid var(--rule-strong);
+}
+.drawer-body[hidden]{display:none}
+.drawer-head{
+  display:flex;align-items:center;gap:9px;
+  padding:10px 12px;border-bottom:1px solid var(--rule-strong);
+  font-size:13px;
+}
+.drawer-head .spacer{flex:1}
+.drawer-sel{
+  max-width:190px;padding:3px 6px;font-size:12px;
+  font-family:var(--mono);color:var(--ink);
+  background:var(--sheet);border:1px solid var(--rule);
+}
+.drawer-body .chips{padding:0 12px;margin:9px 0}
+/* 行是**等宽栅格**：记号 / 时刻 / 类别 / 主体 / 细节 / 读数。
+   主体与细节可折行，读数右对齐 —— 这样扫一眼看的是"谁、多久、多少钱"。 */
+.trail{
+  list-style:none;margin:0;padding:0 12px 8px;overflow:auto;flex:1;
+  font-size:12.5px;
+}
+.trail .ev{
+  display:grid;
+  grid-template-columns:16px 62px 52px minmax(0,1fr) auto;
+  gap:8px;align-items:baseline;
+  padding:4px 0;border-bottom:1px solid var(--rule-soft);
+}
+.trail .ev .dt{grid-column:4;color:var(--ink-2);overflow-wrap:anywhere}
+.trail .ev .mt{grid-column:5;color:var(--ink-3);white-space:nowrap;font-size:11.5px}
+.trail .ev .kd{color:var(--ink-2)}
+.trail .ev .tm{color:var(--ink-3);font-size:11.5px}
+.trail .ev .wh{font-family:var(--mono);overflow-wrap:anywhere}
+.trail .ev .wh a{color:var(--accent)}
+.drawer-foot{
+  padding:8px 12px;border-top:1px solid var(--rule);
+  color:var(--ink-3);
+}
+.drawer-foot .ftr-note{display:block;margin-top:2px}
+@media(max-width:640px){
+  .trail .ev{grid-template-columns:16px 0 52px minmax(0,1fr)}
+  .trail .ev .tm{display:none}
+  .trail .ev .mt{grid-column:4;text-align:right}
+}
+
+/* 批注稿面板（/audit?tab=draft）—— 把独立文档路由 /annotated-draft 嵌回外壳里。
+   固定高度而不是 auto：那个文档有自己的版心与页码，撑开会把标签条和抽屉顶出视野。 */
+.draftframe{
+  width:100%;height:70vh;margin-top:12px;
+  border:1px solid var(--rule);background:var(--panel);
+}
+@media(max-width:640px){ .draftframe{ height:60vh } }

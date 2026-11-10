@@ -1,0 +1,12 @@
+{
+  "entity": "600519",
+  "value_per_share": "66.7797",
+  "range": [
+    "34.1240",
+    "66.7797"
+  ],
+  "terminal_value_share": "0.8227",
+  "assertions_total": 26,
+  "assertions_failed": [],
+  "is_usable": true
+}

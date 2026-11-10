@@ -1,0 +1,53 @@
+{# ============================================================ 重点考察实测表
+   三题共用。调用方式：
+
+     {% include "_criteria.html" %}
+
+   需要上下文里有一个 `criteria`，形如
+    ``[{'idx', 'label', 'verdict', 'mark'}, ...]``
+   （由 ``web/app.py`` 的 ``criteria_r1/r4/r5`` 生成）。
+
+   ★ 为什么这张表要放在**首屏**，而不是塞进某个折叠块里：
+     赛题对每题都写明了「重点考察」什么（选题 1 是完整性/格式规范性/
+     表格解析准确性/结果一致性，见通知 p2；选题 4、5 同理见 p3）。
+     这四条就是评分点。把评分点埋进折叠块，等于让评委自己去拼 ——
+     而我们要的恰恰是「马上看到想要的最终结果」。
+
+   ★ 2026-10 删掉了原先最右的「这个数是怎么来的」整列。那一列名为读数，
+     实际写成了论证：解释口径、辩解为什么不到 100%，主语是网页自己而不是
+     数据。它想传达的那点必需信息（这个数的分母是什么、哪个恒 0 值不算测量
+     结果）已经并进 `verdict`，见 app.py 的 ``_r1_consistency`` 等函数 ——
+     列一删，表就从「三列读数 + 一列散文」变回一张读数表。
+     ★ 因此 `verdict` 必须自带限定语（分母、恒 0 标记），不能再把话说一半。
+
+   记号：√ 达标 / ◐ 部分达标或须人工看 / ○ 提示（无数据，非失败）/ × 不达标。 #}
+{% if criteria %}
+<table class="ledger">
+  <thead><tr>
+    <th>重点考察</th><th>实测</th><th class="mk">记号</th>
+  </tr></thead>
+  <tbody>
+  {% for c in criteria %}
+    <tr>
+      <td class="t" style="white-space:nowrap">
+        <span class="idx">{{ c.idx }}</span> {{ c.label }}
+      </td>
+      <td class="mono" style="white-space:nowrap">{{ c.verdict }}</td>
+      <td class="mk mk-{{ {'√':'v','◐':'h','○':'o','×':'x'}.get(c.mark,'v') }}"
+          aria-label="{{ {'√':'达标','◐':'部分达标','○':'提示','×':'不达标'}.get(c.mark,'') }}">
+        {{ c.mark }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{# 图例只留记号本身。原先前面还有一句「本表每个数字都从已落盘的产物现算
+   （runs/<id>/），没有写死的值」—— 那是替自己担保，读者无从核验。
+   它想防的事（记号写死）已在源头解决：每个 mark 都由 ``criteria_r1/r4/r5``
+   按产物现算，见 app.py 里 R4 ④ 那段「原为写死的 √」注释。 #}
+<div class="dim2 small" style="margin-top:7px">
+  记号 <span class="mk mk-v">√</span> 达标 ·
+  <span class="mk mk-h">◐</span> 部分达标或须人工看 ·
+  <span class="mk mk-o">○</span> 提示（无数据，不是失败）·
+  <span class="mk mk-x">×</span> 不达标。
+</div>
+{% endif %}

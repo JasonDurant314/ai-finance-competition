@@ -1,0 +1,14 @@
+[
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "page": 4,
+    "route": "E_mixed",
+    "reason": "文本层可用（181 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_a6fba35ae3cf",
+    "page": 2,
+    "route": "E_mixed",
+    "reason": "文本层可用（140 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  }
+]

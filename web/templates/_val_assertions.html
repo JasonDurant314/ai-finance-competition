@@ -1,0 +1,40 @@
+  {% if a_fail %}
+    <div class="note bad">
+      <b>存在 {{ a_fail }} 条失败断言 —— 估值结论不可用。</b>
+      任何一条关键勾稽关系不成立，都不能把结果当作结论交出去。
+    </div>
+  {% else %}
+    <div class="note ok">
+      <b>没有失败断言，估值结论可用。</b>
+      通过 {{ a_pass }} 条 · 跳过 {{ a_skip }} 条（缺辅助数据，已如实标记为「未验证」）·
+      验证覆盖率 {{ "%.0f%%"|format(a_pass / a_total * 100 if a_total else 0) }}
+    </div>
+  {% endif %}
+
+  <div class="tablewrap" style="max-height:340px">
+  <table class="compact">
+  <thead><tr><th>断言</th><th>名称</th><th>结果</th><th>明细</th></tr></thead>
+  <tbody>
+  {% for a in val.assertions %}
+  <tr>
+    <td class="mono">{{ a.code }}</td>
+    <td>{{ a.name|prose }}</td>
+    <td>
+      {% if a.status == 'pass' %}<span class="tag L1">√ 通过</span>
+      {% elif a.status == 'fail' %}<span class="tag sev-confirmed">× 失败</span>
+      {% else %}<span class="tag L2">○ 跳过</span>{% endif %}
+    </td>
+    <td class="small muted">{{ a.detail|prose }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  </div>
+  {# 这两条是**定义**，不是辩解：读者要能分辨「跳过」与「失败」，
+     也要知道 A1 为什么不算一条通过的证据。原先是四行，其中
+     「不把「未验证」伪装成「已验证」」属于替自己表白，删。 #}
+  <div class="note info small">
+    <b>「跳过」的定义</b>：缺辅助数据（如现金流明细）时断言标 <code>skipped</code>，
+    与「校验失败」是两件事，也<b>不计入通过</b>。
+    A1（资产=负债+权益）在当前模型构造方式下结构性成立，因此不充当校验通过的证据。
+  </div>

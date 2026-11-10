@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}金融投研智能体{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    {# 墨块标志由 CSS 画（见 app.css 的 .logo）—— 原来的 ◧ (U+25E7)
+       在部分中文字体里走回退会渲染成方框。 #}
+    <span class="logo" aria-hidden="true"></span>
+    <span>金融投研智能体</span>
+    <span class="tag">自研 Agent Harness</span>
+  </div>
+  {# 导航按**赛题**分组，而不是按页面类型 —— 评审看的是「你做了哪几题」，
+     所以选题号直接写进组名，一眼能对上参赛材料。工程性的页面收进「运行」组，
+     不跟选题抢位置。
+     ★ 每组第三项是这一组的**目标 run**。选题 1 读公告 run，选题 4/5 读财务报告
+     run —— 两组材料不同，导航不能把当前页的 run 顺手带过去：在 /valuation 上
+     点「事实库」，带过去的是估值 run，而它多半没有 facts/ 或 facts/ 是另一批材料。
+     ★ 组内只列**页面**，不列页内子视图。选题 4/5 的各副视图（假设 / 结果 / 报告、
+     清单 / 批注稿）由页内标签条给（见 `_tabs.html`）—— 同一批链接在两处各列一遍
+     就等于同一排按钮画两次，而这个控制台本来就嫌乱。 #}
+  {% set NAV = [
+    ('运行', [('全流程','/analyze'), ('单文件解析','/process'), ('复现','/runs')], run_id),
+    ('R1 提取', [('材料','/library'), ('解析','/extract'), ('事实库','/facts')], r1_run_id),
+    ('R4 估值', [('估值建模','/valuation')], fin_run_id),
+    ('R5 核查', [('核查报告','/audit')], fin_run_id),
+  ] %}
+  <nav class="mainnav">
+    <a href="/{% if run_id %}?run={{ run_id }}{% endif %}"
+       class="navhome {% if current_path == '/' %}active{% endif %}">总览</a>
+    {% for group, items, grp_run in NAV %}
+      <div class="navgroup">
+        <span class="glabel">{{ group }}</span>
+        {% for label, href in items %}
+          <a href="{{ href }}{% if grp_run %}?run={{ grp_run }}{% endif %}"
+             class="{% if current_path == href %}active{% endif %}">{{ label }}</a>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <a href="/analyze{% if run_id %}?run={{ run_id }}{% endif %}"
+       class="navcta {% if current_path == '/analyze' %}active{% endif %}">开始分析</a>
+  </nav>
+  <div class="runpicker">
+    <form method="get" action="{{ current_path }}">
+      <label>运行</label>
+      <select name="run" onchange="this.form.submit()">
+        {% for r in runs %}
+          <option value="{{ r.run_id }}" {% if run_id == r.run_id %}selected{% endif %}>
+            {{ r.status_icon }} {{ r.run_id }} · {{ r.pipeline }}
+          </option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+</header>
+
+{% if summary %}
+<div class="statusbar">
+  <span class="pill {{ summary.status }}">{{ summary.status_icon }} {{ summary.status }}</span>
+  <span class="meta">流水线 <b>{{ summary.pipeline }}</b></span>
+  <span class="meta">开始 <b>{{ summary.started_at_short }}</b></span>
+  <span class="meta">产物 <b>{{ summary.output_count }}</b></span>
+  <span class="meta">Token <b>{{ "{:,}".format(summary.total_tokens) }}</b></span>
+  {# ★ 这个成本来自 run 的 checkpoint（`total_cost_cny`），与 `audit.md` 里
+     「估算成本」**可能不是同一个数**（2026-09-27 实测：ann77 这里 ¥1.0922，
+     audit.md 记 ¥2.0222）。两者口径不同 —— checkpoint 的 token 数恰为 audit 的
+     50.8%，与缓存命中率 52.0% 接近，看起来是**不计缓存命中那部分**。
+     根因未逐行核实，所以这里只标注来源，不假装两者一致。 #}
+  <span class="meta" title="来自 run 的 checkpoint（total_cost_cny）。audit.md 的「估算成本」是另一套口径，两者可能不等，详见核查报告">成本 <b>¥{{ "%.4f"|format(summary.total_cost_cny) }}</b><span class="dim2 small">（checkpoint 口径）</span></span>
+  {% if summary.cache_hit_rate is not none %}
+    {# ★ 分母是**已发起**的模型调用。离线未命中的那些调用「没能发起」，
+       因此不进分母 —— 一个 run 可以同时是「缓存命中 100%」与
+       「有 3 类调用失败」。不写清楚分母，这个 100% 就会被读成
+       「全部走缓存、跑得完整」，正好把 partial 的真实含义盖掉。 #}
+    <span class="meta">缓存命中 <b>{{ "%.0f%%"|format(summary.cache_hit_rate * 100) }}</b><span class="dim">（已发起的调用）</span></span>
+  {% endif %}
+  <span class="meta">模型 <b>{{ summary.provider }}</b></span>
+  <span class="spacer"></span>
+  <span class="meta dim">数据 <code>{{ summary.data_dir or '(默认)' }}</code></span>
+</div>
+{% endif %}
+
+<main>
+  {# 页内子视图标签条 —— 放在 main 顶端而不是各页模板里：
+     它是「你在这一组的哪个视图」，与页面内容同级，写一处就够。 #}
+  {% include "_tabs.html" %}
+  {% block content %}{% endblock %}
+</main>
+
+{# 签字栏 —— 页脚不是装饰，是「这份底稿谁编的、复核到哪一步、编号多少」。
+   原来的居中信任声明降级为落款，与底稿号并列。 #}
+<footer class="footsig">
+  <span>编制 <b>机器（{{ summary.pipeline if summary else 'agent run' }}）</b></span>
+  <span>复核 <b>未复核</b> —— 需人工签署后才可作为定稿</span>
+  <span>底稿号 <b class="mono">{{ current_path }}</b></span>
+  <span class="lg">数据目录 <code>runs/{{ run_id }}/</code> · 直接读取，未做二次加工</span>
+</footer>
+
+{# 全站右侧抽屉：Agent 运行轨迹。挂在 base 上，所以每一页都能随时拉开看
+   「这一刻 agent 在调什么工具」。 #}
+{% include "_drawer.html" %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{"seq": 0, "ts": "2026-10-16T17:22:06.222935+00:00", "kind": "stage", "stage": "r1_ingest", "status": "start"}
+{"seq": 1, "ts": "2026-10-16T17:22:06.596513+00:00", "kind": "stage", "stage": "r1_extract_text", "status": "start"}
+{"seq": 2, "ts": "2026-10-16T17:22:06.721066+00:00", "kind": "stage", "stage": "r1_extract_ocr", "status": "start"}
+{"seq": 3, "ts": "2026-10-16T17:22:07.320099+00:00", "kind": "stage", "stage": "r1_extract_tables", "status": "start"}
+{"seq": 4, "ts": "2026-10-16T17:22:07.334770+00:00", "kind": "stage", "stage": "r1_judge", "status": "start"}
+{"seq": 5, "ts": "2026-10-16T17:22:07.412343+00:00", "kind": "stage", "stage": "r1_build_facts", "status": "start"}
+{"seq": 6, "ts": "2026-10-16T17:22:07.577309+00:00", "kind": "stage", "stage": "r1_export", "status": "start"}
+{"seq": 7, "ts": "2026-10-16T17:22:09.368489+00:00", "kind": "stage", "stage": "r4_assumptions", "status": "start"}
+{"seq": 8, "ts": "2026-10-16T17:22:09.437993+00:00", "kind": "stage", "stage": "r4_model", "status": "start"}
+{"seq": 9, "ts": "2026-10-16T17:22:09.525140+00:00", "kind": "stage", "stage": "r4_report", "status": "start"}
+{"seq": 10, "ts": "2026-10-16T17:22:12.562366+00:00", "kind": "stage", "stage": "r5_check", "status": "start"}

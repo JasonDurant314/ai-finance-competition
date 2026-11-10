@@ -1,0 +1,549 @@
+{% extends "base.html" %}
+{% block title %}抽取工作台 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>选题 1 · 抽取工作台（三层解析引擎）</h1>
+  <div class="sub">
+    本页是<b>方法说明页</b>：逐页展示为什么要走这条解析路径、每个通道各自读出了什么、
+    冲突如何被发现与裁决 —— 都是支撑结论的比对细节，因此默认收起。
+    想看<b>结构化输出本身</b>（赛题要的最终结果），请到
+    <a href="/facts?run={{ run_id }}"><b>事实库溯源</b></a>。
+    <br>
+    {# 材料范围现算，不写死 —— 写死的那版在换 run 之后会说反话，见
+       web/app.py::material_scope 的 docstring。 #}
+    <span class="dim2">本 run 的输入是
+    <code>{{ scope.data_dir or '(未记录)' }}</code> 下的
+    <b>{{ scope.n_docs }} 份 / {{ scope.n_pages }} 页</b>：
+    文本层 {{ scope.with_text }} 页 · 无可靠文本层 {{ scope.scanned }} 页 ·
+    表格页 {{ scope.table_pages }} 页 · 混合页 {{ scope.mixed_pages }} 页。三类材料与三类字段各跑到哪一步，
+    逐条列在 <a href="/facts?run={{ run_id }}">事实库溯源</a>首屏的「本 run 的材料范围」。</span>
+  </div>
+</div>
+
+<div class="note info">
+  <b>最终交付物不在这里。</b>本页回答「这份数据是怎么抽出来的」；
+  结构化输出（<code>facts.json</code> / <code>facts.xlsx</code>）与它的四条重点考察项
+  在 → <a href="/facts?run={{ run_id }}"><b>事实库溯源</b></a>。
+  下方各折叠页是支撑证据，按需展开。
+</div>
+
+{# ---------------- F1. 解析总览（三层路由的结果 + 图表） ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F1</span>
+    <span class="ft">三层解析总览</span>
+    <span class="fsum">
+      文本层 <b>{{ stats.text_pages }}</b> 页 · OCR <b>{{ stats.ocr_pages }}</b> 页 ·
+      VLM <b>{{ stats.vlm_scan_pages }}</b> 页 —— 每页<b>只走一层</b>，按页面特征确定性路由；
+      VLM 提出的 {{ stats.scan_fields_total }} 个字段里
+      <b>{{ stats.scan_fields_rejected }}</b> 个未过回读闸门被丢弃
+    </span>
+    <span class="cnt">{{ stats.text_pages + stats.ocr_pages + stats.vlm_scan_pages }} 页</span>
+  </summary>
+  <div class="fbody">
+{# ------------------------------------------------ 底稿汇总表
+   原为五张 KPI 卡片（含写死的 `.kpi ok` / `.kpi bad` 语义色）。
+   两个问题：① 「通过回读校验」被涂成绿色 —— 通过是常态，常态不该上色；
+   ② 「页数」和「字段数」两种量纲混在同一排大数字里，读者无从分辨
+   18 是页还是字段。底稿表把它们分成两列，量纲写在表头上。
+
+   ★ 「判定为幻觉」这一行是**闸门的结果**，和上面三层**不是并列关系**——
+   它是 L3 的产出被回读校验枪毙的部分。表里用缩进层次 + 「闸门」索引标出来，
+   免得读者误以为还有第四层引擎。 #}
+<table class="ledger">
+  <thead><tr>
+    <th>索引</th><th>处理层</th>
+    <th class="n">页数</th><th class="n">字段数</th>
+    <th class="mk">记号</th><th>处置</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="idx">L1</td><td class="t">文本层直读</td>
+      <td class="n">{{ stats.text_pages }}</td><td class="n">—</td>
+      <td class="mk mk-v">√</td>
+      <td class="t">页面自带文本层，直接结构定位</td></tr>
+    <tr><td class="idx">L2</td><td class="t">OCR 光学识别</td>
+      <td class="n">{{ stats.ocr_pages }}</td><td class="n">—</td>
+      <td class="mk mk-h">◐</td>
+      <td class="t">无文本层，识别后再定位，结果须过闸门</td></tr>
+    <tr><td class="idx">L3</td><td class="t">VLM 视觉读数</td>
+      <td class="n">{{ stats.vlm_scan_pages }}</td>
+      <td class="n">{{ stats.scan_fields_total }}</td>
+      <td class="mk mk-h">◐</td>
+      <td class="t">版式无法结构化，交给模型读数</td></tr>
+    <tr><td class="idx">↳ 闸门</td><td class="t">通过回读校验</td>
+      <td class="n">—</td><td class="n">{{ stats.scan_fields_usable }}</td>
+      <td class="mk mk-v">√</td>
+      <td class="t">quote 能在该页原文中原样找到</td></tr>
+    <tr><td class="idx">↳ 闸门</td><td class="t">判定为幻觉并丢弃</td>
+      <td class="n">—</td><td class="n">{{ stats.scan_fields_rejected }}</td>
+      <td class="mk {% if stats.scan_fields_rejected %}mk-x{% else %}mk-v{% endif %}">
+        {{ '×' if stats.scan_fields_rejected else '√' }}</td>
+      <td class="t">回读失败或量纲不符，<b>不进入事实库</b></td></tr>
+    <tr class="tot"><td class="idx"></td><td class="t">合计</td>
+      <td class="n">{{ stats.text_pages + stats.ocr_pages + stats.vlm_scan_pages }}</td>
+      <td class="n">{{ stats.scan_fields_total }}</td>
+      <td class="mk"></td>
+      <td class="t">页数为三层之和（每页只走一层）</td></tr>
+  </tbody>
+</table>
+
+{# ---------------------------------------------------------------- 图表 #}
+{% if charts %}
+<div class="charts pairs">
+  {% if charts.channel_bar %}
+  <div class="chart">
+    <h4>各通道覆盖页数</h4>{{ charts.channel_bar }}
+    <p class="cap">三层不是「依次尝试」，而是按页面特征路由到最合适的一层。</p>
+  </div>
+  {% endif %}
+  {% if charts.scan_stack %}
+  <div class="chart">
+    <h4>VLM 扫描字段可用性</h4>{{ charts.scan_stack }}
+    <p class="cap">
+      模型读数<b>不直接采信</b>：每个字段都要把 quote 拿回原文里回读，
+      找不到就判为幻觉丢弃 —— 这是「宁缺毋滥」的落点。
+    </p>
+  </div>
+  {% endif %}
+</div>
+
+<details class="ev">
+  <summary>表格裁决与页面路由构成
+    <span class="cnt">单元格级裁决 · 路由分布</span></summary>
+  <div class="inner charts pairs">
+    {% if charts.cell_stack %}
+    <div class="chart"><h4>表格单元格裁决构成</h4>{{ charts.cell_stack }}</div>
+    {% endif %}
+    {% if charts.arith_bar %}
+    <div class="chart"><h4>表格算术自洽校验</h4>{{ charts.arith_bar }}
+      <p class="cap">行内勾稽关系对不上的表格会被标记，不以「解析成功」蒙混过关。</p></div>
+    {% endif %}
+    {% if charts.route_donut %}
+    <div class="chart"><h4>页面路由构成</h4>{{ charts.route_donut }}</div>
+    {% endif %}
+  </div>
+</details>
+{% endif %}
+  </div>
+</details>
+
+{# ============================================================ 文档与页码
+   ★ 这一块**不折叠** —— 它是本页的**控件**，不是明细。
+     折起来等于把翻页功能藏了，下面的逐页明细也就无从看起。 #}
+<h2>选择文档与页码</h2>
+
+<div class="chips">
+  {% for d in docs %}
+    <a class="chip {% if d.doc_id == cur_doc %}on{% endif %}"
+       href="/extract?run={{ run_id }}&doc={{ d.doc_id }}&page=1">
+      {{ d.filename }}{% if not d.has_text_layer %} <span class="dim2">(无文本层)</span>{% endif %}
+    </a>
+  {% endfor %}
+</div>
+
+{# 页码选择**只渲染当前页附近的一小段**。整份文档有 273 页，逐页铺成 chip 是
+   5.7 万字节 —— 占了整页的一半，而其中 99% 的用户永远不会点。这里改成
+   窗口式（首/末页常驻 + 当前页 ±5），并把每页的 route_reason 留在 title 上。 #}
+{% if pages %}
+  {% set ns = namespace(ci=0) %}
+  {% for p in pages %}{% if p.page == cur_page %}{% set ns.ci = loop.index0 %}{% endif %}{% endfor %}
+  {% set n_pg = pages|length %}
+  {% set lo = [0, ns.ci - 5]|max %}
+  {% set hi = [n_pg - 1, lo + 10]|min %}
+  {% set qs = '/extract?run=' ~ run_id ~ '&doc=' ~ cur_doc ~ '&page=' %}
+
+  <div class="pager">
+    <span class="info">共 <b>{{ n_pg }}</b> 页 · 当前第 <b>{{ cur_page }}</b> 页</span>
+    {% if ns.ci > 0 %}
+      <a href="{{ qs }}{{ pages[ns.ci - 1].page }}">‹ 上一页</a>
+    {% endif %}
+    {% if lo > 0 %}
+      <a href="{{ qs }}{{ pages[0].page }}" title="{{ pages[0].route_reason }}">第 {{ pages[0].page }} 页</a>
+      <span class="dim2">…</span>
+    {% endif %}
+    {% for i in range(lo, hi + 1) %}
+      {% set p = pages[i] %}
+      {% if p.page == cur_page %}
+        <span class="pg cur" title="{{ p.route_reason }}">{{ p.page }}</span>
+      {% else %}
+        <a href="{{ qs }}{{ p.page }}" title="{{ p.route_reason }}">{{ p.page }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if hi < n_pg - 1 %}
+      <span class="dim2">…</span>
+      <a href="{{ qs }}{{ pages[n_pg - 1].page }}" title="{{ pages[n_pg - 1].route_reason }}">第 {{ pages[n_pg - 1].page }} 页</a>
+    {% endif %}
+    {% if ns.ci < n_pg - 1 %}
+      <a href="{{ qs }}{{ pages[ns.ci + 1].page }}">下一页 ›</a>
+    {% endif %}
+  </div>
+  <div class="dim2 small" style="margin:-6px 0 10px">
+    鼠标悬停在页码上可看该页的路由判定理由。
+  </div>
+{% endif %}
+
+{% if page_meta %}
+{# ---------------- F2. 路由决策 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F2</span>
+    <span class="ft">第 {{ cur_page }} 页 · 路由决策</span>
+    <span class="fsum">
+      路由到 <b>{{ page_meta.route }}</b> —— {{ page_meta.route_reason }}
+    </span>
+    <span class="cnt">第 {{ cur_page }} 页</span>
+  </summary>
+  <div class="fbody">
+<div class="panel">
+  <div class="row" style="margin-bottom:10px">
+    <span class="tag {{ page_meta.route }}">{{ page_meta.route }}</span>
+    <b>{{ page_meta.route_reason }}</b>
+  </div>
+  {# 字段名必须与 pages/index.json 完全一致（garbled_ratio / text_coverage /
+     image_coverage / rule_line_density / char_count / min_font_size）。
+     这里曾因写成 garbled 而导致页面 500 —— 演示台宁可少显示，也不能崩。 #}
+  <div class="small dim">
+    预扫描指标 ——
+    有效字符 <b>{{ page_meta.char_count }}</b> ·
+    乱码率 <b>{{ "%.2f%%"|format(page_meta.garbled_ratio * 100) }}</b> ·
+    文本覆盖率 <b>{{ "%.1f%%"|format(page_meta.text_coverage * 100) }}</b> ·
+    图像覆盖率 <b>{{ "%.1f%%"|format(page_meta.image_coverage * 100) }}</b> ·
+    表框线段 <b>{{ page_meta.rule_line_density }}</b> ·
+    最小字号 <b>{{ page_meta.min_font_size }}</b>
+  </div>
+  <div class="note info small" style="margin-top:10px">
+    路由判定完全由这些确定性指标驱动，<b>不涉及任何模型调用</b> ——
+    因此判定结果同输入必然同输出。判定理由已写入 <code>trace.jsonl</code>。
+  </div>
+</div>
+  </div>
+</details>
+{% endif %}
+
+{# ---------------- F3. 三层通道对比 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F3</span>
+    <span class="ft">三层通道对比 —— 每层各读出了什么</span>
+    <span class="fsum">
+      ① 文本层直取 {% if text_rec %}<b>有输出</b>{% else %}<span class="dim2">无</span>{% endif %} ·
+      ② OCR {% if ocr_rec %}<b>有输出</b>{% else %}<span class="dim2">未触发</span>{% endif %} ·
+      ③ VLM 视觉扫描 {% if scan_rec %}<b>提出 {{ scan_rec.fields|length }} 个字段</b>{% else %}<span class="dim2">未触发</span>{% endif %}
+      —— 三层是<b>按页路由</b>，不是依次尝试
+    </span>
+    <span class="cnt">第 {{ cur_page }} 页</span>
+  </summary>
+  <div class="fbody">
+<div class="channels">
+
+  {# ---------------- 第 1 层 ---------------- #}
+  <div class="chan {% if text_rec %}hl{% endif %}">
+    <h4><span>① 文本层直取</span>
+      {% if text_rec %}<span class="tag L1">有输出</span>
+      {% else %}<span class="tag L3">无</span>{% endif %}
+    </h4>
+    {% if text_rec %}
+      <div class="stat">{{ text_rec.chunk_count }} 个文本块 · {{ text_rec.candidates|length }} 个数值候选</div>
+      <div class="bar"><span style="width:95%"></span></div>
+      <div class="stat">基础置信度 0.95（最高）</div>
+      <details open>
+        <summary>页面文本（前 1200 字）</summary>
+        <div class="body">{{ (text_rec.raw or text_rec.text)[:1200] }}</div>
+      </details>
+      <details>
+        <summary>数值候选（前 25 个）</summary>
+        <div class="body">{% for c in text_rec.candidates[:25] %}{{ c.raw }}  ⟵ {{ c.context[:44] }}
+{% endfor %}</div>
+      </details>
+    {% else %}
+      <div class="body">该页无可用文本层，未走此层。</div>
+    {% endif %}
+  </div>
+
+  {# ---------------- 第 2 层 ---------------- #}
+  <div class="chan {% if ocr_rec %}hl{% endif %}">
+    <h4><span>② OCR 识别</span>
+      {% if ocr_rec %}<span class="tag L2">有输出</span>
+      {% else %}<span class="tag L3">未触发</span>{% endif %}
+    </h4>
+    {% if ocr_rec %}
+      <div class="stat">
+        引擎 <b>{{ ocr_rec.engine }}</b> · {{ ocr_rec.dpi }}dpi ·
+        {{ ocr_rec.line_count }} 行 · 平均置信度 <b>{{ "%.3f"|format(ocr_rec.mean_confidence) }}</b>
+      </div>
+      <div class="bar"><span style="width:{{ (ocr_rec.mean_confidence * 100)|round(0) }}%"></span></div>
+      <div class="stat">
+        低置信行占比
+        <b class="{% if ocr_rec.low_confidence_ratio > 0.3 %}review{% endif %}">
+          {{ "%.1f%%"|format(ocr_rec.low_confidence_ratio * 100) }}</b>
+        · 基础置信度 0.80
+      </div>
+      <details open>
+        <summary>识别文本（前 1200 字）</summary>
+        <div class="body">{{ (ocr_rec.raw or ocr_rec.text)[:1200] }}</div>
+      </details>
+    {% else %}
+      <div class="body">该页未触发 OCR（文本层可用，或已超出演示的 OCR 页数上限）。</div>
+    {% endif %}
+  </div>
+
+  {# ---------------- 第 3 层 ---------------- #}
+  <div class="chan {% if scan_rec %}hl{% endif %}">
+    <h4><span>③ VLM 视觉扫描</span>
+      {% if scan_rec %}<span class="tag L3">有输出</span>
+      {% else %}<span class="tag L3">未触发</span>{% endif %}
+    </h4>
+    {% if scan_rec %}
+      <div class="stat">
+        页型 <b>{{ scan_rec.page_type }}</b> ·
+        自评置信度 <b>{{ "%.2f"|format(scan_rec.self_confidence or 0) }}</b> ·
+        提出 <b>{{ scan_rec.fields|length }}</b> 个字段
+      </div>
+      <div class="stat">
+        通过闸门 <b class="conf hi">{{ scan_rec.fields|rejectattr('rejected')|list|length }}</b> ·
+        被拒 <b class="conf lo">{{ scan_rec.rejected_count }}</b> ·
+        指标未归属 <b>{{ scan_rec.unknown_metric_count }}</b>
+      </div>
+      <table class="compact" style="margin-top:8px">
+        <thead><tr><th>指标归属</th><th>值</th><th>单位</th><th>闸门</th></tr></thead>
+        <tbody>
+        {% for f in scan_rec.fields %}
+          <tr>
+            <td class="mono">{{ f.metric }}</td>
+            <td class="mono">{{ f.value_raw }}</td>
+            <td class="dim2">{{ f.unit_as_written }}</td>
+            <td>
+              {% if f.rejected %}<span class="tag sev-confirmed">✗</span>
+              {% else %}<span class="tag L1">✓</span>{% endif %}
+            </td>
+          </tr>
+          {% if f.rejected %}
+          <tr><td colspan="4" class="small review" style="padding-top:0">
+            {{ f.rejection_reason }}</td></tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="body">
+        该页未触发 VLM 扫描。<br>
+        触发条件：通道冲突 / 纯扫描页 / 表格页 / 低置信 / 疑似数字粘连。
+      </div>
+    {% endif %}
+  </div>
+</div>
+  </div>
+</details>
+
+{# ---------------- F4. 通道冲突与裁决 ----------------
+   ★ 无论有没有冲突都渲染。`r.conflicts` 只记录**检出冲突**的页，
+   若按 `{% if conflict_rec %}` 渲染，本页就会直接少一个 F4 ——
+   读者看到编号从 F3 跳到 F5，无从判断是「没冲突」还是「没查」。
+   冲突检测是本项目区别于「让大模型通读」的关键机制，
+   「查了、没有」本身就是要展示的结论。 #}
+<details class="fold">
+  <summary>
+    <span class="idx">F4</span>
+    <span class="ft">通道冲突与裁决</span>
+    {% if conflict_rec %}
+    <span class="fsum">
+      本页触发 <b>{{ conflict_rec.diffs|length }}</b> 类通道分歧 ——
+      {{ conflict_rec.trigger_reason }}
+    </span>
+    <span class="cnt">{{ conflict_rec.diffs|length }} 类</span>
+    {% else %}
+    <span class="fsum">
+      <b>全运行 0 条通道冲突记录</b> —— 本次 OCR 走 {{ stats.ocr_pages }} 页，
+      没有一页同时有两路读数可供比对，<b>并非「比过了、没差异」</b>
+    </span>
+    <span class="cnt">0 类</span>
+    {% endif %}
+  </summary>
+  <div class="fbody">
+{% if not conflict_rec %}
+{# ★ 「0 条」这个读数本身就是全部信息 —— 为什么是 0（本次 OCR 走 N 页、
+   没有一页具备比对条件）已经写在上面摘要行里。底下原先还有一段
+   「因此零冲突是结构使然，不能读成已互相验证」：那是**替这个 0 做的辩护**，
+   同一个意思摘要行已经说过一遍（「并非『比过了、没差异』」），说两遍
+   反而像在掩饰。 #}
+{% endif %}
+{% if conflict_rec %}
+<div class="panel">
+  <div class="note warn">{{ conflict_rec.trigger_reason }}</div>
+  {% for d in conflict_rec.diffs %}
+    <div style="margin-top:12px">
+      <b class="mono">{{ d.kind }}</b>
+      <div class="small dim" style="margin:4px 0 6px">{{ d.note }}</div>
+      <div class="chips">
+        {# 必须用下标访问：`d.values` 会解析成 dict 的 .values 方法 #}
+        {% for v in d['values'][:20] %}<span class="chip mono">{{ v }}</span>{% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+  </div>
+</details>
+
+{# ---------------- F5. 表格结构重建与单元格级裁决 ----------------
+   这一屏是赛题明确考察的「表格解析准确性」的落点，也是本页唯一
+   值得摊开给评审看的证据链 —— 但仍然折起来：它的**结论**已经写进摘要行，
+   展开只是给答辩追问时看裁图与逐格裁决。 #}
+<details class="fold">
+  <summary>
+    <span class="idx">F5</span>
+    <span class="ft">表格结构重建与单元格级视觉裁决</span>
+    <span class="fsum">
+      全运行受检 <b>{{ table_stats.cells_checked }}</b> 格 ·
+      格式归一 <b>{{ table_stats.cells_normalized }}</b> 格（数字未变）·
+      实际改值 <b>{{ table_stats.cells_corrected }}</b> 格 ·
+      被闸门拦下 <b>{{ table_stats.cells_rejected }}</b> 格
+      —— 模型读数过不了回读闸门就<b>只标记不改</b>
+    </span>
+    <span class="cnt">本页 {{ page_tables|length }} 张表</span>
+  </summary>
+  <div class="fbody">
+{% if not page_tables %}
+<div class="panel">
+  <div class="body">
+    本页未识别到表格。<br>
+    识别方式：含框线的页面走<b>几何线段连通分量</b>重建，无框线的走文本层坐标聚类。
+  </div>
+</div>
+{% else %}
+
+<div class="cards">
+  <div class="card"><div class="k">本页表格</div>
+    <div class="v">{{ page_tables|length }}</div>
+    <div class="note">全部由几何重建，非模型生成</div></div>
+  <div class="card ok"><div class="k">视觉复核（全运行）</div>
+    <div class="v">{{ table_stats.cells_checked }}</div>
+    <div class="note">个单元格被读图复核</div></div>
+  <div class="card"><div class="k">格式归一</div>
+    <div class="v">{{ table_stats.cells_normalized }}</div>
+    <div class="note">数字未变，仅修复换行切断</div></div>
+  <div class="card"><div class="k">改值</div>
+    <div class="v">{{ table_stats.cells_corrected }}</div>
+    <div class="note">过全部闸门才允许覆盖</div></div>
+  <div class="card bad"><div class="k">被闸门拦下</div>
+    <div class="v">{{ table_stats.cells_rejected }}</div>
+    <div class="note">不一致但未过闸门 → 只标记不改</div></div>
+</div>
+
+{% for t in page_tables %}
+  <div class="panel" style="margin-top:14px">
+    <div class="row" style="margin-bottom:8px">
+      <b>表 {{ t.index + 1 }}</b>
+      <span class="tag L2">{{ t.method }}</span>
+      <span class="dim2 small">{{ t.n_rows }} 行 × {{ t.n_cols }} 列</span>
+      {% if t.has_rules %}<span class="tag L1">有框线</span>{% endif %}
+      {# 算术校验必须区分三态：已验算相符 / 已验算不平 / 无从校验 #}
+      <span class="tag {% if t.arith_css == 'ok' %}L1{% elif t.arith_css == 'bad' %}sev-confirmed{% else %}L3{% endif %}">
+        {{ t.arith_label }}</span>
+      {% if t.trigger %}
+        <span class="tag L3">触发档 {{ t.trigger }} · 复核 {{ t.cells_checked }} 格</span>
+      {% endif %}
+    </div>
+
+    <div class="tablewrap">
+      <table class="grid">
+        <tbody>
+        {% for row in t.rows %}
+          <tr>
+          {% for c in row %}
+            <td class="{{ c.css }}" title="{{ c.verdict_label }}{% if c.changed %}：{{ c.original }} → {{ c.text }}{% endif %}">{{ c.text }}</td>
+          {% endfor %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if t.hits %}
+    <details {% if t.changed_cells %}open{% endif %}>
+      <summary>单元格裁决明细（{{ t.hits|length }} 格）—— 模型看到什么、读出什么、闸门怎么判</summary>
+      <table class="compact" style="margin-top:8px">
+        <thead><tr>
+          <th>位置</th><th>模型读的图</th><th>程序读数</th><th>模型读数</th>
+          <th>结论</th><th>置信度</th><th>quote 回读</th>
+        </tr></thead>
+        <tbody>
+        {% for c in t.hits %}
+          <tr>
+            <td class="mono dim2">r{{ c.row }}c{{ c.col }}</td>
+            <td>
+              {# 裁图是"视觉裁决"唯一的物证：没有它，一切只是自述 #}
+              <a href="/cell-crop/{{ cur_doc }}/{{ cur_page }}/{{ c.row }}/{{ c.col }}?run={{ run_id }}"
+                 target="_blank" rel="noopener">
+                <img class="crop" loading="lazy"
+                     src="/cell-crop/{{ cur_doc }}/{{ cur_page }}/{{ c.row }}/{{ c.col }}?run={{ run_id }}"
+                     alt="单元格裁图 r{{ c.row }}c{{ c.col }}"
+                     onerror="this.closest('td').innerHTML='<span class=&quot;dim2&quot;>无裁图</span>'">
+              </a>
+            </td>
+            <td class="mono">{{ c.original }}</td>
+            <td class="mono">{% if c.vlm_text %}{{ c.vlm_text }}{% else %}<span class="dim2">—</span>{% endif %}</td>
+            <td>
+              {% if c.verdict == 'corrected' %}<span class="tag sev-confirmed">改值</span>
+              {% elif c.verdict == 'normalized' %}<span class="tag L3">格式归一</span>
+              {% elif c.verdict == 'agree' %}<span class="tag L1">一致</span>
+              {% elif c.verdict == 'unreadable' %}<span class="tag L3">读不出</span>
+              {% else %}<span class="tag sev-confirmed">未采纳</span>{% endif %}
+            </td>
+            <td class="mono dim2">{{ c.confidence_pct }}</td>
+            <td class="small">{% if c.quote %}<span class="mono">{{ c.quote[:40] }}</span>
+              {% else %}<span class="dim2">—</span>{% endif %}</td>
+          </tr>
+          {% if c.note %}
+          <tr><td colspan="7" class="small dim2" style="padding-top:0">{{ c.note }}</td></tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+      <div class="small dim2" style="margin-top:6px">
+        覆盖闸门：quote 回读成功 + 位置确认 + 置信度 ≥ 0.7，<b>全部满足才允许改值</b>；
+        否则只标记不改。绿色边框格表示模型读数与程序读数一致。
+      </div>
+    </details>
+    {% endif %}
+
+    {% if t.arith_failures %}
+    <details open>
+      <summary>算术不平明细（{{ t.arith_failures|length }} 处）</summary>
+      <table class="compact" style="margin-top:8px">
+        <thead><tr><th>方向</th><th>标签</th><th>表内合计</th><th>分项和</th><th>差额</th></tr></thead>
+        <tbody>
+        {% for f in t.arith_failures[:12] %}
+          <tr>
+            <td class="dim2">{{ "纵向" if f.kind == "col_sum" else "横向" }}</td>
+            <td>{{ f.label }}</td>
+            <td class="mono">{{ f.expected }}</td>
+            <td class="mono">{{ f.computed }}</td>
+            <td class="mono review">{{ f.diff }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+    {% endif %}
+  </div>
+{% endfor %}
+
+{% endif %}
+
+<div class="note info small">
+  <b>这一屏是「复杂表格」的落点</b>（赛题明确考察的「表格解析准确性」）。
+  <br>
+  <b>算术校验的如实说明</b>：表里<b>有合计线</b>时，算术校验会独立跑一遍 ——
+  算不平就说明解析错了，而且能定位到具体行列。但真实公告里带「合计」标签的
+  表格只占少数（实测 55 张里 2 张），因此算术校验的<b>覆盖率天生很低</b>；
+  覆盖率之外的表格靠几何特征排序挑可疑格做视觉复核
+  （换行切断 &gt; 异常长 &gt; 空格子）。
+  <span class="dim2">代码里 <code>ok</code> 与 <code>checked</code> 是两个量：
+  前者对「没有合计线所以没查」的表也是真，不能当「查过了」。</span>
+</div>
+  </div>
+</details>
+
+{% endblock %}

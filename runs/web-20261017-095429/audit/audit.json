@@ -1,0 +1,61 @@
+{
+  "contract_version": "1.0.0",
+  "run_id": "web-20261017-095429",
+  "draft_doc_id": "synthetic_demo_draft",
+  "checked_at": "2026-10-17T01:54:35.275773Z",
+  "per_draft_metrics": [],
+  "findings": [
+    {
+      "finding_id": "E1-001",
+      "error_type": "E1_unit",
+      "severity": "confirmed",
+      "location": {
+        "section": "二、经营业绩",
+        "char_range": [
+          139,
+          157
+        ],
+        "page": null,
+        "quote": " 28644.69 亿元，同比增长 3.20%；\n实现归属于母公司股东的净利润 157302000000.00 万元。\n\n> 上述数据引自公司 2025 年度报告。\n\n## 三、盈利质量\n\n公司扣"
+      },
+      "draft_id": "synthetic_demo_draft",
+      "reported_value": "157302000000.00万元",
+      "correct_value": "157302000000.00 元",
+      "source_evidence": [
+        "evd_945c00fabcea2900"
+      ],
+      "caliber": "net_profit_parent|元|2025A|consolidated|net_parent",
+      "reason": "数值 157302000000.00 与原始材料一致，但单位标注为 『万元』，原始材料为『元』。换算后相差 10000.0000 倍",
+      "suggestion": "改为『157302000000.00 元』",
+      "confidence": 0.95,
+      "detector": "rule.E1.unit_mismatch"
+    },
+    {
+      "finding_id": "E5-001",
+      "error_type": "E5_arithmetic_consistency",
+      "severity": "confirmed",
+      "location": {
+        "section": "二、经营业绩",
+        "char_range": [
+          117,
+          121
+        ],
+        "page": null,
+        "quote": "00）主营业务稳健，报告期内经营情况良好。\n\n## 二、经营业绩\n\n报告期内，公司实现营业收入 28644.69 亿元，同比增长 3.20%；\n实现归属于母公司"
+      },
+      "draft_id": "synthetic_demo_draft",
+      "reported_value": "3.20%",
+      "correct_value": "-2.50%",
+      "source_evidence": [
+        "evd_ee10b1b4efa935ba",
+        "evd_34e25f71aa30ca39"
+      ],
+      "caliber": null,
+      "reason": "报告称增速 3.20%，按原始材料重算：（2864469000000.00 − 2937981000000.00）÷ |2937981000000.00| = -2.50%（2024A → 2025A，主体：601857）",
+      "suggestion": "改为『-2.50%』，或核对所引报告期",
+      "confidence": 0.88,
+      "detector": "rule.E5.yoy_recompute"
+    }
+  ],
+  "metrics": null
+}

@@ -1,0 +1,955 @@
+{
+  "$defs": {
+    "AssertionStatus": {
+      "enum": [
+        "pass",
+        "fail",
+        "skipped"
+      ],
+      "title": "AssertionStatus",
+      "type": "string"
+    },
+    "Assumption": {
+      "additionalProperties": false,
+      "description": "经营假设 —— 每个假设必须能指向事实或标注为主观判断。",
+      "properties": {
+        "assumption_id": {
+          "title": "Assumption Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "source_fact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Fact Ids",
+          "type": "array"
+        },
+        "is_judgment": {
+          "default": false,
+          "description": "True 表示主观判断，必须在报告中标注为『观点』",
+          "title": "Is Judgment",
+          "type": "boolean"
+        },
+        "basis": {
+          "description": "依据说明，写入报告假设表",
+          "minLength": 1,
+          "title": "Basis",
+          "type": "string"
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Low"
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "High"
+        }
+      },
+      "required": [
+        "assumption_id",
+        "name",
+        "value",
+        "unit",
+        "basis"
+      ],
+      "title": "Assumption",
+      "type": "object"
+    },
+    "CompsPeer": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "ticker": {
+          "title": "Ticker",
+          "type": "string"
+        },
+        "market_cap": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Market Cap"
+        },
+        "pe": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pe"
+        },
+        "pb": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pb"
+        },
+        "ev_ebitda": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ev Ebitda"
+        },
+        "ps": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ps"
+        },
+        "multiple_basis": {
+          "description": "静态/TTM/动态 —— E2 核查依赖此标注",
+          "title": "Multiple Basis",
+          "type": "string"
+        },
+        "source_fact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Fact Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "ticker",
+        "market_cap",
+        "multiple_basis"
+      ],
+      "title": "CompsPeer",
+      "type": "object"
+    },
+    "CompsResult": {
+      "additionalProperties": false,
+      "properties": {
+        "peers": {
+          "items": {
+            "$ref": "#/$defs/CompsPeer"
+          },
+          "title": "Peers",
+          "type": "array"
+        },
+        "peer_selection_rule": {
+          "description": "筛选规则（写死在代码中，可审）",
+          "title": "Peer Selection Rule",
+          "type": "string"
+        },
+        "median_pe": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Median Pe"
+        },
+        "median_pb": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Median Pb"
+        },
+        "median_ev_ebitda": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Median Ev Ebitda"
+        },
+        "implied_value_per_share_low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Implied Value Per Share Low"
+        },
+        "implied_value_per_share_mid": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Implied Value Per Share Mid"
+        },
+        "implied_value_per_share_high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Implied Value Per Share High"
+        },
+        "illiquidity_discount": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Illiquidity Discount"
+        }
+      },
+      "required": [
+        "peers",
+        "peer_selection_rule",
+        "implied_value_per_share_low",
+        "implied_value_per_share_high"
+      ],
+      "title": "CompsResult",
+      "type": "object"
+    },
+    "DCFResult": {
+      "additionalProperties": false,
+      "properties": {
+        "wacc": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Wacc"
+        },
+        "terminal_growth": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Terminal Growth"
+        },
+        "explicit_years": {
+          "items": {
+            "$ref": "#/$defs/ForecastYear"
+          },
+          "title": "Explicit Years",
+          "type": "array"
+        },
+        "terminal_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Terminal Value"
+        },
+        "enterprise_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Enterprise Value"
+        },
+        "net_debt": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Net Debt"
+        },
+        "minority_interest": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Minority Interest"
+        },
+        "equity_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Equity Value"
+        },
+        "shares_outstanding": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Shares Outstanding"
+        },
+        "value_per_share": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Value Per Share"
+        },
+        "terminal_value_share": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "description": "终值占比。>0.85 通常意味着模型过度依赖永续假设，需在报告中提示",
+          "title": "Terminal Value Share"
+        }
+      },
+      "required": [
+        "wacc",
+        "terminal_growth",
+        "explicit_years",
+        "terminal_value",
+        "enterprise_value",
+        "net_debt",
+        "minority_interest",
+        "equity_value",
+        "shares_outstanding",
+        "value_per_share",
+        "terminal_value_share"
+      ],
+      "title": "DCFResult",
+      "type": "object"
+    },
+    "ForecastYear": {
+      "additionalProperties": false,
+      "description": "单一年度预测三表联动结果。单位统一为『元』。",
+      "properties": {
+        "year": {
+          "title": "Year",
+          "type": "integer"
+        },
+        "revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Revenue"
+        },
+        "ebit": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Ebit"
+        },
+        "nopat": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Nopat"
+        },
+        "depreciation_amortization": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Depreciation Amortization"
+        },
+        "capex": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Capex"
+        },
+        "nwc_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Nwc Change"
+        },
+        "fcff": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Fcff"
+        },
+        "net_income": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Net Income"
+        },
+        "total_assets": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Total Assets"
+        },
+        "total_liabilities": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Total Liabilities"
+        },
+        "total_equity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Total Equity"
+        },
+        "cash_end": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Cash End"
+        },
+        "retained_earnings": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Retained Earnings"
+        }
+      },
+      "required": [
+        "year",
+        "revenue",
+        "ebit",
+        "nopat",
+        "depreciation_amortization",
+        "capex",
+        "nwc_change",
+        "fcff",
+        "net_income",
+        "total_assets",
+        "total_liabilities",
+        "total_equity",
+        "cash_end",
+        "retained_earnings"
+      ],
+      "title": "ForecastYear",
+      "type": "object"
+    },
+    "SensitivityCell": {
+      "additionalProperties": false,
+      "properties": {
+        "x_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "X Value"
+        },
+        "y_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Y Value"
+        },
+        "value_per_share": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Value Per Share"
+        }
+      },
+      "required": [
+        "x_value",
+        "y_value",
+        "value_per_share"
+      ],
+      "title": "SensitivityCell",
+      "type": "object"
+    },
+    "SensitivityResult": {
+      "additionalProperties": false,
+      "properties": {
+        "x_name": {
+          "title": "X Name",
+          "type": "string"
+        },
+        "y_name": {
+          "title": "Y Name",
+          "type": "string"
+        },
+        "grid": {
+          "items": {
+            "$ref": "#/$defs/SensitivityCell"
+          },
+          "title": "Grid",
+          "type": "array"
+        },
+        "tornado": {
+          "description": "单变量影响排序 [{assumption, low, high, swing}]",
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Tornado",
+          "type": "array"
+        }
+      },
+      "required": [
+        "x_name",
+        "y_name",
+        "grid"
+      ],
+      "title": "SensitivityResult",
+      "type": "object"
+    },
+    "ValuationAssertion": {
+      "additionalProperties": false,
+      "description": "财务勾稽断言结果 —— 全绿才允许出报告。",
+      "properties": {
+        "code": {
+          "description": "A1..A6，见 configs/assertions.yaml",
+          "title": "Code",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/AssertionStatus"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "lhs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lhs"
+        },
+        "rhs": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rhs"
+        },
+        "tolerance": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Tolerance"
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "status",
+        "detail"
+      ],
+      "title": "ValuationAssertion",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "一次 R4 运行的完整产物 —— runs/<id>/valuation/valuation.json。",
+  "properties": {
+    "contract_version": {
+      "default": "1.0.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "entity": {
+      "title": "Entity",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date",
+      "title": "As Of",
+      "type": "string"
+    },
+    "built_at": {
+      "description": "构建时间。复现时传入 run 的 started_at 以保证产物哈希一致。",
+      "format": "date-time",
+      "title": "Built At",
+      "type": "string"
+    },
+    "assumptions": {
+      "items": {
+        "$ref": "#/$defs/Assumption"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "dcf": {
+      "$ref": "#/$defs/DCFResult"
+    },
+    "comps": {
+      "$ref": "#/$defs/CompsResult"
+    },
+    "sensitivity": {
+      "$ref": "#/$defs/SensitivityResult"
+    },
+    "comps_provenance": {
+      "additionalProperties": true,
+      "description": "可比公司数据的**来源与时点**：快照路径、行情日期、接口来源、倍数算式。放进产物契约是刻意的 —— 读者据此判断「这个倍数区间是从哪来的」，而不必相信报告里的转述。",
+      "title": "Comps Provenance",
+      "type": "object"
+    },
+    "value_range_low": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Value Range Low"
+    },
+    "value_range_high": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Value Range High"
+    },
+    "value_range_mid": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Value Range Mid"
+    },
+    "weighting_note": {
+      "description": "DCF 与相对估值的加权方式及理由",
+      "title": "Weighting Note",
+      "type": "string"
+    },
+    "risk_factors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Risk Factors",
+      "type": "array"
+    },
+    "applicability": {
+      "default": "",
+      "description": "适用范围声明",
+      "title": "Applicability",
+      "type": "string"
+    },
+    "assertions": {
+      "items": {
+        "$ref": "#/$defs/ValuationAssertion"
+      },
+      "title": "Assertions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id",
+    "entity",
+    "as_of",
+    "assumptions",
+    "dcf",
+    "comps",
+    "sensitivity",
+    "value_range_low",
+    "value_range_high",
+    "value_range_mid",
+    "weighting_note"
+  ],
+  "title": "ValuationResult",
+  "type": "object"
+}

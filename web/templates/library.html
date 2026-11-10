@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}文档库 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>文档库</h1>
+  <div class="sub">
+    本次演示使用的受控材料。每一份都记录了 SHA256 指纹，并做了逐页解析路由决策。
+  </div>
+</div>
+
+{% if n_dup_extra %}
+{# ★ 语料里有内容完全相同的重复文件（2026-09-27 加）。`doc_id` 按内容哈希生成，
+   所以重复文件共用同一个 id —— 不显式说明，「77 份」会被读成「77 份不同的材料」。
+   `n_dup_extra` / `n_uniq_docs` 由 web/app.py 算好传入：它们是**按文档**去重的，
+   不能在模板里用逐行的 `copies` 求和（那样会把一对的两行都算进去）。 #}
+<div class="note warn">
+  <b>关于「{{ docs|length }} 份」的口径</b>：其中 <b>{{ n_dup_extra }} 份</b>各自与
+  另一份<b>内容完全相同</b>（sha256 一致 —— 同一份公告被重复抓取，
+  只是文件名里的 <code>h</code> 序号不同）。所以本页共
+  <b>{{ docs|length }} 份文件 / {{ n_uniq_docs }} 份不同文档</b>，
+  表格里重复行带「重复 ×N」标记。
+  页数、路由、事实数都按<b>文件</b>计 —— 同一份内容会被处理两次，
+  也就是说实际投入的解析工作量有一部分花在了重复内容上。
+</div>
+{% endif %}
+
+<div class="cards">
+  <div class="card">
+    <div class="k">材料份数</div><div class="v">{{ docs|length }}</div>
+    {# ★ 这里原写的是 `n_copies` —— 路由从来没有传过这个变量（传的是
+       `n_uniq_docs` / `n_dup_extra`），所以那半句永远是 Undefined 假值，
+       一次都没渲染出来过。是条死分支：看着像「有重复会提示」，其实不会。
+       改成路由真的传了的 `n_dup_extra`，口径与上面那条 warn 说明一致。 #}
+    <div class="note">全部来自 <code>{{ summary.data_dir or 'data' }}</code>{% if n_dup_extra %}，含 {{ n_dup_extra }} 份重复{% endif %}</div>
+  </div>
+  <div class="card">
+    <div class="k">总页数</div>
+    <div class="v">{{ route_totals.values()|sum }}</div>
+    <div class="note">逐页独立路由</div>
+  </div>
+  <div class="card ok">
+    <div class="k">文本层直取</div>
+    <div class="v">{{ route_totals.get('A_text_only', 0) }}</div>
+    <div class="note">基础置信度 0.95</div>
+  </div>
+  <div class="card warn">
+    <div class="k">扫描件（需 OCR）</div>
+    <div class="v">{{ route_totals.get('B_scanned', 0) + route_totals.get('C_garbled', 0) }}</div>
+    <div class="note">无可靠文本层，必须 OCR + VLM</div>
+  </div>
+  {# data-table-pages-total 与下方明细列的 data-table-pages 由测试与内容探针
+     逐字比对 —— 这两个数字曾一度互相矛盾（卡片 101 / 明细列全 0），
+     原因是明细列读了一个不存在的键。留个可被机器核对的锚点，防止再漂移。 #}
+  <div class="card" data-table-pages-total="{{ route_totals.get('D_table', 0) }}">
+    <div class="k">表格页</div>
+    <div class="v">{{ route_totals.get('D_table', 0) }}</div>
+    <div class="note">三引擎表决 + 算术校验</div>
+  </div>
+</div>
+
+<h2>材料清单</h2>
+<div class="panel tight">
+<div class="tablewrap">
+<table>
+<thead><tr>
+  <th>文件</th><th>页数</th><th>报告期</th><th>文本层</th>
+  <th>解析路由分布</th><th>表格页</th><th>扫描页</th><th>SHA256</th><th></th>
+</tr></thead>
+<tbody>
+{% for d in docs %}
+<tr>
+  <td><b>{{ d.filename }}</b>{% if d.copies > 1 %} <span class="tag L2"
+      title="与另外 {{ d.copies - 1 }} 份文件内容完全相同（sha256 一致）">重复 ×{{ d.copies }}</span>{% endif %}<br><span class="dim2 small mono">{{ d.rel_path }}</span></td>
+  <td class="num">{{ d.pages }}</td>
+  <td class="mono">{{ d.period }}</td>
+  <td>
+    {% if d.has_text_layer %}<span class="tag L1">有</span>
+    {% else %}<span class="tag L3">无</span>{% endif %}
+  </td>
+  <td>
+    {% for route, n in d.routes.items() %}
+      <span class="tag {{ route }}">{{ route }}</span><span class="dim2 small"> ×{{ n }}</span>
+    {% endfor %}
+  </td>
+  <td class="num" data-table-pages="{{ d.table_pages }}">{{ d.table_pages }}</td>
+  <td class="num">
+    {% if d.scanned_pages %}<span class="review">{{ d.scanned_pages }}</span>
+    {% else %}0{% endif %}
+  </td>
+  <td class="mono dim2 small">{{ d.sha256 }}…</td>
+  <td>
+    <a href="/extract?run={{ run_id }}&doc={{ d.doc_id }}&page=1">查看解析 →</a>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="note info">
+  <b>为什么需要「逐页路由」？</b>
+  真实公告里，同一份文件可能前几页是电子排版、后几页是盖章扫描件。
+  我们逐页判定该走哪条解析路径，并<b>把判定理由写入运行日志</b> ——
+  这样「为什么这一页走 OCR」永远有据可查。
+  点击右侧「查看解析」可以看到每一页的判定依据。
+</div>
+
+{% if stats %}
+<h2>三层解析引擎总览</h2>
+<div class="cards">
+  <div class="card"><div class="k">第 1 层 · 文本层</div>
+    <div class="v">{{ stats.text_pages }}</div><div class="note">页有可用文本层</div></div>
+  <div class="card"><div class="k">第 2 层 · OCR</div>
+    <div class="v">{{ stats.ocr_pages }}</div><div class="note">页做了光学识别</div></div>
+  <div class="card"><div class="k">第 3 层 · VLM 扫描</div>
+    <div class="v">{{ stats.vlm_scan_pages }}</div>
+    <div class="note">{{ stats.scan_fields_usable }} 个字段通过回读校验</div></div>
+  <div class="card {% if stats.scan_fields_rejected %}warn{% endif %}">
+    <div class="k">被回读闸门拦下</div>
+    <div class="v">{{ stats.scan_fields_rejected }}</div>
+    <div class="note">判定为幻觉或量纲不符</div></div>
+  <div class="card {% if stats.conflict_pages %}warn{% endif %}">
+    <div class="k">通道冲突页</div>
+    <div class="v">{{ stats.conflict_pages }}</div>
+    <div class="note">两个通道读数不一致</div></div>
+</div>
+{% endif %}
+
+{% endblock %}

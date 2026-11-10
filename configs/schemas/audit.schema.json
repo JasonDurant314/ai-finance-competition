@@ -1,0 +1,349 @@
+{
+  "$defs": {
+    "AuditMetrics": {
+      "additionalProperties": false,
+      "description": "对黄金测试集的评测结果 —— 直接回答『误报控制』这个考察点。",
+      "properties": {
+        "true_positive": {
+          "default": 0,
+          "title": "True Positive",
+          "type": "integer"
+        },
+        "false_positive": {
+          "default": 0,
+          "title": "False Positive",
+          "type": "integer"
+        },
+        "false_positive_on_trap": {
+          "default": 0,
+          "description": "假正例中**落在陷阱项上**的数量。陷阱项（is_real_error=false）是刻意设计成「看起来像错但实际正确」的条目 —— 单独统计它，才能回答「误报里有多少是被设计好的诱饵钓到的」。注意它是 false_positive 的**子集**，不是另加的一项。",
+          "title": "False Positive On Trap",
+          "type": "integer"
+        },
+        "false_negative": {
+          "default": 0,
+          "title": "False Negative",
+          "type": "integer"
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Precision"
+        },
+        "recall": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recall"
+        },
+        "f1": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "F1"
+        },
+        "coverage": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "错误类型覆盖率 E1-E5",
+          "title": "Coverage"
+        },
+        "drafts_evaluated": {
+          "default": 0,
+          "description": "参与评测的草稿数 —— 只有 1 份时指标不具代表性",
+          "title": "Drafts Evaluated",
+          "type": "integer"
+        },
+        "traps_evaluated": {
+          "default": 0,
+          "description": "参与评测的陷阱项数（is_real_error=false）",
+          "title": "Traps Evaluated",
+          "type": "integer"
+        },
+        "evaluated_at": {
+          "format": "date-time",
+          "title": "Evaluated At",
+          "type": "string"
+        }
+      },
+      "title": "AuditMetrics",
+      "type": "object"
+    },
+    "ErrorType": {
+      "description": "R5 五类错误 —— 与赛题「单位、收入利润、估值倍数、统计口径、引用」对齐。",
+      "enum": [
+        "E1_unit",
+        "E2_valuation_multiple",
+        "E3_statistical_caliber",
+        "E4_citation",
+        "E5_arithmetic_consistency",
+        "E6_qualitative"
+      ],
+      "title": "ErrorType",
+      "type": "string"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "description": "一条核查发现 —— 必须带来源定位与可执行修改建议（官方考察点）。",
+      "properties": {
+        "finding_id": {
+          "title": "Finding Id",
+          "type": "string"
+        },
+        "error_type": {
+          "$ref": "#/$defs/ErrorType"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "location": {
+          "$ref": "#/$defs/FindingLocation"
+        },
+        "draft_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "该发现出自哪份草稿。多草稿核查时**必需** —— 否则产物里只有「有一条错误」而不知道是哪份文件里的，位置信息（section/char_range）也就失去了参照物。",
+          "title": "Draft Id"
+        },
+        "reported_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reported Value"
+        },
+        "correct_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Correct Value"
+        },
+        "source_evidence": {
+          "description": "evidence_span_id 或 fact_id，用于来源定位",
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Evidence",
+          "type": "array"
+        },
+        "caliber": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Caliber"
+        },
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "suggestion": {
+          "description": "可执行的修改建议",
+          "minLength": 1,
+          "title": "Suggestion",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "detector": {
+          "description": "触发该发现的规则 ID 或模型标识",
+          "title": "Detector",
+          "type": "string"
+        }
+      },
+      "required": [
+        "finding_id",
+        "error_type",
+        "severity",
+        "location",
+        "reason",
+        "suggestion",
+        "confidence",
+        "detector"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "FindingLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "char_range": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Char Range"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page"
+        },
+        "quote": {
+          "description": "报告草稿中的原文片段",
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        }
+      },
+      "required": [
+        "quote"
+      ],
+      "title": "FindingLocation",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "confirmed",
+        "suspected",
+        "advisory"
+      ],
+      "title": "Severity",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "一次 R5 运行的完整产物 —— runs/<id>/audit/audit.json。",
+  "properties": {
+    "contract_version": {
+      "default": "1.0.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "draft_doc_id": {
+      "title": "Draft Doc Id",
+      "type": "string"
+    },
+    "checked_at": {
+      "description": "核查时间。复现时传入 run 的 started_at 以保证产物哈希一致。",
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "per_draft_metrics": {
+      "description": "多草稿时逐份的评测明细。**为什么需要**：只看汇总指标无法知道是哪一份草稿拉低了精确率 —— 而「哪一份、错在哪类」才是可行动的。",
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Per Draft Metrics",
+      "type": "array"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "metrics": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AuditMetrics"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "run_id",
+    "draft_doc_id"
+  ],
+  "title": "AuditResult",
+  "type": "object"
+}

@@ -1,0 +1,46 @@
+{
+  "contract_version": "1.0.0",
+  "snapshot_kind": "test_fixture",
+  "target": "600519",
+  "as_of": "2025-12-31",
+  "fetched_at": "2026-09-18T00:00:00+00:00",
+  "⚠️": "这是**测试夹具**，不是真实行情。它存在的唯一目的是让 mock 模型下的端到端测试与 Web 演示台无需联网即可跑通。真实估值请用 tools/fetch_comps.py 生成快照（该工具会与人工核对真值比对后才落盘）。",
+  "sources": {
+    "price": "（测试夹具，非真实行情）",
+    "shares_and_market_cap": "（测试夹具）",
+    "financials": "（测试夹具）"
+  },
+  "multiple_formula": {
+    "pe": "总市值 ÷ 归母净利润（测试夹具，数值为构造值）",
+    "pb": "总市值 ÷ 归母所有者权益（测试夹具，数值为构造值）"
+  },
+  "peer_selection_rule": "【测试夹具】同属白酒行业、A 股上市；仅用于 mock 模型下的链路测试。",
+  "verification": "测试夹具不参与真值比对 —— 它不声称自己是真实数据。",
+  "rows": [
+    {"code": "600519", "market": "SH", "name": "（目标公司自身，仅用于验证数据源）",
+     "segment": "target", "price": "1500.00", "shares_total": "1256197800",
+     "market_cap": "1884296700000", "net_profit_parent": "86000000000",
+     "equity_parent": "160000000000", "period": "2025-12-31",
+     "pe": "21.9104", "pb": "11.7769"},
+    {"code": "000858", "market": "SZ", "name": "五粮液", "segment": "白酒",
+     "price": "130.00", "shares_total": "3881600000",
+     "market_cap": "504608000000", "net_profit_parent": "32000000000",
+     "equity_parent": "120000000000", "period": "2025-12-31",
+     "pe": "15.7690", "pb": "4.2051"},
+    {"code": "000568", "market": "SZ", "name": "泸州老窖", "segment": "白酒",
+     "price": "120.00", "shares_total": "1471900000",
+     "market_cap": "176628000000", "net_profit_parent": "13500000000",
+     "equity_parent": "45000000000", "period": "2025-12-31",
+     "pe": "13.0836", "pb": "3.9251"},
+    {"code": "600809", "market": "SH", "name": "山西汾酒", "segment": "白酒",
+     "price": "180.00", "shares_total": "1219800000",
+     "market_cap": "219564000000", "net_profit_parent": "12000000000",
+     "equity_parent": "30000000000", "period": "2025-12-31",
+     "pe": "18.2970", "pb": "7.3188"},
+    {"code": "002304", "market": "SZ", "name": "洋河股份", "segment": "白酒",
+     "price": "75.00", "shares_total": "1506000000",
+     "market_cap": "112950000000", "net_profit_parent": "8000000000",
+     "equity_parent": "52000000000", "period": "2025-12-31",
+     "pe": "14.1188", "pb": "2.1721"}
+  ]
+}

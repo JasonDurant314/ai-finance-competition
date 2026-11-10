@@ -1,0 +1,29 @@
+{
+  "pipeline": "full",
+  "provider": "deepseek",
+  "completed": [
+    "r1_ingest",
+    "r1_extract_text",
+    "r1_extract_ocr",
+    "r1_extract_tables",
+    "r1_judge",
+    "r1_build_facts",
+    "r1_export",
+    "r4_assumptions",
+    "r4_model",
+    "r4_report",
+    "r5_check"
+  ],
+  "failed": [],
+  "skipped": [],
+  "budget": {
+    "steps": 0,
+    "max_steps": 300,
+    "tokens": 981766,
+    "max_tokens": 3000000,
+    "cost_cny": 1.7691,
+    "max_cost_cny": 50.0,
+    "elapsed_s": 1384.18,
+    "max_wall_seconds": 2400
+  }
+}

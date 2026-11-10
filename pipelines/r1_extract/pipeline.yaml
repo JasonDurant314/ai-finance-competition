@@ -1,0 +1,75 @@
+name: r1_extract
+description: >
+  R1 数据结构化提取 —— 三层解析引擎。
+  受控材料 → 逐页路由 → 文本层/OCR/VLM 三层解析 → 交叉验证 → 带证据锚点的事实库。
+
+# 阶段顺序即依赖顺序。阶段之间通过 runs/<id>/ 下的文件产物衔接，
+# 不传递内存对象 —— 这保证了每个阶段可独立调试、独立重跑、可断点续跑。
+#
+# ⚠️⚠️ 但有两处**内存状态**是例外，第十八轮实测踩到（详见
+#     pipelines/r1_extract/common.py 的 hydrate_store_from_channels）：
+#   · extract_text 把「权威页面原文 / 块级坐标 / 全文报表标题」注册进
+#     ctx.store，而 ctx.store 是纯内存对象；
+#   · build_facts 把事实放进 ctx.ledger，也是纯内存对象。
+#   --resume 跳过它们 ⇒ 下游拿到空库/空台账 ⇒ **静默交出 0 条事实**。
+#   现在两者都能从落盘产物灌回（channels/*.json 与 facts/facts.json），
+#   并且 build_facts 会**硬断言**页面原文非空，不再让 0 条悄悄过关。
+stages:
+  - name: ingest
+    run: pipelines.r1_extract.ingest:run
+    description: 文档登记 + 逐页预扫描 + 路由决策（纯确定性）
+    produces:
+      - facts/documents.json
+      - pages/index.json
+
+  - name: extract_text
+    run: pipelines.r1_extract.extract_text:run
+    description: 第 1 层 —— 文本层直取（最高置信，基础分 0.95）
+    produces:
+      - channels/text_layer.json
+      # 块级坐标 + 全文报表标题：原本只活在内存证据库里，现在落盘，
+      # 好让 --resume 跳过本阶段时能把内存库灌回来（见 common 的水化函数）
+      - channels/page_layout.json
+
+  - name: extract_ocr
+    run: pipelines.r1_extract.extract_ocr:run
+    description: 第 2 层 —— OCR + 确定性规则校验（基础分 0.80）
+    optional: false
+    timeout_s: 1800
+    produces:
+      - channels/ocr.json
+
+  - name: extract_tables
+    run: pipelines.r1_extract.extract_tables:run
+    description: 第 2 层表格分支 —— 结构重建 + 算术校验（纯确定性，无 LLM）
+    timeout_s: 900
+    produces:
+      - channels/tables.json
+
+  - name: judge
+    run: pipelines.r1_extract.judge:run
+    description: >
+      第 3 层 —— 通道比对 + 整页视觉扫描（含指标归属）
+      + 表格单元格级裁决 + quote 回读防幻觉
+    optional: true
+    timeout_s: 1800
+    produces:
+      - channels/conflicts.json
+      - channels/vlm_verdicts.json
+      - channels/vlm_scans.json
+      - channels/table_adjudications.json
+
+  - name: build_facts
+    run: pipelines.r1_extract.build_facts:run
+    description: 构建事实库（无锚点不入库 / 无单位不入库 / 低置信标复核）
+    produces:
+      - facts/build_stats.json
+
+  - name: export
+    run: pipelines.r1_extract.export:run
+    description: 导出 JSON / Excel / 溯源 HTML 三类产物
+    produces:
+      - facts/facts.json
+      - facts/facts_table.json
+      - facts/evidence.html
+      - facts/export_summary.json

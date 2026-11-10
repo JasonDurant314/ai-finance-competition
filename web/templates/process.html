@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block title %}现场处理 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>现场实时处理</h1>
+  <div class="sub">
+    现场喂入 PDF，用<b>真实流水线</b>解析 —— 与命令行 <code>agent run</code> 同一批函数。
+  </div>
+</div>
+
+<form class="stack" method="post" action="/process{% if run_id %}?run={{ run_id }}{% endif %}"
+      enctype="multipart/form-data">
+  <div class="dropzone">
+    <div class="dz-lead">拖入或选择一个 PDF 文件</div>
+    <div class="dim small" style="margin-top:6px">
+      支持电子版与扫描件 · 单文件上限 {{ 30 }}MB · 演示只处理前 25 页
+    </div>
+    <input type="file" name="file" accept="application/pdf" required>
+  </div>
+  {% if run_id %}<input type="hidden" name="run" value="{{ run_id }}">{% endif %}
+  <div class="row">
+    <button type="submit">▶ 开始解析</button>
+    <span class="dim small">
+      文本层 / OCR / 表格 / 路由判定全部现场计算（纯确定性，秒级）；
+      VLM 视觉扫描较慢，默认只对需要它的页面触发。
+    </span>
+  </div>
+</form>
+
+{% if error %}
+<div class="note bad"><b>处理失败</b><br>{{ error }}</div>
+{% endif %}
+
+{% if result %}
+<h2>解析结果 —— {{ result.file }}</h2>
+
+<div class="cards">
+  <div class="card"><div class="k">页数</div><div class="v">{{ result.page_count }}</div>
+    <div class="note">{{ "%.1f"|format(result.elapsed_s) }} 秒完成</div></div>
+  {% for route, n in result.stats.items() %}
+  <div class="card {% if route == 'B_scanned' %}warn{% elif route == 'A_text_only' %}ok{% endif %}">
+    <div class="k">{{ route }}</div><div class="v">{{ n }}</div>
+    <div class="note">
+      {% if route == 'A_text_only' %}文本层干净，直取
+      {% elif route == 'B_scanned' %}扫描页，需 OCR + VLM
+      {% elif route == 'C_garbled' %}文本层乱码
+      {% elif route == 'D_table' %}表格页，三引擎表决
+      {% else %}图文混排{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  <div class="card"><div class="k">可用 OCR 引擎</div>
+    <div class="v txt">{{ result.ocr_engines|join(', ') or '未安装' }}</div>
+    <div class="note">RapidOCR 为纯 CPU 方案</div></div>
+</div>
+
+{% if not result.ocr_engines %}
+<div class="note warn">
+  本机未安装 OCR 引擎，扫描页无法识别。安装：<code>pip install rapidocr-onnxruntime</code><br>
+  注意：正式流程中若存在<b>只依赖 OCR 的页面</b>，管线会显式失败并提示安装，
+  而不会静默产出空结果。
+</div>
+{% endif %}
+
+{% for row in result.pages %}
+<div class="panel">
+  <div class="row" style="margin-bottom:9px">
+    <b>第 {{ row.page }} 页</b>
+    <span class="tag {{ row.route }}">{{ row.route }}</span>
+    <span class="spacer"></span>
+    <span class="dim2 small">{{ row.elapsed_ms }} ms</span>
+  </div>
+  <div class="small dim" style="margin-bottom:10px">{{ row.route_reason }}</div>
+
+  <div class="small dim2" style="margin-bottom:10px">
+    有效字符 <b>{{ row.probe.char_count }}</b> ·
+    乱码率 <b>{{ "%.2f%%"|format(row.probe.garbled_ratio * 100) }}</b> ·
+    文本覆盖 <b>{{ "%.1f%%"|format(row.probe.text_coverage * 100) }}</b> ·
+    图像覆盖 <b>{{ "%.1f%%"|format(row.probe.image_coverage * 100) }}</b> ·
+    表框线段 <b>{{ row.probe.rule_line_density }}</b>
+  </div>
+
+  <div class="channels">
+    {% if row.text %}
+    <div class="chan hl">
+      <h4><span>① 文本层</span><span class="tag L1">{{ row.text.chars }} 字符</span></h4>
+      <div class="body">{{ row.text.preview[:900] }}</div>
+    </div>
+    {% endif %}
+
+    {# ★ 失败分支必须**排在前面**。live.py 在 OCR 抛异常时写入的是
+       `row["ocr"] = {"error": "..."}` —— 一个**只有 error 键的字典**，它是真值，
+       于是 `{% if row.ocr %}` 命中并进入成功分支，`row.ocr.mean_confidence`
+       是 Undefined，`"%.3f"|format(...)` 直接抛 UndefinedError 冒泡成 500。
+       原先的 `{% elif row.ocr and row.ocr.error %}` 永远不可达 —— 是死代码。
+       现场演示时喂进一页 OCR 会失败的扫描件，评委看到的就是白底 500，
+       而不是这里本可以给出的友好提示。 #}
+    {% if row.ocr and row.ocr.error %}
+    <div class="chan"><h4><span>② OCR</span><span class="tag review">未能完成</span></h4>
+      <div class="body review">{{ row.ocr.error }}
+        <div class="dim2 small" style="margin-top:6px">
+          该页的文字仍可由①文本层与③VLM 通道提供，不影响后续字段提取。
+        </div>
+      </div>
+    </div>
+    {% elif row.ocr %}
+    <div class="chan hl">
+      <h4><span>② OCR（{{ row.ocr.engine }} @{{ row.ocr.dpi }}dpi）</span>
+        <span class="tag L2">{{ row.ocr.lines }} 行</span></h4>
+      <div class="stat">平均置信度 <b>{{ "%.3f"|format(row.ocr.mean_confidence) }}</b>
+        · 低置信行 {{ "%.1f%%"|format(row.ocr.low_conf_ratio * 100) }}</div>
+      <div class="body">{{ row.ocr.preview[:900] }}</div>
+    </div>
+    {% endif %}
+
+    {# 表格同理：live.py 失败时写 `row["table"] = {"error": ...}`，
+       而本块原先**连错误分支都没有** —— 不仅 500，即使不崩也会把错误字典
+       当作「无框线」渲染，属于静默误导。 #}
+    {% if row.table and row.table.error %}
+    <div class="chan"><h4><span>表格结构</span><span class="tag review">未能完成</span></h4>
+      <div class="body review">{{ row.table.error }}
+        <div class="dim2 small" style="margin-top:6px">
+          该页表格未能解析出结构；字段提取会跳过本页的表格通道。
+        </div>
+      </div>
+    </div>
+    {% elif row.table %}
+    <div class="chan hl">
+      <h4><span>表格结构</span>
+        <span class="tag D_table">{{ row.table.rows }}×{{ row.table.cols }}</span></h4>
+      <div class="stat">
+        方法 <b>{{ row.table.method }}</b> ·
+        {% if row.table.has_rules %}有框线{% else %}无框线{% endif %}
+      </div>
+      {% if row.table.arithmetic %}
+        <div class="stat">
+          算术校验
+          {% if row.table.arith_state == 'ok' %}
+            <b class="conf hi">✓</b> {{ row.table.arith_label }}
+          {% elif row.table.arith_state == 'bad' %}
+            <b class="conf lo">✗</b> {{ row.table.arith_label }}
+          {% else %}
+            <span class="dim2">{{ row.table.arith_label }}</span>
+            <span class="dim2 small">—— 无合计线即无独立的算术证据</span>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="body">{% for r in row.table.grid[:10] %}{{ r | join(' | ') }}
+{% endfor %}</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+{% if result.vlm and result.vlm.enabled %}
+<h2>第 3 层 · VLM 视觉扫描</h2>
+{% if result.vlm.error %}
+  <div class="note warn">{{ result.vlm.error }}</div>
+{% endif %}
+{% for p in result.vlm.pages %}
+<div class="panel">
+  <div class="row" style="margin-bottom:9px">
+    <b>第 {{ p.page }} 页</b>
+    {% if p.error %}
+      <span class="tag sev-confirmed">失败</span>
+      <span class="small review">{{ p.error }}</span>
+    {% else %}
+      <span class="tag L3">{{ p.page_type }}</span>
+      <span class="dim2 small">自评置信度 {{ "%.2f"|format(p.self_confidence or 0) }}</span>
+      <span class="spacer"></span>
+      <span class="small">通过 <b class="conf hi">{{ p.fields|rejectattr('rejected')|list|length }}</b>
+        · 被拒 <b class="conf lo">{{ p.rejected }}</b>
+        · 指标未归属 <b>{{ p.unknown_metric }}</b></span>
+    {% endif %}
+  </div>
+  {% if p.fields %}
+  <table class="compact">
+    <thead><tr><th>指标归属</th><th>值</th><th>单位</th><th>主体线索</th><th>闸门</th></tr></thead>
+    <tbody>
+    {% for f in p.fields %}
+    <tr>
+      <td class="mono">{{ f.metric }}</td>
+      <td class="mono">{{ f.value_raw }}</td>
+      <td class="dim2">{{ f.unit_as_written }}</td>
+      <td class="small dim2">{{ f.entity_hint or '—' }}</td>
+      <td>{% if f.rejected %}<span class="tag sev-confirmed">✗ 拒</span>
+          {% else %}<span class="tag L1">✓ 过</span>{% endif %}</td>
+    </tr>
+    {% if f.rejected %}
+    <tr><td colspan="5" class="small review" style="padding-top:0">{{ f.rejection_reason }}</td></tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+
+{% endif %}
+
+{# 原文以「为什么现场能这么快」设问，答案是三条事实。事实留，设问删 ——
+   设问的主语是网页自己，读者要的是那三个读数。 #}
+<div class="note info small">
+  预扫描 / 路由判定 / 文本层 / 表格重建 / 算术校验均为确定性代码，毫秒到秒级；
+  OCR 是唯一瓶颈（约 5–10 秒/页），故演示限量处理。
+  三层中只有第三层调用大模型，且读数须通过 quote 回读校验才进事实库。
+</div>
+
+{% endblock %}

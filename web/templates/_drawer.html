@@ -1,0 +1,172 @@
+{# ============================================================ Agent 运行轨迹抽屉
+
+   挂在 `base.html` 上，因此**每一页都有**。数据来自 `GET /trace/stream`
+   （契约见 `web/app.py` 顶部「运行轨迹实时流」一节）。
+
+   ## 为什么是轮询而不是 SSE
+   本仓已有的唯一异步先例是 `analyze.html` 里的 `fetch('/analyze/status') +
+   setTimeout`。SSE 需要一个握着文件句柄的 `StreamingResponse` 生成器，
+   会把 in-process 的 `TestClient` 路径（`tools/web_smoke.py` 依赖它）变复杂，
+   而这里 2 秒一轮完全够用。
+
+   ## 为什么 run 选择器是**第二个**选择器
+   顶部那个选择器管的是"当前页看哪个 run"。选题 1 的页面看的是公告 run，
+   选题 4/5 看的是年报 run —— 两者本来就不同。抽屉要能在**不离开当前页**的
+   前提下看另一个 run 的轨迹，所以它自带一个选择器。
+
+   ## 不得写 `runs/<id>/` 形式的字面量
+   页脚已经印了一个（`base.html` 的签字栏），而有一条测试用
+   `runs/([\w.\-]+)/` 取**第一个**匹配。抽屉再印一个别的 run id，
+   那个断言就会翻到错的 id 上去。所以这里只出现裸 run id。 #}
+
+{% set _drid = run_id if run_id is defined and run_id else '' %}
+<div class="drawer" id="drawer" data-run="{{ _drid }}">
+  <button type="button" class="drawer-toggle" id="drawer-toggle"
+          aria-controls="drawer-body" aria-expanded="false">
+    运行轨迹<span class="badge" id="drawer-badge"></span>
+  </button>
+
+  <aside class="drawer-body" id="drawer-body" hidden aria-label="Agent 运行轨迹">
+    <div class="drawer-head">
+      <b>运行轨迹</b>
+      <span class="dim2 small" id="drawer-state">未连接</span>
+      <span class="spacer"></span>
+      <select id="drawer-run" class="drawer-sel" aria-label="选择运行">
+        {% if _drid %}<option value="{{ _drid }}" selected>{{ _drid }}</option>{% endif %}
+        {% for r in runs if r.run_id != _drid %}
+          <option value="{{ r.run_id }}">{{ r.status_icon }} {{ r.run_id }}</option>
+        {% endfor %}
+      </select>
+      <button type="button" class="chip" id="drawer-close">收起</button>
+    </div>
+
+    <div class="chips" id="drawer-chips"></div>
+    <ol class="trail" id="drawer-trail"></ol>
+
+    <div class="drawer-foot dim2 small" id="drawer-foot">
+      此处的工具调用只有<strong>入参指纹</strong>（SHA256 前 12 位）——
+      原始入参与返回不在这份轨迹里，在控制台右栏（<code>agent_log.jsonl</code>）。
+      <span class="ftr-note" id="drawer-fileaccess"></span>
+    </div>
+  </aside>
+</div>
+
+{% include "_trail.html" %}
+
+{% raw %}
+<script src="/static/trail.js"></script>
+<script>
+(function () {
+  var root = document.getElementById('drawer');
+  if (!root) { return; }
+  var body = document.getElementById('drawer-body');
+  var toggle = document.getElementById('drawer-toggle');
+  var closeBtn = document.getElementById('drawer-close');
+  var chipsBox = document.getElementById('drawer-chips');
+  var list = document.getElementById('drawer-trail');
+  var stateEl = document.getElementById('drawer-state');
+  var badge = document.getElementById('drawer-badge');
+  var runSel = document.getElementById('drawer-run');
+  var tpl = document.getElementById('trail-row');
+  var faNote = document.getElementById('drawer-fileaccess');
+
+  // 行的骨架与字段映射都在 `trail.js` 里（控制台用的是同一份）；
+  // 抽屉自己只有两样东西是它特有的：类别开关的默认状态、以及落点链接。
+  var KINDS = Trail.KINDS;
+  var on = Trail.defaultOn();
+
+  // 工具名 → 它写出的产物在哪一页。参数只落了哈希，定位不到具体行，
+  // 所以这里给的是**该类产物的落点**，不是"这一次调用的结果"。
+  var LANDING = { 'table.adjudicate': '/extract', 'ocr.recognize': '/extract' };
+
+  var rid = root.getAttribute('data-run') || '';
+  var offset = -1;
+  var timer = null;
+  var seen = 0;
+
+  function append(rows) {
+    var frag = document.createDocumentFragment();
+    rows.forEach(function (ev) {
+      frag.appendChild(Trail.render(ev, tpl, { rid: rid, landing: LANDING }));
+    });
+    list.appendChild(frag);
+    // 只留最近 400 行 —— 抽屉是"看现在在干什么"，不是归档。
+    while (list.children.length > 400) { list.removeChild(list.firstChild); }
+    list.scrollTop = list.scrollHeight;
+  }
+
+  function drawChips(counts) {
+    Trail.drawChips(chipsBox, on, counts, function (kind) {
+      on[kind] = !on[kind];
+      offset = -1;
+      list.textContent = '';
+      seen = 0;
+      load();
+    });
+  }
+
+  function setState(txt) { stateEl.textContent = txt; }
+
+  function load() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    if (!rid) { setState('未选择运行'); return; }
+    var kinds = Trail.activeKinds(on);
+    if (!kinds.length) { setState('未选类别'); return; }
+    var url = '/trace/stream?run=' + encodeURIComponent(rid) +
+              '&offset=' + offset + '&limit=120&kinds=' + encodeURIComponent(kinds.join(','));
+    fetch(url, { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var counts = d.stats && d.stats.by_kind;
+        drawChips(counts || null);
+        if (d.error) { setState(d.error); return; }
+        if (d.rows && d.rows.length) { append(d.rows); seen += d.rows.length; }
+        offset = d.next_offset;
+        badge.textContent = seen ? String(seen) : '';
+        setState((d.live ? '记录中' : '已结束') + ' · 共 ' +
+                 d.stats.total_events + ' 条事件 · 已载入 ' + seen);
+        if (faNote) {
+          var n = counts ? (counts.file_access || 0) : 0;
+          // ★ 这一格只报**本运行自己的读数**。早于文件访问接入编排层
+          //   （2026-10-17）的 run 计数就是 0，页面不能替它宣称「已记录」，
+          //   也不能因为别的 run 有数就把它写成「未接入」—— 两种情况都写明。
+          faNote.textContent = n
+            ? '文件访问：本运行 ' + n + ' 条（读 / 写 / 列目录，逐条带 sha256）。'
+            : '文件访问：本运行 0 条 —— 该 run 产生于接入编排层之前，' +
+              '或本次确实没有经手文件。';
+        }
+        if (d.live) { timer = setTimeout(load, 2000); }
+      })
+      .catch(function (e) { setState('读取失败：' + e); });
+  }
+
+  function open(flag) {
+    body.hidden = !flag;
+    toggle.setAttribute('aria-expanded', flag ? 'true' : 'false');
+    if (flag) {
+      if (!list.children.length) { offset = -1; load(); }
+    } else if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+  }
+
+  toggle.addEventListener('click', function () { open(body.hidden); });
+  closeBtn.addEventListener('click', function () { open(false); });
+  if (runSel) {
+    runSel.addEventListener('change', function () {
+      rid = runSel.value;
+      root.setAttribute('data-run', rid);
+      offset = -1;
+      list.textContent = '';
+      seen = 0;
+      load();
+    });
+  }
+  drawChips(null);
+  // 抽屉默认收起：它是调试面板，不该在演示时抢正文的位置。
+  // 但**门一开就取数**，不在加载时就轮询 —— 没人看的页面不该每 2 秒读一次磁盘。
+  if (body.hidden === false) { load(); }
+}());
+</script>
+{% endraw %}

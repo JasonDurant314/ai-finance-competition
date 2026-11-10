@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}总览 · 金融投研智能体{% endblock %}
+
+{% block content %}
+{# ★ 答辩第一屏，只回答三件事：这系统干什么、三步各得到什么、点哪里看明细。
+   原先这一屏还摆着四个 KPI 卡（运行 / 文档页 / Token / 状态）和两张首页大图 ——
+   读者第一眼看到的是「产物 667」「Token 974,182」这类**运行元数据**，
+   而结论（抽出多少条、值多少钱、查出几处问题）被挤到第二屏。
+   现在：运行元数据压成一行，图移到页尾折叠，首屏只剩「一句话 + 三步」。 #}
+<div class="pagehead">
+  <h1>参赛总览</h1>
+  <p class="sub">
+    丢一份公告或年报进来，得到三样东西：<b>结构化数据</b> · <b>估值模型</b> · <b>核查报告</b>。
+    三步依次是 <b>读懂文档 → 算估值 → 查错</b>，每张卡点进去看那一步的明细。
+  </p>
+  <div class="chips">
+    <a class="chip" href="/analyze{% if run_id %}?run={{ run_id }}{% endif %}">传 PDF 跑全流程</a>
+    <a class="chip" href="/process{% if run_id %}?run={{ run_id }}{% endif %}">单个 PDF 秒级解析</a>
+    <a class="chip" href="/runs{% if run_id %}?run={{ run_id }}{% endif %}">复现与产物清单</a>
+  </div>
+</div>
+
+{# 这里**不再**重复一遍运行元数据：导航下方那条 statusbar（base.html）已经在印
+   状态 / 产物 / Token / 成本，同一屏里说两遍正是「读不懂」的来源之一。 #}
+<h2>三个选题，一条流水线</h2>
+<div class="ovgrid">
+  {% for t in topics %}
+  <div class="ovcard">
+    <span class="topic">{{ t.topic }}</span>
+    <h3>{{ t.step }} {{ t.name }}</h3>
+    {# 一句话答案放在读数之前：四个格子是并列的读数，读者得自己拼出结论，
+       这里直接把结论写出来。 #}
+    <p class="ans">{{ t.answer }}</p>
+    {# 2×2 网格，三张卡行结构一致 —— 见 app.py 里 topics 上方那段注释。
+       `long` 只是把过长的数值（如「12.1554 – 14.0394」）降一档字号，
+       免得撑破格子换行；值一个字都没改。 #}
+    {# `data-n` 是给 tests/test_web.py 的看门人用的：三张卡的 stats 必须各 4 条，
+       多一条就会把 2×2 网格挤成 2+2+1，而**页面照常 200、没有任何测试会红**。
+       用属性而不是让测试去数嵌套 div，是因为这段 HTML 的 div 层级本来就会变。 #}
+    <div class="stat" data-n="{{ t.stats|length }}">
+      {% for s in t.stats %}
+        <div>{{ s.k }}<b{% if s.v|length > 12 %} class="long"{% endif %}>{{ s.v }}</b></div>
+      {% endfor %}
+    </div>
+    <p class="small dim2">{{ t.desc }}</p>
+    {# 产物名从本次运行的产物清单里过滤得到（见 app.py），不是写死的常量 ——
+       run 没产出某个文件时它会自己消失，不会印一个不存在的文件名。 #}
+    {% if t.artifacts %}
+      <div class="small dim2">产物 <span class="mono">{{ t.artifacts }}</span></div>
+    {% endif %}
+    {% if not t.ready %}
+      <div class="note warn small" style="margin:4px 0 0">
+        当前 run 未产出该选题的产物 —— 请用顶部运行选择器切换到含该产物的 run。
+      </div>
+    {% elif t.note %}
+      <div class="note info small" style="margin:4px 0 0">{{ t.note }}</div>
+    {% endif %}
+    {# 来源 run 必须写在卡片上：本页三张卡可能读两个不同的 run（见页头），
+       不写的话读者会默认它们同源。 #}
+    <div class="small dim2">来源 run <code>{{ t.run_id or run_id }}</code></div>
+    <a class="go" href="{{ t.href }}?run={{ t.run_id or run_id }}">{{ t.cta }} →</a>
+  </div>
+  {% endfor %}
+</div>
+
+{% if charts %}
+{# 两张质量图收进页尾折叠：它们是「凭什么信这 41 条数字」的论据，
+   不是第一屏该看的东西。摘要行自带结论，折起来丢的是图，不是信息。 #}
+<details class="ev">
+  <summary>
+    提取质量明细 <span class="cnt">确定性抽取 {{ det_pct }} · 页面路由构成 · 置信度分布（点开看图）</span>
+  </summary>
+  <div class="inner charts pairs">
+    {% if charts.det_ratio %}
+    <div class="chart">
+      <h4>抽取路径：确定性 vs 模型</h4>
+      {{ charts.det_ratio }}
+      <p class="cap">
+        能从原文结构直接定位的（表格网格 + 规则引擎）不交给模型；
+        结构不可用时才走视觉读数。
+      </p>
+    </div>
+    {% endif %}
+    {# ★ 这一格放**页面路由构成**，不放 `charts.layer_mix`。
+       本 run 上两者是同一个划分（L1 直读 = 确定性路径 = 295；L3 VLM = 模型路径
+       = 61），并排摆等于把左图那个 83% 在同一屏里再说一遍。路由图答的是另一个
+       问题：273 页各被分派给哪条通道 —— 首页原先看不到这一层。
+       路由产物缺失时退回 layer_mix，不留空格子。 #}
+    {% if route_chart %}
+    <div class="chart">
+      <h4>页面路由构成</h4>
+      {{ route_chart }}
+      <p class="cap">
+        每页先判类型再选通道：<b>A 文本层直读</b> · <b>D 表格页</b>走网格重建 ·
+        <b>E 混合页</b>两条通道并用 —— 逐页复核见
+        <a href="/extract{% if run_id %}?run={{ run_id }}{% endif %}">抽取工作台</a>。
+      </p>
+    </div>
+    {% elif charts.layer_mix %}
+    <div class="chart">
+      <h4>来源层构成</h4>
+      {{ charts.layer_mix }}
+      <p class="cap">
+        L1 文本层直读置信最高；L3 是 VLM 视觉读数，仅用于文本层不可用的页面。
+      </p>
+    </div>
+    {% endif %}
+    {% if charts.conf_hist %}
+    <div class="chart"><h4>置信度分布</h4>{{ charts.conf_hist }}</div>
+    {% endif %}
+  </div>
+</details>
+{% endif %}
+
+<p class="small dim2">
+  本页数字全部直接读 <code>runs/{{ run_id }}/</code> 的产物，未做二次加工
+  （产物哈希链见 <a href="/runs{% if run_id %}?run={{ run_id }}{% endif %}">复现与产物清单</a>）；
+  无外部 CDN，图表为服务端内联 SVG，断网可完整运行。
+</p>
+{% endblock %}

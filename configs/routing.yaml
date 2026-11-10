@@ -1,0 +1,135 @@
+# ==========================================================================
+# 逐页路由决策规则
+# --------------------------------------------------------------------------
+# 每个 PDF 页面先做纯确定性预扫描（不调用任何模型），再按本规则决定
+# 走哪条解析路径。**路由决策本身会写入 trace.jsonl**，因此
+# 「为什么这一页走 OCR」永远有据可查。
+#
+# 路由类别：
+#   A_TEXT_ONLY  文本层充足且干净 -> 直取（最高置信，基础分 0.95）
+#   B_SCANNED    无文本层/低文本  -> OCR + VLM 双路对读
+#   C_GARBLED    文本层乱码       -> OCR + VLM 双路对读
+#   D_TABLE      表格页           -> 三引擎表决 + 单元格级裁决
+#   E_MIXED      图文混排         -> 文本层 + 局部图像
+# ==========================================================================
+
+# —— 预扫描阈值 ——
+garbled_ratio_threshold: 0.15      # 乱码字符占比超过此值 -> C_GARBLED
+min_chars_for_text_layer: 50       # 有效字符少于此值且图像占比高 -> B_SCANNED
+image_coverage_threshold: 0.60     # 图像覆盖率阈值
+min_chars_for_text_only: 200       # 有效字符达到此值即可判为「文本层充足」
+
+# text_coverage = 文本块 bbox 面积 / 页面面积。
+# 注意：正文排版的行距与页边距会让该值天然偏低（正常 A4 正文页约 0.2–0.4），
+# 因此阈值必须设得低。**不要**用它来判断「页面有没有文字」——
+# 那个判断交给 min_chars_for_text_only。此阈值仅用于识别极端情况。
+text_coverage_threshold: 0.12
+
+clean_garbled_threshold: 0.05      # 乱码低于此值才算「干净」
+rule_line_density_threshold: 40    # 检测到的线段数超过此值 -> 疑似有框线表格
+
+# —— 渲染与 OCR ——
+#
+# ★ 以下参数由 OCR 准确性验证（tools/ocr_benchmark.py）实测确定，
+#   数据见 docs/P0_VALIDATION.md 与 docs/ocr_benchmark.json。
+#
+#   实测结论（8 页跨文档样本，字符准确率 / 数字召回 / 数字边界）：
+#     150dpi 无预处理   98.04% / 92.59% / 83.12%
+#     200dpi 无预处理   95.22% / 89.46% / 79.79%   ← 各档中最差
+#     200dpi 有预处理   95.94% / 89.46% / 84.79%
+#     300dpi 无预处理   98.11% / 92.59% / 83.12%   ← 选它
+#     400dpi 无预处理   98.17% / 92.59% / 83.12%   ← 仅 +0.06pp 但慢 24%
+#
+#   因此：默认 300dpi、默认关闭预处理。
+#   200dpi 是一个"坑"（落在检测阶段的不利缩放区间），不要用。
+ocr_dpi: 300                       # ★ 实测最优（原为 200）
+ocr_dpi_small_font: 400            # 小字号/密集数字页再提一档
+ocr_dpi_fast: 150                  # 批量预扫/预览用的快速档
+render_format: png
+
+# 预处理：实测收益不稳定（仅 200dpi 下对数字边界有 +5pp 改善，
+# 在 150/300/400dpi 下无收益），因此**默认关闭**，仅在检测到问题时按需启用。
+preprocess:
+  enabled: false                   # ★ 实测后改为默认关闭
+  trigger_skew_above: 0.8          # 检测到歪斜超过此角度才启用纠偏
+  trigger_contrast_below: 0.35     # 对比度低于此值才启用增强
+  grayscale: true
+  adaptive_threshold: false        # 让 OCR 引擎自己二值化更稳
+  deskew: true
+  denoise: true
+  max_skew_degrees: 8.0
+
+# —— OCR 引擎 ——
+ocr_engines:                       # 按顺序尝试，取第一个可用的
+  - rapidocr                      # 实测选型：CPU、轻量、中文效果好
+  - paddleocr                     # 备选：依赖较重
+ocr_min_confidence: 0.60           # 单字置信度低于此值计入低置信字符比例
+
+# —— 数字边界校验（★ 实测新增）——
+#
+# 实测发现：相邻数字的"粘连"是 OCR 最普遍且最危险的问题 ——
+# 数字边界完整性仅 83%（300dpi 无预处理），即约六分之一的相邻数字对
+# 会被合并（如 `430198` + `公告编号：2024-077` 粘成 `4301982024-077`）。
+# 粘连会让下游按 token 取值**必然出错**，且识别置信度不会下降。
+#
+# 因此：检测到疑似粘连时，必须送 VLM 裁决，不能仅凭置信度放行。
+digit_boundary:
+  enabled: true
+  # 单页数字 token 中，出现以下形态即判定疑似粘连
+  suspicious_patterns:
+    - '^\d{10,}$'                  # 超长连续数字（正常金融数字很少超过 10 位）
+    - '\d{6,}[-–]\d{2,}'           # 编号与日期粘连，如 4301982024-077
+  on_suspicion: "vlm_judge"        # 送多模态裁决
+  max_suspicious_per_page: 20      # 成本闸门
+
+# —— quote 回读（幻觉硬闸门）——
+quote_fuzzy_threshold: 0.86        # OCR 噪声容差；低于此值判定为幻觉
+quote_min_length: 2
+
+# —— VLM 裁判触发条件 ——
+#
+# 成本实测：单页折算 1001 token ≈ ¥0.005，100 页全页裁决仅 ¥0.48。
+# 因此**不必为省成本而削减裁决**，可以按准确性需要放开触发条件。
+vlm_trigger:
+  on_channel_conflict: true        # 文本层与 OCR 结果不一致
+  on_scanned_page: true            # 纯扫描件（无交叉源可用）
+  on_table_page: true              # 表格页（结构易崩）
+  on_low_confidence_below: 0.75    # 上一步置信度低于此值
+  on_digit_boundary_suspicion: true  # ★ 实测新增：疑似数字粘连
+  always_for_key_fields: true      # 关键字段（质押比例/中标金额/营收等）一律复核
+  max_pages_per_doc: 120           # 单文档 VLM 裁决页数上限（成本闸门）
+  max_calls_per_run: 400           # 单次运行 VLM 调用上限
+
+# —— 关键字段白名单（错一个代价很大，必须复核）——
+key_metrics:
+  - revenue
+  - net_profit_parent
+  - net_profit_parent_ex_nonrec
+  - pledge_shares
+  - pledge_ratio_of_holding
+  - pledge_ratio_of_total
+  - contract_amount
+  - equity_change_ratio
+  - total_assets
+  - total_liabilities
+  - equity_total
+  - operating_cash_flow
+  - eps_basic
+  - shares_outstanding
+
+# —— 批量与并发 ——
+concurrency:
+  ocr_workers: 4                   # CPU 核数有限，勿设过高
+  vlm_workers: 3                   # 受 API 限流约束
+
+# —— 抽取上限 ——
+extract:
+  # 每页每个指标最多入库多少条。
+  # 早期写死 4 —— 实测会把「一页 3 家公司 × 2 个期间」的表截断：
+  # 第 5、6 个取值被静默丢掉，那些值就只剩 VLM 一条来源。
+  # 16 足以覆盖一页里常见的多主体 × 多期间组合。
+  max_facts_per_metric_page: 16
+
+# —— 安全闸门 ——
+max_pages_per_doc: 500             # 超过此页数拒绝处理（防跑飞）
+max_file_size_mb: 200

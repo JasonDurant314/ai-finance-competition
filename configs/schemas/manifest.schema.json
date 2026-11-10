@@ -1,0 +1,200 @@
+{
+  "additionalProperties": false,
+  "description": "runs/<run_id>/manifest.json —— 环境指纹，可复现性的根。\n\nreplay 时逐字段比对；任一不一致即判定为「不可复现」。",
+  "properties": {
+    "contract_version": {
+      "default": "1.0.0",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "pipeline": {
+      "title": "Pipeline",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "finished_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Finished At"
+    },
+    "input_files": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "相对路径 -> sha256",
+      "title": "Input Files",
+      "type": "object"
+    },
+    "data_dir": {
+      "default": "data",
+      "description": "本次运行使用的数据目录（相对于项目根目录）。**回放必须据此重建上下文** —— 否则 `agent replay` 会去读默认的 data/ 而不是原始输入，导致重放结果与原始产物哈希不一致，表现为『不可复现』这个假警报（实测踩过）。",
+      "title": "Data Dir",
+      "type": "string"
+    },
+    "doc_limit": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "`agent run --limit N` 的取值。**必须记录**：它决定了参与本次运行的文档数量。不记录时回放会处理全部文档，产物与原始不同，于是把一次**本可复现**的运行误判为『不可复现』（实测踩过：`--limit 1` 试跑 → replay 报 ❌，而同样的命令不加 --limit 就 ✅）。这类假警报比不做校验更糟：它会训练人忽略复现报告。",
+      "title": "Doc Limit"
+    },
+    "upstream_facts_run": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "`agent run --facts-run <run_id|路径>` 的取值（R4 / R5 专用）。**必须记录**：链式运行时事实库来自另一个 run 目录，不记录的话回放会去本 run 目录找 facts.json，必然找不到（实测踩过：`run r4_valuation --facts-run smoke` 的 replay ❌）。",
+      "title": "Upstream Facts Run"
+    },
+    "code_version": {
+      "default": "0.1.0",
+      "title": "Code Version",
+      "type": "string"
+    },
+    "python_version": {
+      "default": "",
+      "title": "Python Version",
+      "type": "string"
+    },
+    "agent_config_hash": {
+      "default": "",
+      "title": "Agent Config Hash",
+      "type": "string"
+    },
+    "prompts": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "prompt_id@ver -> sha256",
+      "title": "Prompts",
+      "type": "object"
+    },
+    "skills": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Skills",
+      "type": "object"
+    },
+    "models": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "role -> model_id",
+      "title": "Models",
+      "type": "object"
+    },
+    "provider": {
+      "default": "",
+      "description": "本次运行使用的 provider 名（如 deepseek / mock）。**回放必须据此选择同一个 provider** —— 缓存键包含 provider 名，回放时换成别的 provider 会导致缓存全部未命中，被误判为『不可复现』（实测踩过）。",
+      "title": "Provider",
+      "type": "string"
+    },
+    "model_params": {
+      "additionalProperties": true,
+      "title": "Model Params",
+      "type": "object"
+    },
+    "seed": {
+      "default": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "offline": {
+      "default": false,
+      "title": "Offline",
+      "type": "boolean"
+    },
+    "outputs": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "相对路径 -> sha256",
+      "title": "Outputs",
+      "type": "object"
+    },
+    "status": {
+      "default": "running",
+      "enum": [
+        "running",
+        "success",
+        "failed",
+        "partial"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "total_steps": {
+      "default": 0,
+      "title": "Total Steps",
+      "type": "integer"
+    },
+    "total_tokens": {
+      "default": 0,
+      "title": "Total Tokens",
+      "type": "integer"
+    },
+    "total_cost_cny": {
+      "default": 0.0,
+      "title": "Total Cost Cny",
+      "type": "number"
+    },
+    "cache_hit_rate": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cache Hit Rate"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    }
+  },
+  "required": [
+    "run_id",
+    "pipeline"
+  ],
+  "title": "RunManifest",
+  "type": "object"
+}

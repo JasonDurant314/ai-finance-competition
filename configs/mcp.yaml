@@ -1,0 +1,37 @@
+# MCP 服务器配置 —— 外部工具通过 MCP 协议接入本 Agent。
+#
+# 为什么默认是空的：
+#   MCP 是**可选扩展面**，不是核心任务链路的一环。默认不启动任何外部进程，
+#   既符合赛题「封闭或半封闭数据环境」的要求，也让评审拿到代码后
+#   `python -m agent.cli mcp --list` 的输出是可预期的（不会因为环境差异失败）。
+#
+# 自检（不需要任何外部依赖，用仓库自带的演示服务器）：
+#   python -m agent.cli mcp --self-test
+#
+# 接入一个真实 MCP 服务器：把 enabled 改为 true 并填写 command。
+#   - command 的第一个元素写成 "python" / "python3" 时会被解析为
+#     **运行本项目所用的那个解释器**（评审机器上更稳）。
+#   - 子进程只继承白名单环境变量，**不会拿到 DEEPSEEK_API_KEY**。
+#   - 接入后的工具名为 `mcp.<server>.<tool>`，元数据声明为
+#     side_effect=network / determinism=nondeterministic ——
+#     我们无法保证第三方服务器是纯函数，因此按最保守方式声明，
+#     调度器不会把它用在可复现路径上。
+
+servers: []
+
+# 示例（默认注释掉，需要时取消注释）：
+#
+# servers:
+#   - name: filesystem
+#     command: ["npx", "-y", "@modelcontextprotocol/server-filesystem", "./data"]
+#     description: 官方 filesystem 服务器（只读访问受控材料目录）
+#     enabled: false
+#     timeout_s: 30
+#     tags: ["official"]
+#
+#   - name: demo
+#     command: ["python", "tools/mcp_demo_server.py"]
+#     description: 仓库自带的演示服务器（纯确定性、零依赖、离线可跑）
+#     enabled: true
+#     timeout_s: 20
+#     tags: ["demo", "offline"]

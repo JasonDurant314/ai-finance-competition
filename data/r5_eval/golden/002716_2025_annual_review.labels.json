@@ -1,0 +1,51 @@
+[
+  {
+    "error_id": "G-001",
+    "draft_id": "002716_2025_annual_review",
+    "type": "E3_caliber",
+    "char_range": [
+      323,
+      334
+    ],
+    "quote": "净利率约为 2.73%",
+    "is_real_error": true,
+    "note": "口径错误：2.73% = 3.40 ÷ 124.45，用的是**归母净利润**；而「净利率」的规范口径是净利润（含少数股东损益）÷ 营业收入。两者在本期差异虽小，但口径必须说明，否则与其他公司横向对比时不可比。",
+    "correct": "归母净利率约 2.73%（若用净利润口径需另行说明）"
+  },
+  {
+    "error_id": "T-002",
+    "draft_id": "002716_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      64,
+      75
+    ],
+    "quote": "同比增长 49.70%",
+    "is_real_error": false,
+    "note": "陷阱项：124.45 ÷ 83.13 - 1 = 49.70%，由 truth 派生，不应报错。"
+  },
+  {
+    "error_id": "T-003",
+    "draft_id": "002716_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      101,
+      113
+    ],
+    "quote": "同比增长 100.38%",
+    "is_real_error": false,
+    "note": "陷阱项：3.40 ÷ 1.70 - 1 = 100.38%，由 truth 派生，不应报错。"
+  },
+  {
+    "error_id": "T-004",
+    "draft_id": "002716_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      247,
+      256
+    ],
+    "quote": "两项合计 100%",
+    "is_real_error": false,
+    "note": "陷阱项：94.95% + 5.05% = 100%，分项和与合计一致，不应报错。"
+  }
+]

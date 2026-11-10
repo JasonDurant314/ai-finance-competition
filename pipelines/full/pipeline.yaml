@@ -1,0 +1,82 @@
+name: full
+description: >
+  端到端全流程 —— R1 提取 → R4 估值 → R5 核查，一条命令跑完。
+  这是决赛现场演示与评审复现的主入口。
+
+  三阶段共用同一个 run 目录，因此事实库是同一份文件：
+  R1 写 facts/facts.json，R4 与 R5 读同一个文件。
+  这从结构上保证了三个需求使用的数字完全一致。
+
+stages:
+  # ---------------- R1 数据结构化提取 ----------------
+  - name: r1_ingest
+    run: pipelines.r1_extract.ingest:run
+    description: R1-1 文档登记 + 逐页预扫描 + 路由决策
+    produces: [facts/documents.json, pages/index.json]
+
+  - name: r1_extract_text
+    run: pipelines.r1_extract.extract_text:run
+    description: R1-2 第 1 层文本层直取
+    produces: [channels/text_layer.json]
+
+  - name: r1_extract_ocr
+    run: pipelines.r1_extract.extract_ocr:run
+    description: R1-3 第 2 层 OCR + 规则校验
+    timeout_s: 1800
+    produces: [channels/ocr.json]
+
+  - name: r1_extract_tables
+    run: pipelines.r1_extract.extract_tables:run
+    description: R1-3b 表格结构重建 + 算术校验（纯确定性）
+    timeout_s: 900
+    produces: [channels/tables.json]
+
+  - name: r1_judge
+    run: pipelines.r1_extract.judge:run
+    description: >
+      R1-4 第 3 层 VLM 整页扫描（含指标归属）
+      + 表格单元格级裁决 + quote 回读防幻觉
+    optional: true
+    timeout_s: 1800
+    produces:
+      - channels/conflicts.json
+      - channels/vlm_verdicts.json
+      - channels/vlm_scans.json
+      - channels/table_adjudications.json
+
+  - name: r1_build_facts
+    run: pipelines.r1_extract.build_facts:run
+    description: R1-5 构建事实库（无锚点不入库）
+    produces: [facts/build_stats.json]
+
+  - name: r1_export
+    run: pipelines.r1_extract.export:run
+    description: R1-6 导出 JSON / Excel / 溯源 HTML
+    produces: [facts/facts.json, facts/facts_table.json, facts/evidence.html]
+
+  # ---------------- R4 自动化估值建模 ----------------
+  - name: r4_assumptions
+    run: pipelines.r4_valuation.assumptions:run
+    description: R4-1 从事实库推导假设（标注事实/推论/观点）
+    produces: [valuation/assumptions.json]
+
+  - name: r4_model
+    run: pipelines.r4_valuation.model:run
+    description: R4-2 DCF + 相对估值 + 敏感性 + A1–A6 勾稽断言
+    produces: [valuation/valuation.json, valuation/model_summary.json]
+
+  - name: r4_report
+    run: pipelines.r4_valuation.report:run
+    description: R4-3 图表 + Markdown 报告 + Excel 模型
+    optional: true
+    produces: [valuation/valuation_report.md, valuation/report_summary.json]
+
+  # ---------------- R5 研究报告纠错核查 ----------------
+  - name: r5_check
+    run: pipelines.r5_audit.check:run
+    description: R5 E1–E5 五类错误确定性核查 + 修订对照表
+    produces:
+      - audit/audit.json
+      - audit/audit_report.md
+      - audit/revision_table.xlsx
+      - audit/annotated_draft.html

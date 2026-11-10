@@ -1,0 +1,685 @@
+{
+  "tables": 48,
+  "tables_with_total_label": 1,
+  "before": {
+    "failures": 0,
+    "checked": 0,
+    "tables_with_claims": 0
+  },
+  "after": {
+    "failures": 0,
+    "checked_rows": 0,
+    "checked_cols": 0,
+    "checked": 0,
+    "soft_nested": 0,
+    "tables_with_claims": 0
+  },
+  "failures_top": [],
+  "adjudication": {
+    "tables": 48,
+    "triggers": {
+      "no_total_line": 48
+    },
+    "verdicts": {
+      "agree": 57,
+      "normalized": 35,
+      "corrected": 80,
+      "rejected": 12,
+      "unreadable": 0,
+      "errors": 0
+    },
+    "cells_checked": 184,
+    "by_table": [
+      {
+        "page": 2,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 3,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 3,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 1,
+        "normalized": 0,
+        "corrected": 1,
+        "rejected": 2,
+        "improved": false
+      },
+      {
+        "page": 6,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 7,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 8,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 9,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 10,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 11,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 12,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 13,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 14,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 15,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 16,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 17,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 1,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 18,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 3,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 19,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 3,
+        "normalized": 0,
+        "corrected": 1,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 20,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 3,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 4,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 5,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 6,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 7,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 7,
+        "table_index": 1,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 2,
+        "rejected": 2,
+        "improved": false
+      },
+      {
+        "page": 8,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 1,
+        "normalized": 0,
+        "corrected": 3,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 9,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 3,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 10,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 11,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 12,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 13,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 14,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 15,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 16,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 17,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 18,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 1,
+        "normalized": 3,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 19,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 20,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 21,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 22,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 3,
+        "corrected": 1,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 23,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 24,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 25,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 3,
+        "corrected": 0,
+        "rejected": 1,
+        "improved": false
+      },
+      {
+        "page": 26,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 2,
+        "corrected": 2,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 27,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 4,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 28,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 29,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 4,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 30,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 0,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 1,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 4,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 2,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 0,
+        "agree": 0,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 0,
+        "improved": false
+      },
+      {
+        "page": 3,
+        "table_index": 0,
+        "trigger": "no_total_line",
+        "checked": 4,
+        "agree": 2,
+        "normalized": 0,
+        "corrected": 0,
+        "rejected": 2,
+        "improved": false
+      }
+    ],
+    "examples": [
+      {
+        "page": 2,
+        "row": 1,
+        "col": 0,
+        "original": "1",
+        "vlm_text": "2",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "2\n江西晶科光伏材料有限公司"
+      },
+      {
+        "page": 2,
+        "row": 1,
+        "col": 2,
+        "original": "501,000.00",
+        "vlm_text": "179,000.00",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "JinkoSolar (U.S.) Inc.\t179,000.00"
+      },
+      {
+        "page": 2,
+        "row": 2,
+        "col": 2,
+        "original": "15,000.00",
+        "vlm_text": "60,000.00",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "上饶晶科能源智造有限公司\t60,000.00"
+      },
+      {
+        "page": 3,
+        "row": 1,
+        "col": 0,
+        "original": "",
+        "vlm_text": "4",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "4、上述担保额度预计及授权的有效期为自 2026 年 1 月 1 日起至 2026 年 12"
+      },
+      {
+        "page": 7,
+        "row": 3,
+        "col": 8,
+        "original": "资产总额：312,460.60万元；负债总额：297,032.06\n万元；资产净额：\n15,428.55万元。营业收入：419,815.97万元；净利润：13,707.89\n万元。",
+        "vlm_text": "资产总额：486,619.82万元；负债总额：472,620.40万元；资产净额：13,999.41万元。营业收入：378,664.28万元；净利润：2,226.11万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "资产总额：486,619.82 万元；负债总额：472,620.40 万元；资产净额：13,999.41 万元。营业收入：378,664.28 万元；净利润：2,226.11 万元。"
+      },
+      {
+        "page": 7,
+        "row": 3,
+        "col": 9,
+        "original": "资产总额：344,109.17\n万元；负债总额：\n320,547.06万元；资产净额：23,562.11万元。营业收入：277,543.09\n万元；净利润：8,133.56\n万元。",
+        "vlm_text": "资产总额：558,641.29万元；负债总额：557,753.35万元；资产净额：887.93万元。营业收入：362,308.34万元；净利润：-13,111.48万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "资产总额：558,641.29\n万元；负债总额：\n557,753.35万元；资产\n净额：887.93万元。\n营业收入：362,308.34\n万元；净利润：\n-13,111.48万元。"
+      },
+      {
+        "page": 11,
+        "row": 3,
+        "col": 8,
+        "original": "资产总额：408,995.89万元；负债总额：411,683.87\n万元；资产净额：\n-2,687.98万元。营业收入：27,729.27万元；净利润：-82,805.28\n万元。",
+        "vlm_text": "资产总额：931,592.63万元；负债总额：487,477.36万元；资产净额：444,115.27万元。营业收入：1,277,348.52万元；净利润：37,226.79万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "资产总额：931,592.63万元；负债总额：487,477.36万元；资产净额：444,115.27万元。营业收入：1,277,348.52万元；净利润：37,226.79万元。"
+      },
+      {
+        "page": 11,
+        "row": 3,
+        "col": 9,
+        "original": "资产总额：518,449.69\n万元；负债总额：\n457,310.87万元；资产净额：61,138.82万元。营业收入：315,829.56\n万元；净利润：\n13,826.81万元。",
+        "vlm_text": "资产总额：353,281.60万元；负债总额：274,200.51万元；资产净额：79,081.09万元。营业收入：235,815.48万元；净利润：4,372.88万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "资产总额：353,281.60 万元；负债总额：274,200.51 万元；资产净额：79,081.09 万元。营业收入：235,815.48 万元；净利润：4,372.88 万元。"
+      },
+      {
+        "page": 13,
+        "row": 2,
+        "col": 8,
+        "original": "资产总额：70,048.37万元；负债总额：64,007.19\n万元；资产净额：6,041.18\n万元。营业收入：523,977.93万元；净利润：465.05万元。",
+        "vlm_text": "资产净额：103,007.40万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "资产净额：103,007.40 万元。"
+      },
+      {
+        "page": 13,
+        "row": 2,
+        "col": 9,
+        "original": "资产总额：81,988.65万元；负债总额：\n75,908.59万元；资产净额：6,080.05万元。营业收入：371,087.63\n万元；净利润：38.87\n万元。",
+        "vlm_text": "负债总额：378,020.43 万元；资产净额：86,759.30 万元。营业收入：151,664.29 万元；净利润：-16,248.10 万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "负债总额：\n378,020.43 万元；资产\n净额： 86,759.30 万元。\n营业收入： 151,664.29\n万元； 净利润：\n-16,248.10 万元。"
+      },
+      {
+        "page": 16,
+        "row": 2,
+        "col": 8,
+        "original": "资产总额：755,856.24万元；负债总额：714,558.70\n万元；资产净额：\n41,297.54万元。营业收入：1,400,572.45\n万元；净利润：-23,023.06\n万元。",
+        "vlm_text": "因公司于2025年7月成立，暂无最近一年又一期财务数据",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "因公司于2025年7月成立，暂无最近一年又一期财务数据"
+      },
+      {
+        "page": 16,
+        "row": 2,
+        "col": 9,
+        "original": "资产总额：360,899.79\n万元；负债总额：\n240,083.85万元；资产净额：120,815.94万元。营业收入：385,643.08\n万元；净利润：\n80,082.13万元。",
+        "vlm_text": "12,019.63 万元。",
+        "verdict": "corrected",
+        "confidence": 0.95,
+        "quote": "12,019.63 万元。"
+      }
+    ]
+  }
+}

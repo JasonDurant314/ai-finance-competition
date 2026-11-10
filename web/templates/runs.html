@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block title %}运行与复现 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>运行与复现</h1>
+  <div class="sub">
+    数据来源可核验 · 执行过程可追溯 · 运行结果可复现 —— 本次运行的实测状态。
+  </div>
+</div>
+
+{% if integrity %}
+  {% if integrity.error %}
+    <div class="note bad">完整性校验失败：{{ integrity.error }}</div>
+  {% elif integrity.reproducible %}
+    <div class="note ok">
+      <b>√ 产物完整性校验通过</b> ——
+      已比对 {{ integrity.checked }} 个文件的 SHA256，与运行开始时记录的指纹完全一致。
+      说明产物未被篡改，确实由本次运行产生。
+    </div>
+  {% else %}
+    {# 产物哈希对不上 = 这份底稿不可采信。全站唯一该盖章的地方：
+       印章是复核人在底稿上写「此页已核，不得使用」的动作，
+       不是装饰 —— 其余任何页面都不盖章。 #}
+    <div class="note bad">
+      <span class="stamp">产物与记录不一致 · 不可采信</span>
+      <div style="margin-top:10px">
+        <b>× 有 {{ integrity.mismatches|length }} 个文件的 SHA256
+        与 <code>manifest.json</code> 记录的不符</b> ——
+        产物在运行结束后被改动过，或本次运行的记录不完整。
+        这种情况下<b>上面所有页面的读数都不应当被引用</b>。
+      </div>
+      <ul style="margin:8px 0 0 18px">
+      {% for m in integrity.mismatches[:8] %}<li class="mono small">{{ m }}</li>{% endfor %}
+      </ul>
+      {% if integrity.mismatches|length > 8 %}
+      <div class="dim small" style="margin-top:4px">
+        仅列出前 8 条，完整清单见 <code>runs/{{ run_id }}/</code> 下的校验输出。
+      </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% if trace %}
+{# 当前 run 在下面那张总表里的那一行 —— 「成本」卡片要拿它做对照。 #}
+{% set cur = (rows|selectattr('is_current')|list|first) if rows else None %}
+<h2>执行过程统计（来自 trace.jsonl）</h2>
+<div class="cards">
+  <div class="card"><div class="k">事件总数</div><div class="v">{{ "{:,}".format(trace.total_events or 0) }}</div>
+    <div class="note">每一步都被记录</div></div>
+  {# ★ 「缓存命中 397 / 调用 397」摆在一起会被读成 100% 覆盖，而本 run
+     其实有 3 类调用**因为离线未命中根本没能发起** —— 它们不计入分母，
+     所以命中率照样显示 1.0。命中率的分母是「已发起的调用」，
+     不是「需要的调用」，这个区别不写出来，页面就是在用一个真数字
+     说一句假话。 #}
+  <div class="card {% if trace.errors %}warn{% endif %}">
+    <div class="k">模型调用</div><div class="v">{{ trace.llm_calls or 0 }}</div>
+    <div class="note">缓存命中 {{ trace.llm_cache_hits or 0 }} 次
+      （已发起的调用全部命中）
+      {% if trace.errors %}<br><b>另有 {{ trace.errors|length }} 类未命中</b>
+      —— 这些调用没能发起，<b>不计入上面的分母</b>{% endif %}</div></div>
+  <div class="card"><div class="k">工具调用</div><div class="v">{{ trace.tool_calls or 0 }}</div>
+    <div class="note">全部经注册表调度</div></div>
+  {# ★ 这一格只报**本 run 自己的读数**，两种情形分开写：
+       · 有数 —— 就是有数（2026-10-17 起每个读写点都经 `ctx.guard()`）；
+       · 0    —— 这个 run 产生于接入之前（本仓现有的 demo / web-* 全是这一类），
+                或者本次确实没经手文件。**不能替它宣称「已记录」**：
+                那正是「数据可核验」要防的事，页面自己拆自己的台。
+     判据取本 run 的 `file_accesses`，不取常量。 #}
+  {% set fa = trace.file_accesses or 0 %}
+  <div class="card {% if not fa %}warn{% endif %}">
+    <div class="k">文件访问</div><div class="v">{{ fa }}</div>
+    <div class="note">{% if fa %}读 / 写 / 列目录逐条留痕，共 {{ trace.unique_files or 0 }} 个文件，
+      每条带 sha256{% else %}<b>本 run 为 0</b> —— 该 run 产生于文件访问接入编排层之前，
+      或本次确实没有经手文件{% endif %}</div></div>
+  <div class="card {% if trace.assertions_failed %}warn{% endif %}">
+    <div class="k">勾稽断言</div><div class="v">{{ trace.assertions or 0 }}</div>
+    <div class="note">通过 {{ trace.assertions_passed or 0 }} / 失败 {{ trace.assertions_failed or 0 }}<br>
+      未校验（缺数据）{{ trace.assertions_skipped or 0 }} —— 未校验不是失败</div></div>
+  {# ★ 这一格与下面总表那一行读的是**两份不同的记录**，本 run 上数字相差极大：
+     trace.jsonl 记「本次经手的 token 量及其等价成本」（913,995 / ¥1.2927），
+     manifest.json 记「本次实际计费」（0 / ¥0.0000）—— 因为预热之后全部命中
+     缓存，模型一次都没真调。两个数都对，问的是两个问题。
+     原先只显示前者，读者拉到下面看见同一行 run 写着 ¥0.0000，
+     只会得出「有一个写错了」。跟产物 667/670 那次一样：摊开定义，
+     两个数字就都能被独立复核。 #}
+  <div class="card"><div class="k">成本（等价）</div>
+    <div class="v">¥{{ "%.4f"|format(trace.cost_cny or 0) }}</div>
+    <div class="note">{{ "{:,}".format(trace.prompt_tokens or 0) }} 输入 token ——
+      <b>本次经手量</b>，非实际支出
+      {% if cur %}<br>实际计费 <b class="mono">¥{{ "%.4f"|format(cur.summary.total_cost_cny or 0) }}</b>
+      （差额全部来自缓存回放）{% endif %}</div></div>
+</div>
+
+{# ★ 赛题点名要的四类事件，逐类给状态 —— 但这只是**读数**，不是论证。
+   原先这一块是一张 warn 表，每一条后面都跟着一段「我们为什么不那样做」的辩解
+   （「不把 FileGuard 塞进 pipelines/ 事后补一个好看的计数」之类）。辩解是写给
+   审查者的，不是写给读者的：读者要的是「这一类记了没有」。
+   ★ 四类现在都有出处，但**每一条都按本 run 的实测数报**，不许因为框架支持了
+   就替某一次运行宣称记录完整 —— runs/ 里几份更早的 web-* 运行「文件访问」
+   就是 0，页面照实说 0。 #}
+<div class="note small">
+  工具调用 <b>已记录</b> {{ trace.tool_calls or 0 }} 次（带工具名与参数哈希）·
+  计算过程 <b>已记录</b> {{ trace.assertions or 0 }} 条勾稽断言 + {{ trace.total_events or 0 }} 条事件 ·
+  结果生成 <b>已记录</b> 每个产物在 <code>manifest.json</code> 里带 SHA256 ·
+  文件访问 {% if fa %}<b>已记录</b> {{ fa }} 次（读 / 写 / 列目录，带 sha256）
+  {% else %}<b class="review">本 run 0 次</b>（该 run 早于接入编排层）{% endif %}
+</div>
+{% endif %}
+
+<h2>如何复现这次运行</h2>
+<div class="panel">
+  <p class="muted small">在项目根目录执行以下命令。<b>无需联网、无需 API Key</b> ——
+  replay 完全依靠运行期间落盘的模型响应缓存：</p>
+  <pre># 1. 校验产物完整性（比对 SHA256，确认未被篡改）
+python -m agent.cli verify {{ run_id }}
+
+# 2. 离线重放并逐字节比对全部产物
+python -m agent.cli replay {{ run_id }} --strict
+
+# 3. 生成人类可读的完整审计报告（步骤时间线 + 证据链 + 校验结果）
+python -m agent.cli audit {{ run_id }}</pre>
+
+  <div class="note info small">
+    <b>replay 的语义</b>：在离线模式下重跑整条流水线，用缓存中的模型响应替代真实调用，
+    然后把每个产物的哈希与 <code>manifest.json</code> 中记录的原始哈希逐一比对。
+    <b>缓存缺一条就会直接判定为不可复现</b>，而不是悄悄联网重算。
+  </div>
+</div>
+
+<h2>环境指纹（复现依据）</h2>
+<div class="panel">
+  {% if summary %}
+  <table class="compact">
+    <tbody>
+      <tr><td>模型提供方</td><td class="mono">{{ summary.provider }}</td>
+          <td class="dim2 small">换 provider 会让缓存键变化，因此必须记录</td></tr>
+      <tr><td>各角色模型</td><td class="mono small">
+        {% for role, model in summary.models.items() %}{{ role }}={{ model }}<br>{% endfor %}
+      </td><td class="dim2 small">抽取 / 裁判 / 复核各用哪个模型</td></tr>
+      <tr><td>数据目录</td><td class="mono">{{ summary.data_dir or '(默认 data/)' }}</td>
+          <td class="dim2 small">不记录它，回放会读错输入</td></tr>
+      <tr><td>运行起始时间</td><td class="mono">{{ summary.started_at_short }}</td>
+          <td class="dim2 small">产物中所有时间字段的唯一来源</td></tr>
+    </tbody>
+  </table>
+  <p class="dim2 small" style="margin-top:10px">
+    完整指纹（含每个输入文件的 SHA256、每个提示词的版本哈希、全部配置的指纹）
+    记录在 <code>runs/{{ run_id }}/manifest.json</code>。
+  </p>
+  {% endif %}
+</div>
+
+{# ★ 曾经的做法：标题写「产物 670 个」（磁盘扫描）而表里只渲染 80 行、不吭声，
+   同时又和 manifest 登记的 667 并列 —— 三个数字互相打架，于是底下要写一整段
+   「差额是定义差异，不是遗漏」替页面自己辩护。那段话的主语是网页，不是数据。
+   ★ 现在只留**一个口径**：标题的数字就是下面这个列表的行数，表里也就是全部行。
+   差额与截断这两件事因此**不存在**，也就不需要任何解释。
+   （读数是「本目录下有多少文件」，这正是读者看到的东西，不需要换算。） #}
+{% if outputs %}
+<h2>本次运行落盘的文件（{{ outputs|length }} 个）</h2>
+<div class="panel tight">
+<div class="tablewrap" style="max-height:420px">
+<table class="compact">
+<thead><tr><th>路径</th><th style="text-align:right">大小</th><th>时间</th></tr></thead>
+<tbody>
+{% for o in outputs %}
+<tr>
+  <td class="mono small">{{ o.path }}</td>
+  <td class="num dim2">{{ "{:,}".format(o.size) }} B</td>
+  <td class="dim2 small">{{ o.mtime }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endif %}
+
+<h2>全部运行记录</h2>
+<div class="panel tight">
+<table>
+<thead><tr>
+  <th>run_id</th><th>状态</th><th>流水线</th><th>开始时间</th>
+  <th style="text-align:right">Token</th><th style="text-align:right">成本</th>
+  <th style="text-align:right">产物</th><th>数据目录</th><th>模型</th><th></th>
+</tr></thead>
+<tbody>
+{% for row in rows %}
+{% set s = row.summary %}
+<tr {% if row.is_current %}style="background:#1f6feb18"{% endif %}>
+  <td class="mono">{{ s.run_id }}</td>
+  <td><span class="pill {{ s.status }}">{{ s.status_icon }} {{ s.status }}</span></td>
+  <td class="dim2">{{ s.pipeline }}</td>
+  <td class="dim2 small mono">{{ s.started_at_short }}</td>
+  <td class="num dim2">{{ "{:,}".format(s.total_tokens) }}</td>
+  <td class="num dim2">¥{{ "%.4f"|format(s.total_cost_cny) }}</td>
+  <td class="num dim2">{{ s.output_count }}</td>
+  <td class="dim2 small mono">{{ s.data_dir or '—' }}</td>
+  <td class="dim2 small">{{ s.provider or '—' }}</td>
+  <td>
+    {% if not row.is_current %}
+      <a href="/library?run={{ s.run_id }}">查看</a>
+    {% else %}<span class="dim2 small">当前</span>{% endif %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+{# ★ 表格里那个「◐ partial」原先全站**没有任何解释**：读者看到一个警示色的
+   状态，却不知道发生了什么，只能自己猜 —— 而猜出来的结论通常比事实严重
+   （「跑失败了？」）。所以触发原因要摆出来。
+   ★ 但只摆**读数**：为什么标 partial、影响哪个数、去哪看逐条错误。
+   原先后半段「宁缺勿错 / 不会被洗白 / 续跑只降不升」是在论证这套机制值得信任 ——
+   那是给审查者看的辩护，不是给读者看的信息。 #}
+{% if cur and cur.summary.status == 'partial' %}
+<div class="note warn small">
+  <b>当前 run（<code>{{ cur.summary.run_id }}</code>）标 partial 的原因：</b>
+  状态取各阶段里<b>更差</b>的那一个，本轮有模型调用未能发起
+  {%- if trace and trace.errors %}（{{ trace.errors|length }} 类离线缓存未命中）{% endif %}，
+  因此<b>其结果不完整</b> —— 受影响的部分是未裁决，不是被猜一个值填上。
+  引用本 run 的数字时请连同这个状态一起引用。
+  逐条错误见 <code>runs/{{ run_id }}/trace.jsonl</code> 的 <code>error</code> 事件，
+  阶段级说明见 <code>runs/{{ run_id }}/audit.md</code>。
+</div>
+{% endif %}
+
+<h2>许可与声明</h2>
+<div class="panel">
+  <p class="muted small">
+    本作品的智能体编排框架、工具层、提示词、Skill、MCP 客户端、校验与追踪回放模块
+    <b>均为自主实现，未使用任何第三方 Agent 框架</b>。
+    所使用的模型与开源依赖的名称、版本、来源、许可证及使用范围，
+    已逐条列明在项目根的 <code>THIRD_PARTY.md</code> 中。
+  </p>
+</div>
+
+{% endblock %}

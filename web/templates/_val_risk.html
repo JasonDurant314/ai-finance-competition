@@ -1,0 +1,14 @@
+{# ================================================== 风险与适用范围（常驻）
+   ★ 这一块**不折叠**。赛题「作品设计与评测要求」写明：涉及估值或投资判断的，
+   应说明主要假设、适用范围和风险因素。合规声明收进折叠块里，
+   等于把该说的话藏起来 —— 所以它留在明面上，但保持简短。 #}
+<h2>风险因素与适用范围</h2>
+<div class="note info">
+  <b>适用范围</b>：{{ val.applicability|prose }}
+  <ul style="margin:8px 0 0 18px">
+    {% for r in val.risk_factors %}<li>{{ r|prose }}</li>{% endfor %}
+  </ul>
+  <div style="margin-top:8px" class="small">
+    区间合成方式：{{ val.weighting_note|prose }}
+  </div>
+</div>

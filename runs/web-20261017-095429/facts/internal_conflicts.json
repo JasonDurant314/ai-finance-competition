@@ -1,0 +1,850 @@
+[
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 8,
+    "entity": "601857",
+    "metric": "total_assets",
+    "period": "2025A",
+    "ratio": 1047413.7,
+    "values": [
+      "2828017000000",
+      "2700000.0"
+    ],
+    "fact_ids": [
+      "fct_tbl_40dbb0efd7a87119",
+      "fct_tbl_e65f48f5b421e70a"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 107,
+    "entity": "601857",
+    "metric": "income_tax_expense",
+    "period": "2025A",
+    "ratio": 834.89,
+    "values": [
+      "36000000",
+      "30056000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_05f67be9865acf4a",
+      "fct_tbl_3ebe2d4d174ead86"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 107,
+    "entity": "601857",
+    "metric": "income_tax_expense",
+    "period": "2025A",
+    "ratio": 140.14,
+    "values": [
+      "36000000",
+      "5045000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_05f67be9865acf4a",
+      "fct_tbl_a0d2e8db61ebfd96"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "short_term_borrowing",
+    "period": "2025A",
+    "ratio": 1380.52,
+    "values": [
+      "25000000",
+      "34513000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_73aa8bfcc38558fc",
+      "fct_tbl_7a9d808cecdaf7b2"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "short_term_borrowing",
+    "period": "2025A",
+    "ratio": 1972.6,
+    "values": [
+      "25000000",
+      "49315000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_73aa8bfcc38558fc",
+      "fct_tbl_ab57693481f855ef"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "long_term_borrowing",
+    "period": "2025A",
+    "ratio": 4498.85,
+    "values": [
+      "33000000",
+      "148462000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_61c3563424aa4e1b",
+      "fct_tbl_db964a1e640dd5fd"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "long_term_borrowing",
+    "period": "2025A",
+    "ratio": 1019.42,
+    "values": [
+      "33000000",
+      "33641000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_61c3563424aa4e1b",
+      "fct_tbl_44258bbb0338c31d"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "bonds_payable",
+    "period": "2025A",
+    "ratio": 441.18,
+    "values": [
+      "34000000",
+      "15000000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_68d033afdb94b1e9",
+      "fct_tbl_e830c24481201213"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "bonds_payable",
+    "period": "2025A",
+    "ratio": 685.29,
+    "values": [
+      "34000000",
+      "23300000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_68d033afdb94b1e9",
+      "fct_tbl_326cd96cf0ed06f6"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "entity": "601857",
+    "metric": "minority_interest_bs",
+    "period": "2025A",
+    "ratio": 5207.0,
+    "values": [
+      "41000000",
+      "213487000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e18b378ac148da6e",
+      "fct_tbl_16d73d622c516fdb"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 109,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 41202.55,
+    "values": [
+      "42000000",
+      "1730507000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_31f5e5a31227923f",
+      "fct_tbl_802f76cca8911f0c"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "equity_total",
+    "period": "2024A",
+    "ratio": 17.31,
+    "values": [
+      "2671000000",
+      "46244000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e96e3acc54e35804",
+      "fct_tbl_87c0f26746bae891"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 2766.33,
+    "values": [
+      "58093000000",
+      "21000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_3d1cd96d9386e24d",
+      "fct_tbl_e4e046881074c90a"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 634.43,
+    "values": [
+      "13323000000",
+      "21000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_f94eb2d33bb857e1",
+      "fct_tbl_e4e046881074c90a"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 3640.22,
+    "values": [
+      "65524000000",
+      "18000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_8be4d3ddd049f881",
+      "fct_tbl_0da3b82065e937c9"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 647.56,
+    "values": [
+      "11656000000",
+      "18000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_bf67a7ce44803784",
+      "fct_tbl_0da3b82065e937c9"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2025A",
+    "ratio": 20.95,
+    "values": [
+      "55000000",
+      "1152000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e780292d7301aa39",
+      "fct_tbl_ba9430c39d44ec8f"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2024A",
+    "ratio": 16.8,
+    "values": [
+      "236000000",
+      "3964000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_4426300a9e9dd12b",
+      "fct_tbl_db92a461d8e7e150"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 152,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2024A",
+    "ratio": 18.16,
+    "values": [
+      "16871000000",
+      "929000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_1fbd3cbff3202155",
+      "fct_tbl_3d5967582f1dfc20"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 152,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2025A",
+    "ratio": 18.42,
+    "values": [
+      "9043000000",
+      "491000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_56c04242b1f6d450",
+      "fct_tbl_abb8f4d6c04b214c"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 152,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2024A",
+    "ratio": 887.95,
+    "values": [
+      "16871000000",
+      "19000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_1fbd3cbff3202155",
+      "fct_tbl_af81949a2b4153f5"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 152,
+    "entity": "601857",
+    "metric": "net_profit_total",
+    "period": "2024A",
+    "ratio": 48.89,
+    "values": [
+      "929000000",
+      "19000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_3d5967582f1dfc20",
+      "fct_tbl_af81949a2b4153f5"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 10.51,
+    "values": [
+      "186238000000",
+      "17727000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_f184d50ea85055e3",
+      "fct_tbl_1b6406fa2b5bfd67"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 40.92,
+    "values": [
+      "186238000000",
+      "4551000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_f184d50ea85055e3",
+      "fct_tbl_794ec4fe977308ff"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 118.17,
+    "values": [
+      "186238000000",
+      "1576000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_f184d50ea85055e3",
+      "fct_tbl_52f525be0b03d2df"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 17.61,
+    "values": [
+      "27746000000",
+      "1576000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_39d68ee7ac3a3b2d",
+      "fct_tbl_52f525be0b03d2df"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 11.25,
+    "values": [
+      "17727000000",
+      "1576000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_1b6406fa2b5bfd67",
+      "fct_tbl_52f525be0b03d2df"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 13.42,
+    "values": [
+      "17727000000",
+      "237838000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_1b6406fa2b5bfd67",
+      "fct_tbl_419615868db44024"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 52.26,
+    "values": [
+      "4551000000",
+      "237838000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_794ec4fe977308ff",
+      "fct_tbl_419615868db44024"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2025A",
+    "ratio": 150.91,
+    "values": [
+      "1576000000",
+      "237838000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_52f525be0b03d2df",
+      "fct_tbl_419615868db44024"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2025A",
+    "ratio": 24.96,
+    "values": [
+      "205094000000",
+      "8216000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_8c08a4e8114f484f",
+      "fct_tbl_15a38c5096a412e2"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2025A",
+    "ratio": 41.13,
+    "values": [
+      "205094000000",
+      "4987000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_8c08a4e8114f484f",
+      "fct_tbl_a982629137bcdb01"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2025A",
+    "ratio": 67.91,
+    "values": [
+      "205094000000",
+      "3020000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_8c08a4e8114f484f",
+      "fct_tbl_aeed64e0a79997ce"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2025A",
+    "ratio": 15.82,
+    "values": [
+      "47772000000",
+      "3020000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_a95e303181a0d8e6",
+      "fct_tbl_aeed64e0a79997ce"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2024A",
+    "ratio": 10.05,
+    "values": [
+      "179064000000",
+      "17812000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_ddabcd7fefd21cb5",
+      "fct_tbl_806a51bf9aa0b437"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2024A",
+    "ratio": 36.86,
+    "values": [
+      "179064000000",
+      "4858000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_ddabcd7fefd21cb5",
+      "fct_tbl_b9d2648540705af0"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2024A",
+    "ratio": 96.43,
+    "values": [
+      "179064000000",
+      "1857000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_ddabcd7fefd21cb5",
+      "fct_tbl_a7388c90dbb05c54"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "depreciation_amortization",
+    "period": "2024A",
+    "ratio": 14.94,
+    "values": [
+      "27740000000",
+      "1857000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_70a5100a48607a13",
+      "fct_tbl_a7388c90dbb05c54"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2024A",
+    "ratio": 31.67,
+    "values": [
+      "227633000000",
+      "7188000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_522fe5d012c52396",
+      "fct_tbl_51e5747cdb09b482"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2024A",
+    "ratio": 52.94,
+    "values": [
+      "227633000000",
+      "4300000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_522fe5d012c52396",
+      "fct_tbl_9ba81e6b25f6bd17"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2024A",
+    "ratio": 70.28,
+    "values": [
+      "227633000000",
+      "3239000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_522fe5d012c52396",
+      "fct_tbl_e87ef7241e885849"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "entity": "601857",
+    "metric": "capex",
+    "period": "2024A",
+    "ratio": 10.34,
+    "values": [
+      "33489000000",
+      "3239000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_ebf06fc8f56094e1",
+      "fct_tbl_e87ef7241e885849"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 201,
+    "entity": "601857",
+    "metric": "short_term_borrowing",
+    "period": "2025A",
+    "ratio": 2210.38,
+    "values": [
+      "29000000",
+      "64101000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_42bdef9ada289573",
+      "fct_tbl_1812593acd019196"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 201,
+    "entity": "601857",
+    "metric": "short_term_borrowing",
+    "period": "2025A",
+    "ratio": 4785.62,
+    "values": [
+      "29000000",
+      "138783000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_42bdef9ada289573",
+      "fct_tbl_c67f47307fe91401"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 257,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 115.07,
+    "values": [
+      "824808000000",
+      "7168000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_6501b9eb993351b8",
+      "fct_tbl_a7a291e3d087c780"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 257,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 86.43,
+    "values": [
+      "619503000000",
+      "7168000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_6f7b02eb1167ff1d",
+      "fct_tbl_a7a291e3d087c780"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 257,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2025A",
+    "ratio": 681.12,
+    "values": [
+      "7168000000",
+      "4882272000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_a7a291e3d087c780",
+      "fct_tbl_b7abe707cb6ce056"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 258,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 121.18,
+    "values": [
+      "906813000000",
+      "7483000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_dc425256d2022dd2",
+      "fct_tbl_93fc7f28f5c197a2"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 258,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 159.37,
+    "values": [
+      "1192589000000",
+      "7483000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_759af05abcb1fad8",
+      "fct_tbl_93fc7f28f5c197a2"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 258,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 328.02,
+    "values": [
+      "2454546000000",
+      "7483000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e7896ee04d4e43b3",
+      "fct_tbl_93fc7f28f5c197a2"
+    ]
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 258,
+    "entity": "601857",
+    "metric": "revenue",
+    "period": "2024A",
+    "ratio": 79.2,
+    "values": [
+      "592690000000",
+      "7483000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_2983e88ffa0ffc31",
+      "fct_tbl_93fc7f28f5c197a2"
+    ]
+  },
+  {
+    "kind": "scale_implausible",
+    "doc_id": "doc_840b15aa4dc3",
+    "entity": "601857",
+    "metric": "cash_and_equivalents",
+    "period": "2025A",
+    "ratio": 7.29,
+    "values": [
+      "20616200000000",
+      "2828017000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e80f5ef7a499e177",
+      "fct_tbl_40dbb0efd7a87119"
+    ]
+  },
+  {
+    "kind": "scale_implausible",
+    "doc_id": "doc_840b15aa4dc3",
+    "entity": "601857",
+    "metric": "cash_and_equivalents",
+    "period": "2024A",
+    "ratio": 6.27,
+    "values": [
+      "17247700000000",
+      "2753007000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_289846d0a111d7fa",
+      "fct_tbl_761990e71c9e72ef"
+    ]
+  }
+]

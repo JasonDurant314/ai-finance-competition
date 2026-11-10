@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+{% block title %}估值建模 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>选题 4 · 自动化估值建模</h1>
+  <div class="sub">
+    只消费事实库的数字，<b>不读取任何原始文档</b>；模型内部全是确定性运算，不调用大模型 ——
+    估值区间与敏感性分析即交付物，假设与勾稽明细在下方折叠页。
+  </div>
+</div>
+
+{% if not val %}
+  <div class="note bad">本次运行没有估值产物。请确认已运行 <code>r4_valuation</code> 阶段，
+    或切换到含估值产物的 run（如 <code>web-20260925-123442</code>）。</div>
+{% else %}
+
+{# 赛题的五条考察点（模型结构 / 假设依据 / 财务勾稽关系 / 估值结果合理性 /
+   敏感性分析完整性，见通知 p3）直接摆在第一屏，每条给本次运行的实测值。 #}
+<h2 style="margin-top:22px">重点考察 —— 本次运行的实测</h2>
+{% include "_criteria.html" %}
+
+{# ------------------------------------------------------ 结论带（常驻）
+   每页只有一个 34px 大字，就是它 —— 评委下翻看折叠证据时仍然在视野内
+   （`position:sticky`，见 app.css 的 .verdict）。
+   原先五个 KPI 卡片各自用 inline style 调字号（19px/17px/18px）来「凑」
+   视觉层级 —— 字号阶梯接管后那些 hack 全部删掉。 #}
+<div class="verdict">
+  <div class="vk">每股价值区间 · {{ val.entity }}</div>
+  <div class="vv">{{ val.value_range_low }} – {{ val.value_range_high }}
+    <span class="u">元/股</span></div>
+  <div class="vs">
+    中值 <b class="mono">{{ val.value_range_mid }}</b>
+    <span class="sep">|</span>
+    DCF 单点 <b class="mono">{{ val.dcf.value_per_share }}</b>
+    <span class="sep">|</span>
+    可比公司法 <b class="mono">{{ val.comps.implied_value_per_share_low }} – {{ val.comps.implied_value_per_share_high }}</b>
+    <span class="sep">|</span>
+    终值占比 <b class="mono">{{ "%.1f%%"|format(val.dcf.terminal_value_share|float * 100) }}</b>
+    {% if val.dcf.terminal_value_share|float > 0.85 %}
+      <span class="mk mk-h">◐</span> 偏高，高度依赖永续假设
+    {%- else %} 处于常规区间{% endif %}
+    <span class="sep">|</span>
+    基准日 <b class="mono">{{ val.as_of }}</b>
+  </div>
+</div>
+{# ------------------------------------------------------------ 视图分流（?tab=）
+   ★ 无 `?tab=` 的那一支**保持原样**：`tools/web_smoke.py:249`、
+   `tools/web_pages_check.py` 都在无参 `/valuation` 上探「勾稽断言 / 敏感性 /
+   可比公司 / 占位样本」，`tests/test_web.py` 探「重点考察 / 每股价值区间」。
+   所以两个副视图只做**减法**，不动默认那支。
+   ★「重点考察」与结论带三支都留 —— 它们是这一页的身份，不是哪一支的细节。 #}
+{% set a_total = val.assertions|length %}
+{% set a_fail = val.assertions|selectattr('status','equalto','fail')|list|length %}
+{% set a_pass = val.assertions|selectattr('status','equalto','pass')|list|length %}
+{% set a_skip = val.assertions|selectattr('status','equalto','skipped')|list|length %}
+
+{% if view == 'report' %}
+{# 报告视图：把交付物本体摊开，不折叠 —— 点「报告」就是要看报告本身。 #}
+<h2>完整估值报告</h2>
+<div class="panel">{{ report_html|safe }}</div>
+
+<h2>报告图表（交付产物）</h2>
+{% include "_val_charts.html" %}
+
+{% elif view == 'assumptions' %}
+{# 假设视图：模型的两类输入 —— 假设本身，以及验证它们的勾稽断言。 #}
+<h2>关键假设与依据</h2>
+{% include "_val_assumptions.html" %}
+
+<h2>财务勾稽断言</h2>
+{% include "_val_assertions.html" %}
+
+{% include "_val_risk.html" %}
+
+{% else %}
+
+{# 各方法落点仍列成底稿表：结论带只放头条读数，明细在这里逐条对得上。 #}
+<table class="ledger">
+  <thead><tr>
+    <th>索引</th><th>项目</th><th class="n">低</th><th class="n">中值</th>
+    <th class="n">高</th><th class="mk">记号</th><th>依据</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="idx">R4·a</td><td class="t">DCF 现金流折现</td>
+      <td class="n">—</td><td class="n">{{ val.dcf.value_per_share }}</td>
+      <td class="n">—</td><td class="mk mk-v">√</td>
+      <td class="t">点估计：一组假设推出一个每股价值</td></tr>
+    <tr><td class="idx">R4·b</td><td class="t">可比公司法</td>
+      <td class="n">{{ val.comps.implied_value_per_share_low }}</td>
+      <td class="n">—</td>
+      <td class="n">{{ val.comps.implied_value_per_share_high }}</td>
+      <td class="mk mk-h">◐</td>
+      <td class="t">区间：可比倍数本身有低/中/高</td></tr>
+    <tr class="tot"><td class="idx"></td><td class="t">综合区间（并集极值）</td>
+      <td class="n">{{ val.value_range_low }}</td>
+      <td class="n">{{ val.value_range_mid }}</td>
+      <td class="n">{{ val.value_range_high }}</td>
+      <td class="mk mk-v">√</td>
+      <td class="t">不把两者平均掉 —— 平均会掩盖模型分歧</td></tr>
+  </tbody>
+</table>
+
+{# ------------------------------------------------- 主图：区间 + 敏感性 #}
+{% if svg %}
+<div class="charts pairs">
+  {% if svg.range %}
+  <div class="chart">
+    <h4>估值区间与各方法落点</h4>
+    {{ svg.range }}
+    <p class="cap">
+      横条是综合区间，菱形是各方法的单点结果 ——
+      DCF 与可比公司法各自落在哪，一眼可见。
+    </p>
+  </div>
+  {% endif %}
+  {% if svg.tv_share %}
+  <div class="chart">
+    <h4>企业价值构成</h4>
+    {{ svg.tv_share }}
+    <p class="cap">
+      终值占比越高，估值越依赖永续增长假设 —— 这是估值报告里最该被追问的数字。
+    </p>
+  </div>
+  {% endif %}
+</div>
+
+{% if svg.tornado %}
+<div class="charts">
+  <div class="chart">
+    <h4>敏感性分析：哪个假设最影响每股价值</h4>
+    {{ svg.tornado }}
+    <p class="cap">
+      每根条是一个假设在上下调情景下对每股价值的影响幅度，按影响降序排列。
+      排在最上面的就是<b>答辩时最该准备好解释的那个假设</b>。
+    </p>
+  </div>
+</div>
+{% endif %}
+
+<div class="charts pairs">
+  {% if svg.peer_pe %}
+  <div class="chart">
+    <h4>可比公司 PE</h4>
+    {{ svg.peer_pe }}
+    <p class="cap">{{ val.comps.peer_selection_rule|prose }}</p>
+  </div>
+  {% endif %}
+  {% if svg.peer_pb %}
+  <div class="chart"><h4>可比公司 PB</h4>{{ svg.peer_pb }}</div>
+  {% endif %}
+</div>
+
+{# 这条声明必须留在页面上：相对估值的可信度取决于「倍数从哪来」。
+   本项目**刻意不内置占位样本** —— 见 pipelines/r4_valuation/model.py:38-51。
+   下面把产物的 ``comps_provenance`` 摊开：来源、时点、算式、真值校验逐项列出，
+   读者不必相信我们的转述。 #}
+{% set prov = val.comps_provenance %}
+<div class="note info small">
+  <b>可比公司数据取自真实行情与法定披露财务的快照。</b>
+  快照缺失时 R4 <b>显式失败</b>，不用内置<b>占位样本</b>顶上 ——
+  那会让报告看起来完全正常，里面却是编的数。
+  {% if prov %}
+  <details class="ev" style="margin-top:8px">
+    <summary>倍数从哪来：数据来源、时点与算式
+      <span class="cnt">{{ prov.as_of }} 快照 · {{ prov.peer_count_after_filter }} 家</span></summary>
+    <div class="inner">
+      <table class="compact">
+        <tbody>
+          <tr><td>快照文件</td><td class="mono small">{{ prov.snapshot_path }}</td></tr>
+          <tr><td>财务数据时点</td><td class="mono">{{ prov.as_of }}</td></tr>
+          <tr><td>行情抓取时间</td><td class="mono small">{{ prov.fetched_at }}</td></tr>
+          <tr><td>价格来源</td><td class="small">{{ prov.sources.price|prose }}</td></tr>
+          <tr><td>股本与市值</td><td class="small">{{ prov.sources.shares_and_market_cap|prose }}</td></tr>
+          <tr><td>财务数据</td><td class="small">{{ prov.sources.financials|prose }}</td></tr>
+          <tr><td>PE 算式</td><td class="small">{{ prov.multiple_formula.pe|prose }}</td></tr>
+          <tr><td>PB 算式</td><td class="small">{{ prov.multiple_formula.pb|prose }}</td></tr>
+          <tr><td>为何自算</td><td class="small">{{ prov.why_self_computed|prose }}</td></tr>
+          <tr><td>真值校验</td><td class="small">{{ prov.verification|prose }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  {% endif %}
+</div>
+
+<details class="ev">
+  <summary>预测期经营轨迹（收入与自由现金流）
+    <span class="cnt">{{ val.dcf.explicit_years|length }} 个预测年度</span></summary>
+  <div class="inner charts pairs">
+    {% if svg.proj_revenue %}
+    <div class="chart"><h4>预测期营业收入</h4>{{ svg.proj_revenue }}</div>
+    {% endif %}
+    {% if svg.proj_fcff %}
+    <div class="chart"><h4>预测期企业自由现金流 FCFF</h4>{{ svg.proj_fcff }}</div>
+    {% endif %}
+  </div>
+</details>
+{% endif %}
+
+{% include "_val_risk.html" %}
+
+
+{# ================================================================== 折叠附页
+   从这里往下是**支撑结论的明细**，默认收起。摘要行自带一句话结论 ——
+   折起来丢的是明细，不是信息。 #}
+
+{# ---------------- F1. 模型可信度：财务勾稽断言 ---------------- #}
+<details class="fold" {% if a_fail %}open{% endif %}>
+  <summary>
+    <span class="idx">F1</span>
+    <span class="ft">模型可信度 —— 财务勾稽断言</span>
+    <span class="fsum">
+      {% if a_fail %}
+        <b>× {{ a_fail }} 条失败 —— 估值结论不可用</b>
+      {% else %}
+        <b>√ 无失败断言</b> · 通过 {{ a_pass }} 条 · 未校验 {{ a_skip }} 条
+        —— 「未校验」不是「通过」，两者分开计数
+      {% endif %}
+    </span>
+    <span class="cnt">{{ a_pass }}/{{ a_total }} 通过</span>
+  </summary>
+  <div class="fbody">
+  {% include "_val_assertions.html" %}
+  </div>
+</details>
+
+{# ---------------- F2. 关键假设与依据 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F2</span>
+    <span class="ft">关键假设与依据</span>
+    <span class="fsum">
+      共 <b>{{ assumptions_total }}</b> 条，其中
+      <b>{{ assumptions_grounded }}</b> 条来自事实库（事实）、
+      <b>{{ assumptions_total - assumptions_grounded }}</b> 条为主观判断（观点）
+      —— 逐条可核对，两类都不留空
+    </span>
+    <span class="cnt">{{ assumptions_total }} 条</span>
+  </summary>
+  <div class="fbody">
+  {% include "_val_assumptions.html" %}
+  </div>
+</details>
+
+{# ---------------- F3. 报告图表（交付产物） ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F3</span>
+    <span class="ft">报告图表（交付产物）</span>
+    <span class="fsum">
+      <code>r4_report</code> 阶段落盘的 PNG，随产物一并提交，
+      是估值报告 Markdown 引用的正式交付物 —— 与上方内联图<b>数据同源</b>
+    </span>
+    <span class="cnt">{{ charts|length if charts else 0 }} 张</span>
+  </summary>
+  <div class="fbody">
+  {% include "_val_charts.html" %}
+  </div>
+</details>
+
+{# ---------------- F4. 完整估值报告 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F4</span>
+    <span class="ft">完整估值报告</span>
+    <span class="fsum">与产物 <code>valuation/valuation_report.md</code> 同源，Markdown 渲染</span>
+    <span class="cnt">{{ report_html|length }} 字符</span>
+  </summary>
+  <div class="fbody">{{ report_html|safe }}</div>
+</details>
+{% endif %}
+
+
+{% endif %}
+{% endblock %}

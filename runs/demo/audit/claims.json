@@ -1,0 +1,112 @@
+[
+  {
+    "text": "600519",
+    "value": "600519",
+    "unit": "",
+    "start": 2,
+    "end": 9,
+    "section": "",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "600519",
+    "value": "600519",
+    "unit": "",
+    "start": 36,
+    "end": 42,
+    "section": "一、公司概况",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "120.04",
+    "value": "120.04",
+    "unit": "亿元",
+    "start": 100,
+    "end": 109,
+    "section": "二、经营业绩",
+    "metric_hint": "revenue",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "3.20",
+    "value": "3.20",
+    "unit": "%",
+    "start": 115,
+    "end": 120,
+    "section": "二、经营业绩",
+    "metric_hint": "revenue",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "2456000000.00",
+    "value": "2456000000.00",
+    "unit": "万元",
+    "start": 137,
+    "end": 153,
+    "section": "二、经营业绩",
+    "metric_hint": "net_profit_parent",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "245600.00",
+    "value": "245600.00",
+    "unit": "万元",
+    "start": 215,
+    "end": 227,
+    "section": "三、盈利质量",
+    "metric_hint": "net_profit_parent_ex_nonrec",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "45.30",
+    "value": "45.30",
+    "unit": "倍",
+    "start": 287,
+    "end": 294,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "1.62",
+    "value": "1.62",
+    "unit": "倍",
+    "start": 301,
+    "end": 307,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "15.8",
+    "value": "15.8",
+    "unit": "倍",
+    "start": 329,
+    "end": 335,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "15,230.00",
+    "value": "15230.00",
+    "unit": "万股",
+    "start": 413,
+    "end": 424,
+    "section": "4. 控股股东质押情况：",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "7948",
+    "value": "7948",
+    "unit": "",
+    "start": 436,
+    "end": 440,
+    "section": "4. 控股股东质押情况：15,230.00万股（来源：evd_176a",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  }
+]

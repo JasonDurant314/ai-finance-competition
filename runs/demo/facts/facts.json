@@ -1,0 +1,1629 @@
+{
+  "contract_version": "1.0.0",
+  "run_id": "demo",
+  "built_at": "2026-10-16T17:22:06.184166Z",
+  "documents": [
+    {
+      "doc_id": "doc_ca1d00be95a8",
+      "filename": "sample_annual_report.pdf",
+      "rel_path": "sample_annual_report.pdf",
+      "sha256": "ca1d00be95a83579e313eb553119e175bca97aab662714b894845a4cafda3603",
+      "page_count": 5,
+      "doc_type": "unknown",
+      "issued_date": null,
+      "registered_at": "2026-10-16T17:22:06.184166Z",
+      "has_text_layer": true,
+      "page_routes": {
+        "1": "A_text_only",
+        "2": "A_text_only",
+        "3": "A_text_only",
+        "4": "E_mixed",
+        "5": "A_text_only"
+      },
+      "route_reasons": {
+        "1": "有效字符 242 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 8.0%），直取最高置信",
+        "2": "有效字符 470 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 17.8%），直取最高置信",
+        "3": "有效字符 312 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 11.1%），直取最高置信",
+        "4": "文本量中等（181 字符，覆盖 5.9%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强",
+        "5": "有效字符 216 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 6.6%），直取最高置信"
+      },
+      "parser_backend": "pymupdf",
+      "ocr_engine": null
+    },
+    {
+      "doc_id": "doc_a6fba35ae3cf",
+      "filename": "sample_pledge_announcement.pdf",
+      "rel_path": "sample_pledge_announcement.pdf",
+      "sha256": "a6fba35ae3cf7282d060aab8b16b701a396d332f87fe01139dd1f68d01786cfd",
+      "page_count": 2,
+      "doc_type": "unknown",
+      "issued_date": null,
+      "registered_at": "2026-10-16T17:22:06.184166Z",
+      "has_text_layer": true,
+      "page_routes": {
+        "1": "A_text_only",
+        "2": "E_mixed"
+      },
+      "route_reasons": {
+        "1": "有效字符 634 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.3%），直取最高置信",
+        "2": "文本量中等（140 字符，覆盖 5.5%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+      },
+      "parser_backend": "pymupdf",
+      "ocr_engine": null
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "fct_876e4401ce8ce5e8",
+      "doc_id": "doc_a6fba35ae3cf",
+      "entity": "600519",
+      "metric": "pledge_cumulative_shares",
+      "value": "152300000.00",
+      "unit": "股",
+      "raw_text": "15,230.00万股",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_176a7948fa6fced8"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_2217d3d66b2aa29f",
+      "doc_id": "doc_a6fba35ae3cf",
+      "entity": "600519",
+      "metric": "pledge_ratio_of_holding",
+      "value": "45.30",
+      "unit": "%",
+      "raw_text": "45.30%",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_4ccae095b5fda63a"
+      ],
+      "channel_readings": [
+        {
+          "channel": "text_layer",
+          "raw_text": "45.30%",
+          "page": 1,
+          "bbox": null,
+          "confidence": 0.95,
+          "note": null
+        }
+      ],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_b624b62f6bdbd3de",
+      "doc_id": "doc_a6fba35ae3cf",
+      "entity": "600519",
+      "metric": "pledge_ratio_of_holding",
+      "value": "57.48",
+      "unit": "%",
+      "raw_text": "57.48%",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_0fd26da53d49f85e"
+      ],
+      "channel_readings": [
+        {
+          "channel": "text_layer",
+          "raw_text": "57.48%",
+          "page": 1,
+          "bbox": null,
+          "confidence": 0.95,
+          "note": null
+        }
+      ],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_e3d1253bb765e8c7",
+      "doc_id": "doc_a6fba35ae3cf",
+      "entity": "600519",
+      "metric": "pledge_ratio_of_total",
+      "value": "12.40",
+      "unit": "%",
+      "raw_text": "12.40%",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_840707440e0d2cd4"
+      ],
+      "channel_readings": [
+        {
+          "channel": "text_layer",
+          "raw_text": "12.40%",
+          "page": 1,
+          "bbox": null,
+          "confidence": 0.95,
+          "note": null
+        }
+      ],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_2cdf4ae5c4f43c85",
+      "doc_id": "doc_a6fba35ae3cf",
+      "entity": "600519",
+      "metric": "pledge_shares",
+      "value": "120045000.00",
+      "unit": "股",
+      "raw_text": "12,004.50万股",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_c6f7860c3afa5d00"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_b277b47f247c9d32",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "shares_outstanding",
+      "value": "968000000",
+      "unit": "股",
+      "raw_text": "968,000,000股",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_dbb83538c31fb65a"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_3ed18d4dafbe6c6c",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "net_profit_parent",
+      "value": "2456000000.00",
+      "unit": "元",
+      "raw_text": "245,600.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "net_parent",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_94be57767e7dac3b"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_6fa5c184afda2bd0",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "equity_parent",
+      "value": "16805000000.00",
+      "unit": "元",
+      "raw_text": "1,680,500.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_35b10e34dffb7871"
+      ],
+      "channel_readings": [],
+      "confidence": 0.99,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": [
+          {
+            "reason": "算术校验通过",
+            "delta": 0.05
+          }
+        ]
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_40e5df2094b174d7",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "operating_cash_flow",
+      "value": "3124500000.00",
+      "unit": "元",
+      "raw_text": "312,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_fdecce8d25c0429d"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_b1cbc7b59ab2a2f3",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "cash_and_equivalents",
+      "value": "6802000000.00",
+      "unit": "元",
+      "raw_text": "680,200.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_9fd00241b94ebb93"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_837cd98c57709c98",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "equity_total",
+      "value": "17253000000.00",
+      "unit": "元",
+      "raw_text": "1,725,300.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_78f9ed2d7dc095d3"
+      ],
+      "channel_readings": [],
+      "confidence": 0.99,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": [
+          {
+            "reason": "算术校验通过",
+            "delta": 0.05
+          }
+        ]
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_3c56be4b038bda34",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "revenue",
+      "value": "12004500000.00",
+      "unit": "元",
+      "raw_text": "1,200,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_6064911648c5069b"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_68c5bac6c29481a5",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "eps_basic",
+      "value": "2.5370",
+      "unit": "元每股",
+      "raw_text": "2.5370元/股",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_5819f6d9c2ed06fb"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_dcf772f52d15e57c",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "minority_interest_bs",
+      "value": "448000000.00",
+      "unit": "元",
+      "raw_text": "44,800.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_38d05480c726422a"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_bfb0e2f5fa0449fc",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "net_profit_total",
+      "value": "2382000000.00",
+      "unit": "元",
+      "raw_text": "238,200.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "net_total",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_b80ba5f487d6019a"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_ca844770bc4c91f7",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "total_assets",
+      "value": "28456000000.00",
+      "unit": "元",
+      "raw_text": "2,845,600.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_2ec1712ad910d542"
+      ],
+      "channel_readings": [],
+      "confidence": 0.99,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": [
+          {
+            "reason": "算术校验通过",
+            "delta": 0.05
+          }
+        ]
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_68f0ba31efcdd659",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "total_liabilities",
+      "value": "11203000000.00",
+      "unit": "元",
+      "raw_text": "1,120,300.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_0d11d875b2dd228d"
+      ],
+      "channel_readings": [],
+      "confidence": 0.99,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": [
+          {
+            "reason": "算术校验通过",
+            "delta": 0.05
+          }
+        ]
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_d66c4b4823a5ec36",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "short_term_borrowing",
+      "value": "850000000.00",
+      "unit": "元",
+      "raw_text": "85,000.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_0a04be2c77c37b1b"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_666c8df88122f1ad",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "long_term_borrowing",
+      "value": "1200000000.00",
+      "unit": "元",
+      "raw_text": "120,000.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_13acce3b3b64663d"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_91b8a2b349eceacb",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "bonds_payable",
+      "value": "500000000.00",
+      "unit": "元",
+      "raw_text": "50,000.00万元",
+      "period": "2025A",
+      "period_type": "point_in_time",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_132610b8b044c980"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_7e10cc643900dcaa",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "net_profit_parent",
+      "value": "2456000000.00",
+      "unit": "元",
+      "raw_text": "245,600.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "net_parent",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_867a8ebeae8f4379"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_1e0888d5def1b7f3",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "nonrecurring_gain_loss",
+      "value": "74000000.00",
+      "unit": "元",
+      "raw_text": "7,400.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_e43e0968fd3f6908"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_1edb3e6e91adb169",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "minority_interest_pl",
+      "value": "47000000.00",
+      "unit": "元",
+      "raw_text": "4,700.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_d13f6d701fdb54a4"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_6137d824c30c30b4",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "revenue",
+      "value": "12004500000.00",
+      "unit": "元",
+      "raw_text": "1,200,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_612d5cfde90813ba"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_af23e4d7e7edf8e4",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "operating_cost",
+      "value": "6203000000.00",
+      "unit": "元",
+      "raw_text": "620,300.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_176a5d6f97f9a32b"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_a1b4cf9ac620da41",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "income_tax_expense",
+      "value": "665000000.00",
+      "unit": "元",
+      "raw_text": "66,500.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_266970434a0f4788"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_b01778b049a66027",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "net_profit_total",
+      "value": "2503000000.00",
+      "unit": "元",
+      "raw_text": "250,300.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "net_total",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_5306e63acb2c84c3"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_331e84b117429fd3",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "selling_expense",
+      "value": "984000000.00",
+      "unit": "元",
+      "raw_text": "98,400.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_6b5296a7c8d56bbd"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_613dbf4e9e2b9e90",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "admin_expense",
+      "value": "726000000.00",
+      "unit": "元",
+      "raw_text": "72,600.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_5f17f154912a8ce4"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_2245a7f63b42369f",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "rd_expense",
+      "value": "452000000.00",
+      "unit": "元",
+      "raw_text": "45,200.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_78ef8f34ef7cabf7"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_15e04808993b6579",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "finance_expense",
+      "value": "89000000.00",
+      "unit": "元",
+      "raw_text": "8,900.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_f1edf1c097b596fd"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_8b3d567dd5770604",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "operating_profit",
+      "value": "3185000000.00",
+      "unit": "元",
+      "raw_text": "318,500.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_70cd12e7b1994399"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_59a3d026f9315e20",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "total_profit",
+      "value": "3168000000.00",
+      "unit": "元",
+      "raw_text": "316,800.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_0ae6ffeb63f1ff85"
+      ],
+      "channel_readings": [],
+      "confidence": 0.99,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": [
+          {
+            "reason": "算术校验通过",
+            "delta": 0.05
+          }
+        ]
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_3eac268dd8dc24a7",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "capex",
+      "value": "886000000.00",
+      "unit": "元",
+      "raw_text": "88,600.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_b75091c2337f8634"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_7b98e988e728d7e0",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "operating_cash_flow",
+      "value": "3124500000.00",
+      "unit": "元",
+      "raw_text": "312,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_2e282692bef44984"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_36837310badc679f",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "investing_cash_flow",
+      "value": "-1452000000.00",
+      "unit": "元",
+      "raw_text": "-145,200.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_d9c73abb844dc490"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_5e2d7e323ae98603",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "financing_cash_flow",
+      "value": "-994500000.00",
+      "unit": "元",
+      "raw_text": "-99,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_819e799cf301d73a"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_f40d246467604ca3",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "depreciation_amortization",
+      "value": "623000000.00",
+      "unit": "元",
+      "raw_text": "62,300.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_d36eee8f94875459"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_0ac379ff3c083931",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "net_profit_parent",
+      "value": "2456000000.00",
+      "unit": "元",
+      "raw_text": "245,600.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "net_parent",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_2ba03a388457298d"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_92d661b83f0d2ae6",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "operating_cash_flow",
+      "value": "3124500000.00",
+      "unit": "元",
+      "raw_text": "312,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_834db6ecdc3d7857"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    },
+    {
+      "fact_id": "fct_1aba17351a44299c",
+      "doc_id": "doc_ca1d00be95a8",
+      "entity": "600519",
+      "metric": "revenue",
+      "value": "12004500000.00",
+      "unit": "元",
+      "raw_text": "1,200,450.00万元",
+      "period": "2025A",
+      "period_type": "duration_ytd",
+      "statement_scope": "consolidated",
+      "profit_basis": "unknown",
+      "source_layer": "L1_text_layer",
+      "evidence_span_ids": [
+        "evd_ab624ddbc962b358"
+      ],
+      "channel_readings": [],
+      "confidence": 0.95,
+      "confidence_breakdown": {
+        "base": 0.95,
+        "adjustments": []
+      },
+      "needs_review": false,
+      "review_reason": null,
+      "extractor": "rule_engine@1.0.0",
+      "extracted_at": "2026-10-16T17:22:06.184166Z"
+    }
+  ],
+  "evidence": [
+    {
+      "span_id": "evd_176a7948fa6fced8",
+      "doc_id": "doc_a6fba35ae3cf",
+      "chunk_id": "chk_3b78aa639c544153",
+      "page": 1,
+      "bbox": null,
+      "quote": "累计质押股份\n15,230.00 万股",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_4ccae095b5fda63a",
+      "doc_id": "doc_a6fba35ae3cf",
+      "chunk_id": "chk_7adc10dbfd285da2",
+      "page": 1,
+      "bbox": null,
+      "quote": "占其所持股份比例：45.30%",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_0fd26da53d49f85e",
+      "doc_id": "doc_a6fba35ae3cf",
+      "chunk_id": "chk_3b78aa639c544153",
+      "page": 1,
+      "bbox": null,
+      "quote": "占其所持股份比例 57.48%",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_840707440e0d2cd4",
+      "doc_id": "doc_a6fba35ae3cf",
+      "chunk_id": "chk_7adc10dbfd285da2",
+      "page": 1,
+      "bbox": null,
+      "quote": "占公司总股本比例：12.40%",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_c6f7860c3afa5d00",
+      "doc_id": "doc_a6fba35ae3cf",
+      "chunk_id": "chk_49e8b78ca36cec1f",
+      "page": 1,
+      "bbox": null,
+      "quote": "本次质押股份数量：12,004.50 万股",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_dbb83538c31fb65a",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1a686e85ae70f8e4",
+      "page": 1,
+      "bbox": null,
+      "quote": "总股本：968,000,000 股",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_94be57767e7dac3b",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1054c93f4c7d6cd4",
+      "page": 2,
+      "bbox": null,
+      "quote": "归属于母公司股东的净利润：245,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_35b10e34dffb7871",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "归属于母公司所有者权益合计：1,680,500.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_fdecce8d25c0429d",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1054c93f4c7d6cd4",
+      "page": 2,
+      "bbox": null,
+      "quote": "经营活动产生的现金流量净额：312,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_9fd00241b94ebb93",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "货币资金：680,200.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_78f9ed2d7dc095d3",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "所有者权益合计：1,725,300.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_6064911648c5069b",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1054c93f4c7d6cd4",
+      "page": 2,
+      "bbox": null,
+      "quote": "营业收入：1,200,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_5819f6d9c2ed06fb",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1054c93f4c7d6cd4",
+      "page": 2,
+      "bbox": null,
+      "quote": "基本每股收益：2.5370 元/股",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_38d05480c726422a",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "少数股东权益：44,800.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_b80ba5f487d6019a",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_1054c93f4c7d6cd4",
+      "page": 2,
+      "bbox": null,
+      "quote": "净利润：238,200.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_2ec1712ad910d542",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "资产总计：2,845,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_0d11d875b2dd228d",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "负债合计：1,120,300.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_0a04be2c77c37b1b",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "短期借款：85,000.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_13acce3b3b64663d",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "长期借款：120,000.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_132610b8b044c980",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_cd97301b0966c333",
+      "page": 2,
+      "bbox": null,
+      "quote": "应付债券：50,000.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_867a8ebeae8f4379",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "归属于母公司股东的净利润：245,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_e43e0968fd3f6908",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "非经常性损益：7,400.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_d13f6d701fdb54a4",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "少数股东损益：4,700.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_612d5cfde90813ba",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "营业收入：1,200,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_176a5d6f97f9a32b",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "营业成本：620,300.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_266970434a0f4788",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "所得税费用：66,500.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_5306e63acb2c84c3",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "净利润：250,300.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_6b5296a7c8d56bbd",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "销售费用：98,400.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_5f17f154912a8ce4",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "管理费用：72,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_78ef8f34ef7cabf7",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "研发费用：45,200.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_f1edf1c097b596fd",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "财务费用：8,900.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_70cd12e7b1994399",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "营业利润：318,500.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_0ae6ffeb63f1ff85",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_ff6a2f467c13c69c",
+      "page": 3,
+      "bbox": null,
+      "quote": "利润总额：316,800.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_b75091c2337f8634",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_4c790092d448b495",
+      "page": 4,
+      "bbox": null,
+      "quote": "购建固定资产、无形资产和其他长期资产支付的现金：88,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_2e282692bef44984",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_4c790092d448b495",
+      "page": 4,
+      "bbox": null,
+      "quote": "经营活动产生的现金流量净额：312,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_d9c73abb844dc490",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_4c790092d448b495",
+      "page": 4,
+      "bbox": null,
+      "quote": "投资活动产生的现金流量净额：-145,200.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_819e799cf301d73a",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_4c790092d448b495",
+      "page": 4,
+      "bbox": null,
+      "quote": "筹资活动产生的现金流量净额：-99,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_d36eee8f94875459",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_4c790092d448b495",
+      "page": 4,
+      "bbox": null,
+      "quote": "固定资产折旧：62,300.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_2ba03a388457298d",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_d68c98b24f0c24ac",
+      "page": 5,
+      "bbox": null,
+      "quote": "归属于母公司股东的净利润 245,600.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_834db6ecdc3d7857",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_0e058ca0d87522e8",
+      "page": 5,
+      "bbox": null,
+      "quote": "经营活动产生的现金流量净额为 312,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    },
+    {
+      "span_id": "evd_ab624ddbc962b358",
+      "doc_id": "doc_ca1d00be95a8",
+      "chunk_id": "chk_d68c98b24f0c24ac",
+      "page": 5,
+      "bbox": null,
+      "quote": "营业收入 1,200,450.00 万元",
+      "char_range": null,
+      "source_layer": "L1_text_layer"
+    }
+  ],
+  "needs_review_count": 0
+}

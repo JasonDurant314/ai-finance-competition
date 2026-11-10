@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+{% block title %}核查报告 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>选题 5 · 研究报告纠错核查</h1>
+  <div class="sub">
+    不「让大模型通读找错」，而是<b>用事实库做确定性比对</b>：每个数字反查事实库、
+    独立重算、比对，结论给出正确值与来源 —— 错误清单即交付物，明细在下方折叠页。
+  </div>
+</div>
+
+{# ★ 守卫只能看「产物在不在」（audit_missing），**不能**看「查出了几条」。
+   原先写的是 `not findings and not metrics`，而 metrics 为 null 是常态
+   （无 golden 标注集），于是「核查跑完、零检出」这个最常见的干净结果
+   被错报成「本次运行没有核查结果」，整页塌成 3986 字符的假告警 ——
+   下面 120 行「未发现问题。这份草稿的数字、单位、口径与引用均与事实库一致。」
+   那句永远不可达，E1–E6 覆盖清单也一并消失，而本文件 103 行的注释
+   白纸黑字写着清单「不随 findings 为空而消失」。 #}
+{% if audit_missing %}
+  <div class="note warn">
+    本次运行没有核查产物。请确认已运行 <code>r5_audit</code> 阶段，
+    且 <code>data/drafts/</code> 下有待核查的报告草稿
+    （为空时系统会合成一份含已知错误的演示草稿）。
+  </div>
+{% else %}
+
+{# 赛题的四条考察点（错误识别的准确性和覆盖率 / 误报控制 / 来源定位 /
+   修改建议的可执行性，见通知 p3）直接摆在第一屏，每条给实测值。
+   其中准确率与误报率需要黄金标注集才能算 —— 无标注时照实写「算不出来」，
+   不报一个没有分母的比率。 #}
+<h2 style="margin-top:22px">重点考察 —— 本次运行的实测</h2>
+{% include "_criteria.html" %}
+
+{# ------------------------------------------------------------ 视图分流（?tab=）
+   ★ 无 `?tab=` 的那一支**保持原样**：`tools/web_smoke.py:250` 与
+   `tools/web_pages_check.py` 都在无参 `/audit` 上探「核查 / E4 / 修订」，
+   `tests/test_web.py` 探「问题清单」。副视图只做**减法**。
+   ★ 批注稿**不**把读者甩到 `/annotated-draft` 去：那是一个独立 HTML 文档路由，
+   点过去就没有导航、标签和抽屉了 —— 而外壳正是这一轮重构的全部意义。
+   所以这里用 `<iframe>` 把它嵌进来：高亮、悬停建议都是原样，外壳也还在。
+   另外给出直链，想单独打开（或打印）的人仍然走得了。 #}
+{% if view == 'draft' %}
+
+<h2>批注版草稿 —— 问题位置已在原文中高亮</h2>
+<div class="row">
+  <a href="/annotated-draft?run={{ run_id }}" target="_blank">
+    <button class="ghost">在新窗口打开</button></a>
+  <span class="dim small">
+    修订对照表 <code>audit/revision_table.xlsx</code> 与批注稿一并落盘，
+    可直接用于改稿。
+  </span>
+</div>
+{% if draft %}
+<iframe class="draftframe" src="/annotated-draft?run={{ run_id }}"
+        title="批注版草稿"></iframe>
+{% else %}
+<div class="note warn">本次运行的草稿没有留档，无法渲染批注稿。</div>
+{% endif %}
+
+{% else %}
+
+{# ============================================================ 结论区
+   问题清单是本题的**最终结果**，所以紧跟在重点考察之后，不再往后排。 #}
+<h2>问题清单 —— 错在哪、正确值是什么、怎么改</h2>
+{% if not findings %}
+  <div class="note ok"><b>未发现问题。</b>这份草稿的数字、单位、口径与引用均与事实库一致。</div>
+{% endif %}
+
+{# 每条问题的「结论」（错在哪、正确值是多少）直接摊开；
+   「论据」（判定理由、口径、检出规则、证据 ID）默认折叠 ——
+   评审先看结论，答辩追问时再展开依据。 #}
+{% for f in findings %}
+<details class="ev" {% if loop.first %}open{% endif %}>
+  <summary>
+    <span class="tag sev-{{ f.severity }}">{{ sev_labels.get(f.severity, f.severity) }}</span>
+    <span class="mono small">{{ type_labels.get(f.error_type, f.error_type) }}</span>
+    <span class="dim2 small mono">{{ f.finding_id }}</span>
+    <span class="cnt">
+      报告值 <b style="color:var(--stamp)">{{ f.reported_value or '—' }}</b>
+      → 正确值 <b>{{ f.correct_value or '—' }}</b>
+    </span>
+  </summary>
+
+  <div class="inner">
+    <dl class="kv">
+      <dt>原文</dt><dd style="font-family:inherit">「{{ f.location.quote }}」</dd>
+      <dt>位置</dt>
+      <dd>{{ f.location.section or '（未定位章节）' }}
+        {% if f.location.char_range %}
+          <span class="dim2 small">字符 {{ f.location.char_range }}</span>
+        {% endif %}
+      </dd>
+      <dt>置信度</dt>
+      <dd class="conf {% if f.confidence >= 0.9 %}hi{% elif f.confidence >= 0.7 %}mid{% else %}lo{% endif %}">
+        {{ "%.2f"|format(f.confidence) }}</dd>
+      <dt>判定理由</dt><dd>{{ f.reason|prose }}</dd>
+      <dt>修改建议</dt><dd style="font-family:inherit;color:var(--accent)">{{ f.suggestion }}</dd>
+      {% if f.caliber %}<dt>口径</dt><dd class="small">{{ f.caliber }}</dd>{% endif %}
+      <dt>检出规则</dt><dd class="dim2 small">{{ f.detector }}</dd>
+      {% if f.source_evidence %}
+      <dt>来源</dt>
+      <dd class="small mono">
+        {% for s in f.source_evidence %}{{ s }}{% if not loop.last %}, {% endif %}{% endfor %}
+      </dd>
+      {% endif %}
+    </dl>
+  </div>
+</details>
+{% endfor %}
+
+{# ================================================================== 折叠附页
+   从这里往下是支撑结论的明细，默认收起。摘要行自带一句话结论。 #}
+
+{# ---------------- F1. 核查汇总与图表 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F1</span>
+    <span class="ft">核查汇总与构成</span>
+    <span class="fsum">
+      已确认 <b>{{ by_sev.get('confirmed', 0) }}</b> 条 ·
+      疑似 <b>{{ by_sev.get('suspected', 0) }}</b> 条 ·
+      提示 <b>{{ by_sev.get('advisory', 0) }}</b> 条 ·
+      合计 <b>{{ findings|length }}</b> 条（按严重度排序，已确认恒排最前）
+    </span>
+    <span class="cnt">{{ findings|length }} 条</span>
+  </summary>
+  <div class="fbody">
+  {# ------------------------------------------------ 底稿汇总表
+     原为 KPI 卡片组（`.kpi bad` / `.kpi warn` / `.kpi ok` 三种写死的语义类）。
+     三色的问题是它把**严重度**和**好坏**绑死，且绿色出现在「检出问题 0」
+     这种本来就正常的格子上 —— 「通过」是常态，常态不该上色。
+     底稿表用**记号**承载同样的信息，且多一列「处置」，把「然后呢」也说清。 #}
+  <table class="ledger">
+    <thead><tr>
+      <th>索引</th><th>项目</th><th class="n">条数</th><th class="mk">记号</th><th>处置</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="idx">R5·a</td><td class="t">已确认错误</td>
+        <td class="n">{{ by_sev.get('confirmed', 0) }}</td>
+        <td class="mk {% if by_sev.get('confirmed', 0) %}mk-x{% else %}mk-v{% endif %}">
+          {{ '×' if by_sev.get('confirmed', 0) else '√' }}</td>
+        <td class="t">与事实库硬冲突或算术错误，须给出正确值</td></tr>
+      <tr><td class="idx">R5·b</td><td class="t">疑似问题</td>
+        <td class="n">{{ by_sev.get('suspected', 0) }}</td>
+        <td class="mk mk-h">◐</td>
+        <td class="t">口径不明，须人工判断</td></tr>
+      <tr><td class="idx">R5·c</td><td class="t">提示</td>
+        <td class="n">{{ by_sev.get('advisory', 0) }}</td>
+        <td class="mk mk-o">○</td>
+        <td class="t">缺单位、缺报告期标注</td></tr>
+      {% set m = eval_metrics or metrics %}
+      {% if m %}
+      <tr><td class="idx">R5·d</td><td class="t">精确率 P</td>
+        <td class="n">{{ "%.2f"|format(m.precision) if m.precision is not none else 'n/a' }}</td>
+        <td class="mk mk-v">√</td>
+        <td class="t">误报控制 · 测自 <code>{{ eval_run_id or run_id }}</code></td></tr>
+      <tr><td class="idx">R5·e</td><td class="t">召回率 R</td>
+        <td class="n">{{ "%.2f"|format(m.recall) if m.recall is not none else 'n/a' }}</td>
+        <td class="mk mk-h">◐</td>
+        <td class="t">漏报控制，残余未检出 —— 是短板，不掩饰</td></tr>
+      <tr><td class="idx">R5·f</td><td class="t">F1</td>
+        <td class="n">{{ "%.4f"|format(m.f1) if m.f1 is not none else 'n/a' }}</td>
+        <td class="mk mk-h">◐</td><td class="t">P/R 调和平均</td></tr>
+      {% endif %}
+      <tr class="tot"><td class="idx"></td><td class="t">检出合计</td>
+        <td class="n">{{ findings|length }}</td><td class="mk"></td>
+        <td class="t">按严重度排序，已确认恒排最前</td></tr>
+    </tbody>
+  </table>
+
+  {% if not metrics %}
+    {# 指标算不出来时必须**主动说明原因**并给出出路，不能让读者对着空位猜。
+       但只留事实：算不出的原因，以及上表那三行数字的**来源 run**。
+       原先末尾还有一句「该数字与 docs/COMPETITION_FIT.md 记录一致」——
+       那是拿自己写的文档替自己的数字作证，读者无从核验，删。 #}
+    <div class="note info small">
+      <b>本 run 没有人工标注集，精确率/召回率算不出来 —— 这是数据条件所致，不是核查未执行。</b>
+      {% if eval_metrics %}
+      上表 R5·d–f 三行的数字取自评测 run <code>{{ eval_run_id }}</code>
+      （对 <code>data/r5_eval/</code> 的 3 份人工标注草稿评测），<b>不是本 run 的成绩</b>。
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# ---------------------------------------------------------------- 图表 #}
+  {# 只判断「有没有真正的图」：charts 里始终带 type_taxonomy，若按 `if charts`
+     判断，0 检出时会渲染一个空网格（不可见，但没必要）。 #}
+  {% if charts.sev_stack or charts.type_bar or charts.prf_bar %}
+  <div class="charts pairs">
+    {# 严重度用**构成条**而不是环图：单类别时环图那一弧就是整圈，
+       旧版把整圈填红 —— 全场最大的一块红色面积。 #}
+    {% if charts.sev_stack %}
+    <div class="chart">
+      <h4>问题严重度构成</h4>
+      {{ charts.sev_stack }}
+      <p class="cap">确认错误必须给出正确值；疑似问题标注需人工判断的理由。</p>
+    </div>
+    {% endif %}
+    {% if charts.type_bar %}
+    <div class="chart">
+      <h4>错误类型分布</h4>
+      {{ charts.type_bar }}
+    </div>
+    {% endif %}
+    {% if charts.prf_bar %}
+    <div class="chart">
+      <h4>核查指标（对黄金测试集）</h4>
+      {{ charts.prf_bar }}
+      <p class="cap">
+        精确率 100% 意味着没有误报 —— 尤其包括<b>没有命中陷阱项</b>；
+        召回率 50% 表示还有真实错误未被检出，是后续改进方向。
+      </p>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if charts.type_taxonomy %}
+  {# 能力清单，与上图互补：上图答「本次查出了什么」，这里答「这套核查覆盖哪几类」。
+     0 计数的类别**保留显示**（弱化而非隐藏）—— 隐藏会让「本次没查到 E4」
+     被误读成「不支持 E4」。本块**不随 findings 为空而消失**：一份 0 检出的干净草稿
+     恰恰最需要它，好让「六类都查过、都没问题」与「压根没查」在页面上能分辨。
+
+     ★ 但「未检出」与「未实现」是两件事，不能混在同一个灰里（见 chartdata.CANONICAL_TYPES
+       上方注释：E6 全仓无任何检测规则，把它显示成灰色的 0 就是能力超报）。
+       未实现的单独标注，读者不必猜。 #}
+  <div class="note info small">
+    <b>E1–E6 覆盖清单</b>：灰色 = 本次未检出（不代表不支持该类）·
+    <span class="chip zero" style="padding:1px 6px">本轮未实现</span> = 该类尚无检测规则。
+    <div class="chips" style="margin-bottom:0">
+      {% for name, n, impl in charts.type_taxonomy %}
+      <span class="chip {{ 'hit' if n else 'zero' }}{{ ' todo' if not impl }}">
+        {{ name }} <b>{{ n }}</b>{% if not impl %} · 未实现{% endif %}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  </div>
+</details>
+
+{# ---------------- F2. 评测指标明细 ---------------- #}
+{% set m2 = eval_metrics or metrics %}
+{% if m2 %}
+<details class="fold">
+  <summary>
+    <span class="idx">F2</span>
+    <span class="ft">评测指标明细 —— TP / FP / FN 与陷阱项</span>
+    <span class="fsum">
+      对人工标注黄金测试集：TP <b>{{ m2.true_positive }}</b> ·
+      FP <b>{{ m2.false_positive }}</b>（其中陷阱项 <b>{{ m2.false_positive_on_trap }}</b>）·
+      FN <b>{{ m2.false_negative }}</b> —— 陷阱项命中数是「误报控制」的直接度量
+    </span>
+    <span class="cnt">{{ m2.drafts_evaluated }} 份草稿</span>
+  </summary>
+  <div class="fbody">
+    <table class="compact">
+      <tbody>
+        <tr><td>真正例 TP</td><td class="num">{{ m2.true_positive }}</td>
+            <td class="dim2 small">命中真实错误</td></tr>
+        <tr><td>假正例 FP（误报）</td><td class="num">{{ m2.false_positive }}</td>
+            <td class="dim2 small">报了不存在的错误</td></tr>
+        <tr><td>其中命中陷阱项</td><td class="num">{{ m2.false_positive_on_trap }}</td>
+            <td class="dim2 small">「看起来像错但实际正确」的条目被误报</td></tr>
+        <tr><td>假负例 FN（漏报）</td><td class="num">{{ m2.false_negative }}</td>
+            <td class="dim2 small">真实错误未被发现</td></tr>
+        <tr><td>错误类型覆盖率</td>
+            <td class="num">{{ "%.0f%%"|format(m2.coverage * 100) if m2.coverage is not none else 'n/a' }}</td>
+            <td class="dim2 small">E1–E6 中被检出的类型比例</td></tr>
+        <tr><td>评测草稿数 / 陷阱项数</td>
+            <td class="num">{{ m2.drafts_evaluated }} / {{ m2.traps_evaluated }}</td>
+            <td class="dim2 small">评测集规模</td></tr>
+        {% if eval_run_id and not metrics %}
+        <tr><td>数据来源 run</td><td class="mono small">{{ eval_run_id }}</td>
+            <td class="dim2 small">本 run 无标注集，指标取自该评测 run</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+    <div class="note info small">
+      <b>陷阱项是什么</b>：黄金测试集里有一部分条目是「看起来像错但实际正确」的，
+      标记为 <code>is_real_error=false</code>。命中它们即为误报 ——
+      这是「误报控制」这一考察点的直接度量方式。
+    </div>
+  </div>
+</details>
+{% endif %}
+
+{# ---------------- F3. 交付产物 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F3</span>
+    <span class="ft">交付产物 —— 批注版草稿与修订对照表</span>
+    <span class="fsum">
+      批注版草稿在<b>原文中高亮问题位置</b>；修订对照表落盘为
+      <code>audit/revision_table.xlsx</code>，可直接用于改稿
+    </span>
+    <span class="cnt">2 份</span>
+  </summary>
+  <div class="fbody">
+    <div class="row">
+      <a href="/annotated-draft?run={{ run_id }}" target="_blank">
+        <button class="ghost">打开批注版草稿</button></a>
+      <span class="dim small">
+        在原文中高亮问题位置，鼠标悬停可看修改建议。
+        也可直接下载运行产物：
+        <code>runs/{{ run_id }}/audit/revision_table.xlsx</code>（修订对照表）
+      </span>
+    </div>
+  </div>
+</details>
+
+{# ---------------- F4. 草稿全文 ---------------- #}
+{% if draft %}
+<details class="fold">
+  <summary>
+    <span class="idx">F4</span>
+    <span class="ft">本次核查的草稿全文</span>
+    <span class="fsum">被核查的原文，供逐条对照上面检出的问题位置</span>
+    <span class="cnt">{{ draft|length }} 字符</span>
+  </summary>
+  <div class="fbody"><div class="pagetext" style="color:var(--fg)">{{ draft }}</div></div>
+</details>
+{% endif %}
+
+{% endif %}
+
+{% endif %}
+{% endblock %}

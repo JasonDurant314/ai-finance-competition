@@ -1,0 +1,34 @@
+[
+  {
+    "kind": "scale_implausible",
+    "doc_id": "doc_840b15aa4dc3",
+    "entity": "601857",
+    "metric": "cash_and_equivalents",
+    "period": "2025A",
+    "ratio": 7.29,
+    "values": [
+      "20616200000000",
+      "2828017000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_e80f5ef7a499e177",
+      "fct_tbl_40dbb0efd7a87119"
+    ]
+  },
+  {
+    "kind": "scale_implausible",
+    "doc_id": "doc_840b15aa4dc3",
+    "entity": "601857",
+    "metric": "cash_and_equivalents",
+    "period": "2024A",
+    "ratio": 6.27,
+    "values": [
+      "17247700000000",
+      "2753007000000"
+    ],
+    "fact_ids": [
+      "fct_tbl_289846d0a111d7fa",
+      "fct_tbl_761990e71c9e72ef"
+    ]
+  }
+]

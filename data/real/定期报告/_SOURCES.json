@@ -1,0 +1,50 @@
+[
+  {
+    "sec_code": "002716",
+    "sec_name": "湖南白银",
+    "title": "2025年年度报告",
+    "publish_date": "2026-04-10",
+    "source": "巨潮资讯网（cninfo.com.cn，证监会指定信息披露网站）",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-04-10/1225088369.PDF",
+    "fetched_at": "2026-09-16T08:55:53.717809+00:00",
+    "sha256": "0804e91112ac17509d0e26e19ce6b925e993c6f5f4245ec4a15a200f91c5fd2c",
+    "bytes": 1382427,
+    "local_path": "002716_湖南白银_2025年年度报告_2026-04-10.pdf"
+  },
+  {
+    "sec_code": "000722",
+    "sec_name": "湖南发展",
+    "title": "2025年年度报告",
+    "publish_date": "2026-04-04",
+    "source": "巨潮资讯网（cninfo.com.cn，证监会指定信息披露网站）",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-04-04/1225079970.PDF",
+    "fetched_at": "2026-09-16T08:55:54.853876+00:00",
+    "sha256": "82fb6364c2f56a398976ce8ed375b8ca8aa1a18f6541cc418f443832a69ffe71",
+    "bytes": 1188510,
+    "local_path": "000722_湖南发展_2025年年度报告_2026-04-04.pdf"
+  },
+  {
+    "sec_code": "601857",
+    "sec_name": "中国石油",
+    "title": "中国石油天然气股份有限公司2024年度报告",
+    "publish_date": "2025-03-31",
+    "source": "巨潮资讯网（cninfo.com.cn，证监会指定信息披露网站）",
+    "url": "http://static.cninfo.com.cn/finalpage/2025-03-31/1222962164.PDF",
+    "fetched_at": "2026-09-16T08:55:56.760916+00:00",
+    "sha256": "15a2de01653ceefa46fdd18a02a127f434f06db02da9efb0b62c3a12a35a9bba",
+    "bytes": 11167845,
+    "local_path": "601857_中国石油_中国石油天然气股份有限公司2024年度报告_2025-03-31.pdf"
+  },
+  {
+    "sec_code": "601857",
+    "sec_name": "中国石油",
+    "title": "中国石油天然气股份有限公司2025年年报",
+    "publish_date": "2026-03-30",
+    "source": "巨潮资讯网（cninfo.com.cn，证监会指定信息披露网站）",
+    "url": "http://static.cninfo.com.cn/finalpage/2026-03-30/1225049376.PDF",
+    "fetched_at": "2026-09-16T08:58:41.873137+00:00",
+    "sha256": "840b15aa4dc38745a6b86a3656063e6a73081ce87407acb0ca93554f4e836e65",
+    "bytes": 9416509,
+    "local_path": "601857_中国石油_中国石油天然气股份有限公司2025年年报_2026-03-30.pdf"
+  }
+]

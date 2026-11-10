@@ -1,0 +1,27 @@
+name: r4_valuation
+description: >
+  R4 自动化估值建模 —— DCF + 相对估值 + 敏感性分析。
+  只消费 R1 的事实库产物，不读取任何原始文档（保证三处数字一致）。
+  纯确定性计算，不调用 LLM。
+
+stages:
+  - name: assumptions
+    run: pipelines.r4_valuation.assumptions:run
+    description: 从事实库推导假设，逐条标注事实/推论/观点
+    produces:
+      - valuation/assumptions.json
+
+  - name: model
+    run: pipelines.r4_valuation.model:run
+    description: DCF + 相对估值 + 敏感性网格 + A1–A6 勾稽断言（硬闸门）
+    produces:
+      - valuation/valuation.json
+      - valuation/model_summary.json
+
+  - name: report
+    run: pipelines.r4_valuation.report:run
+    description: 渲染图表、Markdown 报告与 Excel 模型工作簿
+    optional: true
+    produces:
+      - valuation/valuation_report.md
+      - valuation/report_summary.json

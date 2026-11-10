@@ -1,0 +1,167 @@
+{
+  "entity": "600519",
+  "excluded_entities": [],
+  "dcf_input": {
+    "entity": "600519",
+    "base_year": 2025,
+    "base_revenue": "12004500000.00",
+    "base_shares_outstanding": "968000000",
+    "base_period": "2025A",
+    "net_debt": "-4252000000.00",
+    "minority_interest": "0",
+    "explicit_years": 5,
+    "revenue_growth": [
+      "0.08",
+      "0.08",
+      "0.08",
+      "0.08",
+      "0.08"
+    ],
+    "ebit_margin": [
+      "0.2653",
+      "0.2653",
+      "0.2653",
+      "0.2653",
+      "0.2653"
+    ],
+    "tax_rate": "0.25",
+    "da_ratio_of_revenue": "0.0519",
+    "capex_ratio_of_revenue": "0.0738",
+    "nwc_ratio_of_revenue": "0.10",
+    "wacc": "0.0622",
+    "terminal_growth": "0.0169",
+    "assumption_notes": {
+      "da_ratio_of_revenue": "由事实库算出：2025A 折旧摊销 623000000.00 元 ÷ 营业收入 12004500000.00 元 = 5.19%。折旧摊销取自 fct_f40d246467604ca3，收入取自 fct_3c56be4b038bda34。该指标在事实库里的候选全部标成 consolidated（含母公司口径那几条），因此同一期间内取最大值 —— 依据是现金流量表列序恒为「合并→母公司」且合并数必然不小于母公司数。这是权宜判据（若某公司把母公司列印在左边会取错），已用 (0, 30%) 闸门兜底。",
+      "revenue_growth": "事实库没有 2024A 的营业收入，无法计算同比增速，采用行业中性假设 8%。",
+      "ebit_margin": "来自事实库（evd_70cd12e7b1994399）：operating_profit = 3185000000.00 元（报告期 2025A，口径 consolidated/unknown，置信度 0.95）；EBIT 率 = 营业利润 ÷ 营业收入（会计准则口径的息税前利润近似）",
+      "tax_rate": "按《企业所得税法》一般税率 25%，为法定税率而非实际税负。",
+      "capex_ratio_of_revenue": "由事实库算出：2025A 资本开支 886000000.00 元 ÷ 营业收入 12004500000.00 元 = 7.38%。资本开支取自 fct_3eac268dd8dc24a7，收入取自 fct_3c56be4b038bda34。该期间共 1 条候选，彼此差异在 0.5% 以内（互相印证）。",
+      "nwc_ratio_of_revenue": "营运资本占收入 10%，行业中性假设。",
+      "wacc": "按 CAPM 计算：Ke = Rf 0.0169 + β 1.00 × ERP 0.0550 = 0.0719；WACC = Ke × (1 − 债务占比 0.20) + Kd 0.0310 × (1 − 税率 0.25) × 债务占比 = 0.0622。分项来源 —— Rf：中央国债登记结算有限责任公司《中债收益率曲线和指数日评》2026 年 09 月 17 日；ERP：【假设】未从公开渠道取到可引用的当期 ERP —— 见下；β：【假设】取市场平均水平；Kd：【推论】10 年期国债收益率 + 信用利差；资本结构：【推论】按能源行业大型央企的常见水平取值。其中 Rf 为市场数据，其余为假设/推论 —— 报告第五节列出区间与依据。（市场数据截至 2026-09-17，来源：https://www.chinabond.com.cn/xxwsy/sy_zdgz_ath/202609/t20260917_855412596.html）市场参照：目标公司 PE 21.9104，隐含盈利收益率 1/PE = 4.56% —— 即市场当前对该公司的要求回报率量级。把它与模型成本率并列看：若模型明显更低，DCF 会系统性高于市价，这不是 DCF 的结论，而是待解释的差异。（本项目不用市价反向校准折现率 —— 那会让 DCF 退化成把市价重算一遍，失去独立估计的意义。）市场数据截至 2026-09-17。",
+      "terminal_growth": "长期通胀目标高于 10 年期国债收益率，永续增长率已下调至 1.69%。永续增长率高于无风险利率意味着假设企业永远以高于国债的速度增长，那隐含「这家公司最终会吞掉整个经济体」，是永续增长假设最常见的滥用。"
+    }
+  },
+  "assumptions": [
+    {
+      "assumption_id": "asm_da_ratio_of_revenue",
+      "name": "da_ratio_of_revenue",
+      "value": "0.0519",
+      "unit": "比率（小数）",
+      "source_fact_ids": [
+        "fct_f40d246467604ca3"
+      ],
+      "is_judgment": false,
+      "basis": "由事实库算出：2025A 折旧摊销 623000000.00 元 ÷ 营业收入 12004500000.00 元 = 5.19%。折旧摊销取自 fct_f40d246467604ca3，收入取自 fct_3c56be4b038bda34。该指标在事实库里的候选全部标成 consolidated（含母公司口径那几条），因此同一期间内取最大值 —— 依据是现金流量表列序恒为「合并→母公司」且合并数必然不小于母公司数。这是权宜判据（若某公司把母公司列印在左边会取错），已用 (0, 30%) 闸门兜底。",
+      "low": "0.02",
+      "high": "0.20"
+    },
+    {
+      "assumption_id": "asm_revenue_growth",
+      "name": "revenue_growth",
+      "value": "0.08",
+      "unit": "%",
+      "source_fact_ids": [],
+      "is_judgment": true,
+      "basis": "事实库没有 2024A 的营业收入，无法计算同比增速，采用行业中性假设 8%。",
+      "low": "-0.05",
+      "high": "0.15"
+    },
+    {
+      "assumption_id": "asm_ebit_margin",
+      "name": "ebit_margin",
+      "value": "0.2653",
+      "unit": "比率（小数）",
+      "source_fact_ids": [
+        "fct_8b3d567dd5770604"
+      ],
+      "is_judgment": false,
+      "basis": "来自事实库（evd_70cd12e7b1994399）：operating_profit = 3185000000.00 元（报告期 2025A，口径 consolidated/unknown，置信度 0.95）；EBIT 率 = 营业利润 ÷ 营业收入（会计准则口径的息税前利润近似）",
+      "low": "0.05",
+      "high": "0.25"
+    },
+    {
+      "assumption_id": "asm_tax_rate",
+      "name": "tax_rate",
+      "value": "0.25",
+      "unit": "%",
+      "source_fact_ids": [],
+      "is_judgment": true,
+      "basis": "按《企业所得税法》一般税率 25%，为法定税率而非实际税负。",
+      "low": null,
+      "high": null
+    },
+    {
+      "assumption_id": "asm_capex_ratio_of_revenue",
+      "name": "capex_ratio_of_revenue",
+      "value": "0.0738",
+      "unit": "比率（小数）",
+      "source_fact_ids": [
+        "fct_3eac268dd8dc24a7"
+      ],
+      "is_judgment": false,
+      "basis": "由事实库算出：2025A 资本开支 886000000.00 元 ÷ 营业收入 12004500000.00 元 = 7.38%。资本开支取自 fct_3eac268dd8dc24a7，收入取自 fct_3c56be4b038bda34。该期间共 1 条候选，彼此差异在 0.5% 以内（互相印证）。",
+      "low": "0.02",
+      "high": "0.25"
+    },
+    {
+      "assumption_id": "asm_nwc_ratio_of_revenue",
+      "name": "nwc_ratio_of_revenue",
+      "value": "0.10",
+      "unit": "%",
+      "source_fact_ids": [],
+      "is_judgment": true,
+      "basis": "营运资本占收入 10%，行业中性假设。",
+      "low": null,
+      "high": null
+    },
+    {
+      "assumption_id": "asm_wacc",
+      "name": "wacc",
+      "value": "0.0622",
+      "unit": "%",
+      "source_fact_ids": [],
+      "is_judgment": true,
+      "basis": "按 CAPM 计算：Ke = Rf 0.0169 + β 1.00 × ERP 0.0550 = 0.0719；WACC = Ke × (1 − 债务占比 0.20) + Kd 0.0310 × (1 − 税率 0.25) × 债务占比 = 0.0622。分项来源 —— Rf：中央国债登记结算有限责任公司《中债收益率曲线和指数日评》2026 年 09 月 17 日；ERP：【假设】未从公开渠道取到可引用的当期 ERP —— 见下；β：【假设】取市场平均水平；Kd：【推论】10 年期国债收益率 + 信用利差；资本结构：【推论】按能源行业大型央企的常见水平取值。其中 Rf 为市场数据，其余为假设/推论 —— 报告第五节列出区间与依据。（市场数据截至 2026-09-17，来源：https://www.chinabond.com.cn/xxwsy/sy_zdgz_ath/202609/t20260917_855412596.html）市场参照：目标公司 PE 21.9104，隐含盈利收益率 1/PE = 4.56% —— 即市场当前对该公司的要求回报率量级。把它与模型成本率并列看：若模型明显更低，DCF 会系统性高于市价，这不是 DCF 的结论，而是待解释的差异。（本项目不用市价反向校准折现率 —— 那会让 DCF 退化成把市价重算一遍，失去独立估计的意义。）市场数据截至 2026-09-17。",
+      "low": "0.0443",
+      "high": "0.1061"
+    },
+    {
+      "assumption_id": "asm_terminal_growth",
+      "name": "terminal_growth",
+      "value": "0.0169",
+      "unit": "%",
+      "source_fact_ids": [],
+      "is_judgment": true,
+      "basis": "长期通胀目标高于 10 年期国债收益率，永续增长率已下调至 1.69%。永续增长率高于无风险利率意味着假设企业永远以高于国债的速度增长，那隐含「这家公司最终会吞掉整个经济体」，是永续增长假设最常见的滥用。",
+      "low": "0.00",
+      "high": "0.030"
+    }
+  ],
+  "gaps": [
+    "营业收入同比增速（两期可比收入，已回退模板值）"
+  ],
+  "core_gaps": [],
+  "illustrative_only": false,
+  "grounding": {
+    "revenue": "fct_3c56be4b038bda34",
+    "shares": "fct_b277b47f247c9d32",
+    "net_assets": "fct_6fa5c184afda2bd0",
+    "net_profit": "fct_3ed18d4dafbe6c6c",
+    "net_profit_ex_nonrec": null,
+    "net_debt_components": [
+      "fct_d66c4b4823a5ec36",
+      "fct_666c8df88122f1ad",
+      "fct_91b8a2b349eceacb",
+      "fct_b1cbc7b59ab2a2f3"
+    ]
+  },
+  "targets": {
+    "net_profit_parent": "2456000000.00",
+    "net_profit_parent_ex_nonrec": null,
+    "equity_parent": "17253000000.00",
+    "revenue": "12004500000.00",
+    "shares_outstanding": "968000000",
+    "ebitda": "3397466666.666666666666666667",
+    "net_debt": "-4252000000.00"
+  }
+}

@@ -1,0 +1,77 @@
+# ==========================================================================
+# 财务勾稽断言清单
+# --------------------------------------------------------------------------
+# 由 agent/validate/assertions.py 实现。本文件是**声明**，
+# 实现与声明必须一致 —— `agent doctor` 会校验两者对应关系。
+#
+# 任一 REQUIRED 断言失败 -> R4 禁止出报告（ValuationResult.is_usable = False）
+# ==========================================================================
+
+assertions:
+  - code: A1
+    name: 资产 = 负债 + 所有者权益
+    required: true
+    scope: per_year
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    note: 资产负债表平衡。三表联动的第一道闸门。
+
+  - code: A2
+    name: 期末现金 = 期初现金 + CFO + CFI + CFF
+    required: true
+    scope: per_year
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    note: 现金流量表与资产负债表对账。
+
+  - code: A3
+    name: 留存收益滚动 = 上期留存收益 + 净利润 - 分红
+    required: true
+    scope: per_year
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    note: 权益变动与利润表的连接。
+
+  - code: A4
+    name: FCFF 独立重算
+    required: true
+    scope: per_year
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    note: >
+      从 EBIT 独立重算 NOPAT 与 FCFF，不使用模型自身的中间量。
+      这是「校验」而非「自证」的关键。
+
+  - code: A5
+    name: 收入 - 成本 - 费用 - 税 = 净利润
+    required: true
+    scope: per_year
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    note: 利润表纵向勾稽。
+
+  - code: A6
+    name: 估值结果合理性
+    required: true
+    scope: overall
+    tolerance_rel: 0.001
+    tolerance_abs: 0.01
+    on_fail: block_report
+    checks:
+      - 每股价值 > 0
+      - 终值占比 < 0.95
+      - 股权价值 = EV - 净债 - 少数股东权益
+    note: 防止模型结构性错误被当作结论输出。
+
+# ---------------------------------------------------------------------------
+# 报告级硬闸门
+# ---------------------------------------------------------------------------
+gates:
+  block_report_on_required_failure: true
+  warn_terminal_value_share_above: 0.85
+  warn_price_out_of_range_below: 0.1

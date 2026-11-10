@@ -1,0 +1,222 @@
+[
+  {
+    "fact_id": "fct_e6387ae5f2adcb3b",
+    "metric": "net_profit_total",
+    "raw_text": "1,720.21亿元",
+    "from": "601857",
+    "to": "本集团按国际财务报告会计准则计算的净利润为",
+    "page": 9,
+    "row": 0,
+    "col": 1,
+    "matched_by": "digits_unique"
+  },
+  {
+    "fact_id": "fct_1bd192f7c37b5fb3",
+    "metric": "net_profit_total",
+    "raw_text": "1,720.05亿元",
+    "from": "601857",
+    "to": "会计准则计算的净利润为",
+    "page": 9,
+    "row": 1,
+    "col": 1,
+    "matched_by": "digits_unique"
+  },
+  {
+    "fact_id": "fct_vlm_ac2f900ed2df130d",
+    "metric": "shares_outstanding",
+    "raw_text": "1,830.21",
+    "from": "2025年",
+    "to": "期末总股本（亿股）",
+    "page": 8,
+    "row": 3,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_a47d5e909823757f",
+    "metric": "net_profit_total",
+    "raw_text": "1,720.21",
+    "from": "国际财务报告会计准则",
+    "to": "本集团按国际财务报告会计准则计算的净利润为",
+    "page": 9,
+    "row": 0,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_b8d4de9f85658055",
+    "metric": "net_profit_total",
+    "raw_text": "1,720.05",
+    "from": "中国企业会计准则",
+    "to": "会计准则计算的净利润为",
+    "page": 9,
+    "row": 1,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_4a194522d65d7d7a",
+    "metric": "equity_total",
+    "raw_text": "17,993.24",
+    "from": "国际财务报告会计准则",
+    "to": "准则计算的股东权益为",
+    "page": 9,
+    "row": 2,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_32a4c0451336babf",
+    "metric": "equity_total",
+    "raw_text": "17,995.48",
+    "from": "中国企业会计准则",
+    "to": "准则计算的股东权益为",
+    "page": 9,
+    "row": 3,
+    "col": 0,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_8e0f84e49ede79c4",
+    "metric": "shares_outstanding",
+    "raw_text": "161,922,077,818",
+    "from": "人民币普通股（本次变动前）",
+    "to": "、人民币普通股",
+    "page": 10,
+    "row": 4,
+    "col": 8,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_4e1689c6a2db29f0",
+    "metric": "shares_outstanding",
+    "raw_text": "21,098,900,000",
+    "from": "境外上市的外资股（本次变动前）",
+    "to": "、境外上市的外资股",
+    "page": 10,
+    "row": 6,
+    "col": 9,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_ec5acb64fc740c61",
+    "metric": "shareholding_count",
+    "raw_text": "209,715,964",
+    "from": "中国工商银行－上证50 交易型开放式指数证券投资基金",
+    "to": "中国工商银行－上证",
+    "page": 12,
+    "row": 0,
+    "col": 4,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_43d64aa7e7a331d5",
+    "metric": "revenue",
+    "raw_text": "28,644.69",
+    "from": "本集团",
+    "to": "年，本集团实现营业收入人民币",
+    "page": 23,
+    "row": 1,
+    "col": 2,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_97854148f086013c",
+    "metric": "net_profit_parent",
+    "raw_text": "1,573.18",
+    "from": "本集团",
+    "to": "亿元下降",
+    "page": 23,
+    "row": 2,
+    "col": 4,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_953f3382d9b8e0b4",
+    "metric": "revenue",
+    "raw_text": "29,379.81",
+    "from": "本集团",
+    "to": "亿元下降",
+    "page": 23,
+    "row": 2,
+    "col": 0,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_11bab3fe7da0d0c3",
+    "metric": "operating_profit",
+    "raw_text": "608.02",
+    "from": "天然气销售分部",
+    "to": "经营利润",
+    "page": 27,
+    "row": 1,
+    "col": 3,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_d5564743df5cb125",
+    "metric": "capex",
+    "raw_text": "2,690.89",
+    "from": "本集团",
+    "to": "资回报水平。全年资本性支出为人民币",
+    "page": 30,
+    "row": 0,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_018c7565577034aa",
+    "metric": "capex",
+    "raw_text": "2,758.49",
+    "from": "本集团",
+    "to": "资回报水平。全年资本性支出为人民币",
+    "page": 30,
+    "row": 1,
+    "col": 0,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_083dd32b35a4ae80",
+    "metric": "shareholding_count",
+    "raw_text": "4,708,302,133",
+    "from": "昆仑能源有限公司",
+    "to": "昆仑能源有限公司（“昆仑能源”）",
+    "page": 38,
+    "row": 7,
+    "col": 2,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_9720d7958f83cf25",
+    "metric": "shareholding_after",
+    "raw_text": "54.38",
+    "from": "昆仑能源有限公司",
+    "to": "昆仑能源有限公司（“昆仑能源”）",
+    "page": 38,
+    "row": 7,
+    "col": 3,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_3896ead141f4d24e",
+    "metric": "shareholding_count",
+    "raw_text": "2,940,000,000",
+    "from": "中石油专属财产保险股份有限公司",
+    "to": "长期股权投资",
+    "page": 38,
+    "row": 1,
+    "col": 1,
+    "matched_by": "text"
+  },
+  {
+    "fact_id": "fct_vlm_2bae2c566ada5a01",
+    "metric": "shareholding_after",
+    "raw_text": "49.00",
+    "from": "中石油专属财产保险股份有限公司",
+    "to": "长期股权投资",
+    "page": 38,
+    "row": 1,
+    "col": 2,
+    "matched_by": "text"
+  }
+]

@@ -1,0 +1,24 @@
+{# ============================================================ 页内子视图标签条
+
+   上下文（`web/app.py` 的 `_ctx` 注入）：
+
+     tabs = [{'label', 'href', 'active'}, ...]
+
+   ★ `{% if tabs is defined %}` 这个守卫**不能省**：有一条元测试会拿一份
+     **最小上下文**直接渲染单个模板（见 `tests/test_web.py` 的
+     `test_*_survives_missing_context`），没有守卫就会 UndefinedError。
+     标签条是所有页面共用的，它一炸就是全站炸。
+
+   复用既有的 `.chips` / `.chip` 样式，不新增 CSS —— 标签条只是"一排可点的
+   等权选项"，与筛选 chip 是同一个视觉语义，没有理由再造一套。
+
+   注意：`?tab=` 的值刻意**可忽略**。无参访问必须与重构前逐字节一致，
+   所以 href 里只有需要切面板的那几个才带 `?tab=`。 #}
+{% if tabs is defined and tabs %}
+<nav class="chips" aria-label="子视图">
+  {% for t in tabs %}
+    <a href="{{ t.href }}" class="chip {% if t.active %}on{% endif %}"
+       {% if t.active %}aria-current="true"{% endif %}>{{ t.label }}</a>
+  {% endfor %}
+</nav>
+{% endif %}

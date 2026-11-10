@@ -1,0 +1,9 @@
+{
+  "facts": 41,
+  "evidence_spans": 41,
+  "needs_review": 0,
+  "rejected": 0,
+  "internal_conflicts": 0,
+  "excel_exported": true,
+  "html": "facts/evidence.html"
+}

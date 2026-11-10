@@ -1,0 +1,127 @@
+# ==========================================================================
+# 工具白名单与限额
+# --------------------------------------------------------------------------
+# 每个阶段只能看到它需要的工具（最小权限原则）。
+# 沙箱据此裁剪 ToolRegistry，模型无法调用白名单之外的工具。
+# ==========================================================================
+
+# ---------------------------------------------------------------------------
+# 全局文件系统边界（对应赛题「封闭或半封闭数据环境」要求）
+# ---------------------------------------------------------------------------
+sandbox:
+  read_roots:
+    - data
+    - configs
+  write_roots:
+    - runs
+  allow_network: false          # 默认离线；仅在 run 命令显式开启时放开
+  network_allowlist: []         # 若非空，仅允许这些域名的出网
+  deny_paths:
+    - "**/.env"
+    - "**/*.key"
+    - "**/secrets/**"
+
+# ---------------------------------------------------------------------------
+# 表格解析与单元格级裁决
+#
+# 触发策略：**算术校验优先**。
+# 合计行/列算不平，就说明至少有一个单元格被读错，而且能定位到具体行列 ——
+# 因此只复核那几个格子，而不是整表逐格调用模型（成本与延迟差一个数量级）。
+# ---------------------------------------------------------------------------
+tables:
+  adjudicate: true  # 是否启用单元格级 VLM 裁决
+
+  # 算术**不平**的表：最多复核多少个可疑单元格
+  # 算术不平本身就是「这里有错」的强证据，值得多花调用
+  max_cells_per_failed_table: 6
+
+  # 算术**自洽**的表：抽查几个单元格做无偏估计
+  # 默认 0 —— 算术自洽说明内部一致，抽查收益低于成本。
+  # 想量化「自洽表的实际错误率」时把它调成 2~3。
+  probe_cells_per_clean_table: 0
+
+  # **无合计线**因而算术无从校验的表：做少量视觉抽查
+  # 默认 4 —— 这类表占多数（实测 55 张真实公告表里只有 2 张带「合计」标签），
+  # 因此"算术优先"的触发策略在这批材料上几乎不生效，真正的主力是
+  # `Table.suspicious_cells` 的几何特征排序（换行切断 > 异常长 > 空格子）。
+  # 实测 55 张表共 422 个碎格，取前 4 个即可覆盖风险最高的那批。
+  # 注意区分「校验通过」与「无从校验」：arith.ok 对后者也是 True，
+  # 若把两者混为一谈，就等于把"没查过"当成"查过且没问题"。
+  probe_cells_per_unverified_table: 4
+
+  cell_crop_dpi: 300
+  cell_upscale: 1.6                     # 裁剪后放大倍数（小字号数字识别率明显提升）
+
+  # 允许覆盖原读数的条件（**全部满足**才覆盖）
+  #
+  # 核心原则：**不能因为「模型说了别的」就覆盖** ——
+  # 那等于用另一个可能出错的源去覆盖当前值。
+  #
+  # ⚠️ 下面三条都是**模型自述**类的闸门，单独使用是不够的：
+  #    实测一次真实运行 184 个复核格被"改值"80 个，独立复核后 75 个是错的，
+  #    而这三条**全部放行**（读错格子时，模型的自述依然自洽）。
+  #    真正起作用的是代码里不可配置的第四道闸门 ——
+  #    **几何佐证**（corroborate_by_geometry）：该 bbox 内页面上真实印着的字
+  #    必须支持模型读数、且不支持原读数。没有文本层时**失败关闭**（不覆盖）。
+  #    这道闸门刻意不做成开关：能被关掉的安全闸门等于没有。
+  override_requires:
+    quote_readback: true                # quote 必须能在整页文本中回读成功
+    position_confirmed: true            # 模型必须确认红框位置与所读格一致
+    min_confidence: 0.7                 # 模型自评置信度下限
+
+# ---------------------------------------------------------------------------
+# 分阶段工具白名单
+# ---------------------------------------------------------------------------
+stages:
+
+  ingest:
+    tools: [doc.register, doc.probe_pages, doc.render_page]
+    description: 文档登记与页面预扫描（纯确定性，无 LLM）
+
+  route:
+    tools: [doc.probe_pages, table.detect_lines]
+    description: 逐页路由判定（纯确定性）
+
+  extract_text:
+    tools: [doc.page_text, doc.search_page, num.parse_amount, num.normalize_unit]
+    description: 文本层直取
+
+  extract_ocr:
+    tools: [doc.render_page, ocr.recognize, img.preprocess, num.parse_amount]
+    description: OCR 通道
+
+  extract_tables:
+    tools: [table.detect, table.check_arithmetic]
+    description: 表格结构重建与算术校验（纯确定性，无 LLM）
+
+  judge_vlm:
+    tools: [doc.render_page, img.crop, vlm.judge_field, vlm.scan_page_fields,
+            table.adjudicate, vlm.read_table_cell]
+    description: 多模态裁判（唯一允许读图的阶段）
+
+  crosscheck:
+    tools: [num.compare, num.magnitude_gap, evidence.verify_quote, table.check_arithmetic]
+    description: 交叉验证与表决（纯确定性）
+
+  build_facts:
+    tools: [evidence.anchor, ledger.add_fact, ledger.export]
+    description: 事实库落盘
+
+  valuation:
+    tools: [finance.dcf, finance.comps, finance.sensitivity, finance.assert, xlsx.write]
+    description: 估值建模（纯计算，不调用 LLM）
+
+  audit:
+    tools: [doc.parse_report, claim.extract, rule.check_unit, rule.check_multiple,
+            rule.check_caliber, rule.check_citation, rule.check_arithmetic]
+    description: 研究报告核查
+
+# ---------------------------------------------------------------------------
+# 工具风险标注
+# ---------------------------------------------------------------------------
+risk_notes:
+  "vlm.*": "读图类工具，唯一可能引入视觉幻觉的来源，产出必须过 quote 回读闸门"
+  "table.adjudicate": "单元格级裁决。**只有通过全部闸门才允许覆盖原读数**，否则只标记不改"
+  "ocr.*": "CPU 密集，注意并发上限；产出需规则校验"
+  "finance.*": "纯确定性计算，必须通过勾稽断言"
+  "xlsx.write": "写文件，产物需登记哈希"

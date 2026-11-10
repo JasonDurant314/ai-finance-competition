@@ -1,0 +1,48 @@
+  <div class="tablewrap" style="max-height:400px">
+  <table class="compact">
+  <thead><tr><th>假设</th><th>取值</th><th>属性</th><th>来源事实</th><th>依据</th></tr></thead>
+  <tbody>
+  {% for a in val.assumptions %}
+  <tr>
+    <td class="mono">{{ a.name|prose }}</td>
+    <td class="num">{{ a.value }} <span class="dim2 small">{{ a.unit }}</span></td>
+    <td>
+      {% if a.is_judgment %}<span class="tag sev-advisory">观点</span>
+      {% else %}<span class="tag L1">事实</span>{% endif %}
+    </td>
+    <td class="mono small dim2">
+      {% if a.source_fact_ids %}{{ a.source_fact_ids[0][:14] }}…{% else %}—{% endif %}
+    </td>
+    <td class="small muted">{{ a.basis|prose }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  </div>
+  <div class="note info small">
+    上表逐条标注：有事实库来源的是<b>事实</b>，主观判断的是<b>观点</b>，两类都不留空
+    （由数据模型强制，未标注的假设构造不出来）。
+  </div>
+
+  {% if val.sensitivity.tornado %}
+  <h3>敏感性数值表</h3>
+  <table class="compact">
+  <thead><tr>
+    <th>关键假设</th><th style="text-align:right">下调情景</th><th style="text-align:right">基准</th>
+    <th style="text-align:right">上调情景</th><th style="text-align:right">波动幅度</th>
+    <th style="text-align:right">占基准</th>
+  </tr></thead>
+  <tbody>
+  {% for t in val.sensitivity.tornado %}
+  <tr>
+    <td class="mono">{{ t.assumption }}</td>
+    <td class="num">{{ t.low[:8] }}</td>
+    <td class="num muted">{{ t.base[:8] }}</td>
+    <td class="num">{{ t.high[:8] }}</td>
+    <td class="num"><b>{{ t.swing[:8] }}</b></td>
+    <td class="num">{{ t.swing_pct_of_base }}%</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+  {% endif %}

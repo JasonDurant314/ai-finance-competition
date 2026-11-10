@@ -1,0 +1,48 @@
+[
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "filename": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "sha256": "ca1d00be95a83579e313eb553119e175bca97aab662714b894845a4cafda3603",
+    "page_count": 5,
+    "has_text_layer": true,
+    "document_period": "2025A",
+    "page_routes": {
+      "1": "A_text_only",
+      "2": "A_text_only",
+      "3": "A_text_only",
+      "4": "E_mixed",
+      "5": "A_text_only"
+    },
+    "route_reasons": {
+      "1": "有效字符 242 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 8.0%），直取最高置信",
+      "2": "有效字符 470 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 17.8%），直取最高置信",
+      "3": "有效字符 312 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 11.1%），直取最高置信",
+      "4": "文本量中等（181 字符，覆盖 5.9%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强",
+      "5": "有效字符 216 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 6.6%），直取最高置信"
+    },
+    "parser_backend": "pymupdf",
+    "size_mb": 0.02,
+    "registered_at": "2026-10-16T17:22:06.184166+00:00"
+  },
+  {
+    "doc_id": "doc_a6fba35ae3cf",
+    "filename": "sample_pledge_announcement.pdf",
+    "rel_path": "sample_pledge_announcement.pdf",
+    "sha256": "a6fba35ae3cf7282d060aab8b16b701a396d332f87fe01139dd1f68d01786cfd",
+    "page_count": 2,
+    "has_text_layer": true,
+    "document_period": "2025A",
+    "page_routes": {
+      "1": "A_text_only",
+      "2": "E_mixed"
+    },
+    "route_reasons": {
+      "1": "有效字符 634 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.3%），直取最高置信",
+      "2": "文本量中等（140 字符，覆盖 5.5%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+    },
+    "parser_backend": "pymupdf",
+    "size_mb": 0.01,
+    "registered_at": "2026-10-16T17:22:06.184166+00:00"
+  }
+]

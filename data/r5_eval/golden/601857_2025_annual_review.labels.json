@@ -1,0 +1,115 @@
+[
+  {
+    "error_id": "G-001",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E1_unit",
+    "char_range": [
+      305,
+      324
+    ],
+    "quote": "每 10 股派发现金红利 0.25 元",
+    "is_real_error": true,
+    "note": "单位错误：2025 年年度 A 股权益分派实施公告为**每股**派发现金红利 0.25 元（含税），不是每 10 股。照抄会把单位口径放大 10 倍。",
+    "correct": "每股派发现金红利 0.25 元（含税）"
+  },
+  {
+    "error_id": "G-002",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E3_caliber",
+    "char_range": [
+      190,
+      228
+    ],
+    "quote": "按国际财务报告会计准则计算的归属于母公司股东的净利润为 1837.55 亿元",
+    "is_real_error": true,
+    "note": "口径错误：本报告第四节声明采用中国企业会计准则，此处却引国际准则数。中国准则下 2025 年归母净利润为 1573.02 亿元，两者相差 264.53 亿元。",
+    "correct": "中国企业会计准则下归属于母公司股东的净利润为 1573.02 亿元"
+  },
+  {
+    "error_id": "G-003",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      349,
+      371
+    ],
+    "quote": "占本年度归属于母公司股东净利润的 35.2%",
+    "is_real_error": true,
+    "note": "算术错误：457.55 ÷ 1573.02 = 29.09%，不是 35.2%。",
+    "correct": "占本年度归属于母公司股东净利润的 29.09%"
+  },
+  {
+    "error_id": "G-004",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E4_citation",
+    "char_range": [
+      463,
+      497
+    ],
+    "quote": "| 资产总计（亿元） | 27530.07 | 27530.07 |",
+    "is_real_error": true,
+    "note": "引用错误（报告期错配）：27530.07 亿元是 **2024 年末**资产总计，却被填进 2025 年列，与正文「报告期末资产总计 28280.17 亿元」自相矛盾。",
+    "correct": "2025 年为 28280.17 亿元，2024 年为 27530.07 亿元"
+  },
+  {
+    "error_id": "G-005",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E4_citation",
+    "char_range": [
+      463,
+      486
+    ],
+    "quote": "| 资产总计（亿元） | 27530.07 |",
+    "is_real_error": true,
+    "note": "引用错误：「2025 年末」栏填的是 2024 年末数 27530.07 亿元，与正文及上一张表的 2025 年列同时错误，属同一处事实被复制到两个口径。",
+    "correct": "2025 年末资产总计 28280.17 亿元"
+  },
+  {
+    "error_id": "T-006",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      104,
+      130
+    ],
+    "quote": "较上年度的 29379.81 亿元下降 -2.50%",
+    "is_real_error": false,
+    "note": "陷阱项：28644.69 ÷ 29379.81 - 1 = --2.50%，与派生值一致，不应报错。"
+  },
+  {
+    "error_id": "T-007",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      158,
+      183
+    ],
+    "quote": "较上年度的 1646.76 亿元下降 -4.48%",
+    "is_real_error": false,
+    "note": "陷阱项：1573.02 ÷ 1646.76 - 1 = --4.48%，与派生值一致，不应报错。"
+  },
+  {
+    "error_id": "T-008",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E4_citation",
+    "char_range": [
+      132,
+      157
+    ],
+    "quote": "实现归属于母公司股东的净利润 1573.02 亿元",
+    "is_real_error": false,
+    "note": "陷阱项：与 2025 年报「主要会计数据」一致，正确，不应报错。"
+  },
+  {
+    "error_id": "T-009",
+    "draft_id": "601857_2025_annual_review",
+    "type": "E5_arithmetic",
+    "char_range": [
+      428,
+      462
+    ],
+    "quote": "| 营业收入（亿元） | 28644.69 | 29379.81 |",
+    "is_real_error": false,
+    "note": "陷阱项：两期营业收入与正文一致，正确，不应报错。"
+  }
+]

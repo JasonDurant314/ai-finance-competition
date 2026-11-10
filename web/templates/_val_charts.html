@@ -1,0 +1,12 @@
+  {% if charts %}
+  <div class="charts">
+    {% for name, title in charts.items() %}
+      <div class="chart">
+        <h4>{{ title }}</h4>
+        <img src="/valuation-chart/{{ name }}?run={{ run_id }}" alt="{{ title }}">
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="note warn">本次运行没有生成图表（<code>r4_report</code> 阶段可能未执行或缺少 matplotlib）。</div>
+  {% endif %}

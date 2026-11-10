@@ -1,0 +1,142 @@
+[
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "file": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "page": 1,
+    "char_count": 242,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0803,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 6,
+    "has_images": false,
+    "min_font_size": 10.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 242 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 8.0%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "file": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "page": 2,
+    "char_count": 470,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1775,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 6,
+    "has_images": false,
+    "min_font_size": 10.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 470 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 17.8%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "file": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "page": 3,
+    "char_count": 312,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.1105,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 3,
+    "has_images": false,
+    "min_font_size": 10.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 312 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 11.1%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "file": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "page": 4,
+    "char_count": 181,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0589,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 3,
+    "has_images": false,
+    "min_font_size": 10.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "E_mixed",
+    "route_reason": "文本量中等（181 字符，覆盖 5.9%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+  },
+  {
+    "doc_id": "doc_ca1d00be95a8",
+    "file": "sample_annual_report.pdf",
+    "rel_path": "sample_annual_report.pdf",
+    "page": 5,
+    "char_count": 216,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0661,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 4,
+    "has_images": false,
+    "min_font_size": 10.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 216 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 6.6%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_a6fba35ae3cf",
+    "file": "sample_pledge_announcement.pdf",
+    "rel_path": "sample_pledge_announcement.pdf",
+    "page": 1,
+    "char_count": 634,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.2632,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 11,
+    "has_images": false,
+    "min_font_size": 11.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "A_text_only",
+    "route_reason": "有效字符 634 个（>= 200）且乱码率 0.00% < 5%，文本层干净可用（文本覆盖 26.3%），直取最高置信"
+  },
+  {
+    "doc_id": "doc_a6fba35ae3cf",
+    "file": "sample_pledge_announcement.pdf",
+    "rel_path": "sample_pledge_announcement.pdf",
+    "page": 2,
+    "char_count": 140,
+    "garbled_ratio": 0.0,
+    "text_coverage": 0.0553,
+    "image_coverage": 0.0,
+    "rule_line_density": 0,
+    "block_count": 6,
+    "has_images": false,
+    "min_font_size": 11.0,
+    "size": [
+      595.0,
+      842.0
+    ],
+    "route": "E_mixed",
+    "route_reason": "文本量中等（140 字符，覆盖 5.5%）或含图像（覆盖 0.0%），文本层为主 + 局部图像补强"
+  }
+]

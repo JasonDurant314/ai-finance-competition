@@ -1,0 +1,366 @@
+# ==========================================================================
+# 指标规范名表
+# --------------------------------------------------------------------------
+# R1 抽取、R4 建模、R5 核查三处**共用同一份指标定义**。
+# 这是「结果一致性」的技术保障：三个环节不可能对同一个指标用不同名字。
+#
+# canonical   规范名（写入 Fact.metric，全项目唯一标识）
+# unit        归一化后的目标单位（Fact.unit 必须与之匹配）
+# aliases     原文中可能出现的写法，供规则抽取与模糊匹配
+# category    分类，用于报表重建与展示分组
+# caliber     口径要求（哪些口径字段必须明确）
+# ==========================================================================
+
+metrics:
+  # ---------------------------------------------------------------- 利润表
+  - canonical: revenue
+    label: 营业收入
+    unit: 元
+    category: income_statement
+    aliases: [营业收入, 营业总收入, 营收, 主营业务收入, 收入合计]
+    caliber: [statement_scope, period]
+
+  - canonical: operating_cost
+    label: 营业成本
+    unit: 元
+    category: income_statement
+    aliases: [营业成本, 主营业务成本, 成本合计]
+
+  - canonical: gross_profit
+    label: 毛利
+    unit: 元
+    category: income_statement
+    aliases: [毛利, 毛利润]
+
+  - canonical: selling_expense
+    label: 销售费用
+    unit: 元
+    category: income_statement
+    aliases: [销售费用, 营业费用]
+
+  - canonical: admin_expense
+    label: 管理费用
+    unit: 元
+    category: income_statement
+    aliases: [管理费用]
+
+  - canonical: rd_expense
+    label: 研发费用
+    unit: 元
+    category: income_statement
+    aliases: [研发费用, 研发支出]
+
+  - canonical: finance_expense
+    label: 财务费用
+    unit: 元
+    category: income_statement
+    aliases: [财务费用]
+
+  - canonical: operating_profit
+    label: 营业利润
+    unit: 元
+    category: income_statement
+    aliases: [营业利润]
+
+  - canonical: total_profit
+    label: 利润总额
+    unit: 元
+    category: income_statement
+    aliases: [利润总额, 税前利润]
+
+  - canonical: income_tax_expense
+    label: 所得税费用
+    unit: 元
+    category: income_statement
+    aliases: [所得税费用, 所得税]
+
+  - canonical: net_profit_total
+    label: 净利润
+    unit: 元
+    category: income_statement
+    aliases: [净利润, 净利润合计]
+    caliber: [statement_scope, period, profit_basis]
+    profit_basis: net_total
+
+  - canonical: net_profit_parent
+    label: 归属于母公司股东的净利润
+    unit: 元
+    category: income_statement
+    aliases:
+      - 归属于母公司股东的净利润
+      - 归属于母公司所有者的净利润
+      - 归母净利润
+      - 归属于上市公司股东的净利润
+    caliber: [statement_scope, period, profit_basis]
+    profit_basis: net_parent
+
+  - canonical: net_profit_parent_ex_nonrec
+    label: 扣除非经常性损益后归属于母公司股东的净利润
+    unit: 元
+    category: income_statement
+    aliases:
+      - 扣除非经常性损益后归属于母公司股东的净利润
+      - 扣非归母净利润
+      - 扣除非经常性损益后的净利润
+      - 扣非净利润
+    caliber: [statement_scope, period, profit_basis]
+    profit_basis: net_parent_ex_nonrec
+
+  - canonical: nonrecurring_gain_loss
+    label: 非经常性损益
+    unit: 元
+    category: income_statement
+    aliases: [非经常性损益, 非经常性损益合计]
+
+  - canonical: minority_interest_pl
+    label: 少数股东损益
+    unit: 元
+    category: income_statement
+    aliases: [少数股东损益, 少数股东权益损益]
+
+  - canonical: eps_basic
+    label: 基本每股收益
+    unit: 元每股
+    category: per_share
+    aliases: [基本每股收益, 每股收益, EPS]
+
+  - canonical: eps_diluted
+    label: 稀释每股收益
+    unit: 元每股
+    category: per_share
+    aliases: [稀释每股收益]
+
+  # ------------------------------------------------------------ 资产负债表
+  - canonical: total_assets
+    label: 资产总计
+    unit: 元
+    category: balance_sheet
+    # 「资产总计」与「资产总额」是同一口径的两种写法，公告里都常见。
+    # 早期只收了前者，实测一份材料里 28 页的「资产总额」列一列都没匹配上。
+    aliases: [资产总计, 资产合计, 总资产, 资产总额]
+    caliber: [statement_scope]
+    period_type: point_in_time
+
+  - canonical: total_liabilities
+    label: 负债合计
+    unit: 元
+    category: balance_sheet
+    aliases: [负债合计, 负债总计, 总负债, 负债总额]
+    period_type: point_in_time
+
+  - canonical: equity_total
+    label: 所有者权益合计
+    unit: 元
+    category: balance_sheet
+    aliases: [所有者权益合计, 股东权益合计, 净资产]
+    period_type: point_in_time
+
+  - canonical: equity_parent
+    label: 归属于母公司所有者权益合计
+    unit: 元
+    category: balance_sheet
+    aliases:
+      - 归属于母公司所有者权益合计
+      - 归属于母公司股东权益合计
+      - 归母净资产
+    period_type: point_in_time
+
+  - canonical: minority_interest_bs
+    label: 少数股东权益
+    unit: 元
+    category: balance_sheet
+    aliases: [少数股东权益]
+    period_type: point_in_time
+
+  - canonical: cash_and_equivalents
+    label: 货币资金
+    unit: 元
+    category: balance_sheet
+    aliases: [货币资金, 现金及现金等价物]
+    period_type: point_in_time
+
+  - canonical: short_term_borrowing
+    label: 短期借款
+    unit: 元
+    category: balance_sheet
+    aliases: [短期借款]
+    period_type: point_in_time
+
+  - canonical: long_term_borrowing
+    label: 长期借款
+    unit: 元
+    category: balance_sheet
+    aliases: [长期借款]
+    period_type: point_in_time
+
+  - canonical: bonds_payable
+    label: 应付债券
+    unit: 元
+    category: balance_sheet
+    aliases: [应付债券]
+    period_type: point_in_time
+
+  - canonical: shares_outstanding
+    label: 总股本
+    unit: 股
+    category: per_share
+    aliases: [总股本, 股本总额, 股份总数, 总股数]
+    period_type: point_in_time
+
+  # ------------------------------------------------------------ 现金流量表
+  - canonical: operating_cash_flow
+    label: 经营活动产生的现金流量净额
+    unit: 元
+    category: cash_flow
+    aliases:
+      - 经营活动产生的现金流量净额
+      - 经营活动现金流量净额
+      - 经营现金流
+      - 经营活动现金流量
+
+  - canonical: investing_cash_flow
+    label: 投资活动产生的现金流量净额
+    unit: 元
+    category: cash_flow
+    aliases: [投资活动产生的现金流量净额, 投资活动现金流量净额]
+
+  - canonical: financing_cash_flow
+    label: 筹资活动产生的现金流量净额
+    unit: 元
+    category: cash_flow
+    aliases: [筹资活动产生的现金流量净额, 筹资活动现金流量净额]
+
+  - canonical: capex
+    label: 购建固定资产、无形资产和其他长期资产支付的现金
+    unit: 元
+    category: cash_flow
+    aliases:
+      - 购建固定资产、无形资产和其他长期资产支付的现金
+      - 资本性支出
+      - 购建固定资产支付的现金
+      - 资本开支
+
+  - canonical: depreciation_amortization
+    label: 折旧与摊销
+    unit: 元
+    category: cash_flow
+    # ⚠️ 别名按**真实年报里的写法**补全（2026-09 实测统计 601857 年报的表格行标签）：
+    #    `折旧、折耗和摊销`(5 次) / `折旧及摊销`(3 次) / `折旧摊销`(3 次)。
+    #    其中 `折旧及摊销` 原先**不在**别名表里 —— 漏掉它的直接后果是
+    #    该行整条不入库。
+    #    注意 `折旧与摊销` 在真实年报里**一次都没出现**（保留它无害，
+    #    但它不该是别名表里唯一的"与"字写法）。
+    aliases: [固定资产折旧, 折旧与摊销, 折旧摊销, 折旧及摊销,
+              折旧、折耗和摊销, 固定资产折旧、油气资产折耗]
+
+  # ---------------------------------------------------- 公告类：质押/中标/股权
+  - canonical: pledge_shares
+    label: 本次质押股份数量
+    unit: 股
+    category: announcement_pledge
+    aliases: [本次质押股份数量, 质押股份数量, 质押股数, 本次质押数量]
+
+  # ★ 与 pledge_shares 必须分开：语义不同、量级也不同。
+  #   实测踩过的坑：公告里同时出现「本次质押 46 万股」与「累计质押 3,532 万股」，
+  #   若都归到 pledge_shares，事实库里同一指标下会出现相差 77 倍的两个值，
+  #   触发假冲突告警，且下游无法判断该用哪个。
+  - canonical: pledge_cumulative_shares
+    label: 累计质押股份数量
+    unit: 股
+    category: announcement_pledge
+    aliases:
+      - 累计质押股份数量
+      - 累计质押股数
+      - 累计质押股份
+      - 合计质押股份数量
+      - 本次质押后累计质押股份数量
+
+  - canonical: pledge_ratio_of_holding
+    label: 占其所持股份比例
+    unit: '%'
+    category: announcement_pledge
+    aliases: [占其所持股份比例, 占其所持有股份比例, 占其持股比例]
+
+  - canonical: pledge_ratio_of_total
+    label: 占公司总股本比例
+    unit: '%'
+    category: announcement_pledge
+    aliases: [占公司总股本比例, 占总股本比例, 占公司股本总额比例]
+
+  - canonical: pledge_cumulative_ratio
+    label: 累计质押比例
+    unit: '%'
+    category: announcement_pledge
+    aliases: [累计质押比例, 累计质押股份占其所持股份比例]
+
+  # ★ 持股「数量」与持股「比例」是两个不同的量，必须分开。
+  #   实测踩过的坑：VLM 把「合计持有 34,469,568 股」归到了以 % 为单位的
+  #   shareholding_after，被量纲闸门拦下 —— 根源是清单里缺这个指标。
+  #   补上之后模型的归属就有正确的落点，不必退化成 unknown。
+  - canonical: shareholding_count
+    label: 持股数量
+    unit: 股
+    category: announcement_equity
+    aliases:
+      - 持股数量
+      - 持有股份数量
+      - 本次变动前持股数量
+      - 合计持有股份
+      - 变动后持股数量
+
+  - canonical: shareholding_change_count
+    label: 持股数量变动
+    unit: 股
+    category: announcement_equity
+    aliases: [持股数量变动, 变动股份数量, 增减持股数量, 本次变动数量]
+
+  - canonical: contract_amount
+    label: 中标/合同金额
+    unit: 元
+    category: announcement_contract
+    aliases: [中标金额, 合同金额, 中标价, 项目金额, 合同总金额]
+
+  - canonical: contract_amount_of_revenue
+    label: 合同金额占营业收入比例
+    unit: '%'
+    category: announcement_contract
+    aliases: [占公司营业收入比例, 占最近一个会计年度营业收入比例, 占营业收入比重]
+
+  - canonical: equity_change_ratio
+    label: 股权变动比例
+    unit: '%'
+    category: announcement_equity
+    aliases: [变动比例, 持股比例变动, 权益变动比例]
+
+  - canonical: shareholding_after
+    label: 变动后持股比例
+    unit: '%'
+    category: announcement_equity
+    aliases: [变动后持股比例, 本次变动后持股比例]
+
+  - canonical: trade_avg_price
+    label: 交易均价
+    unit: 元每股
+    category: announcement_equity
+    aliases: [交易均价, 成交均价, 减持均价]
+
+# ---------------------------------------------------------------------------
+# 口径标签体系 —— R5 的 E2/E3 类错误判定完全依赖它
+# ---------------------------------------------------------------------------
+calibers:
+  statement_scope:
+    - consolidated   # 合并报表
+    - parent_only    # 母公司报表
+  profit_basis:
+    - net_parent               # 归母
+    - net_parent_ex_nonrec     # 扣非归母
+    - net_total                # 净利润（含少数股东）
+  period_type:
+    - point_in_time        # 时点
+    - duration_ytd         # 年初至今累计
+    - duration_single_q    # 单季度
+    - duration_fy          # 完整年度
+  multiple_basis:          # 估值倍数口径（E2 核心）
+    - static               # 静态（上一完整年度）
+    - ttm                  # 滚动十二个月
+    - forward              # 动态（预测年度）

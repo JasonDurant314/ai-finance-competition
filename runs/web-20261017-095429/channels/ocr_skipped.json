@@ -1,0 +1,620 @@
+[
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 1,
+    "route": "E_mixed",
+    "reason": "文本层可用（65 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 6,
+    "route": "E_mixed",
+    "reason": "文本层可用（188 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 7,
+    "route": "D_table",
+    "reason": "文本层可用（1399 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 8,
+    "route": "D_table",
+    "reason": "文本层可用（821 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 9,
+    "route": "D_table",
+    "reason": "文本层可用（699 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 10,
+    "route": "D_table",
+    "reason": "文本层可用（697 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 11,
+    "route": "D_table",
+    "reason": "文本层可用（933 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 12,
+    "route": "D_table",
+    "reason": "文本层可用（849 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 13,
+    "route": "D_table",
+    "reason": "文本层可用（1325 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 22,
+    "route": "D_table",
+    "reason": "文本层可用（843 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 23,
+    "route": "D_table",
+    "reason": "文本层可用（1040 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 27,
+    "route": "D_table",
+    "reason": "文本层可用（936 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 29,
+    "route": "D_table",
+    "reason": "文本层可用（887 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 30,
+    "route": "D_table",
+    "reason": "文本层可用（1056 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 32,
+    "route": "D_table",
+    "reason": "文本层可用（831 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 33,
+    "route": "D_table",
+    "reason": "文本层可用（1312 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 38,
+    "route": "D_table",
+    "reason": "文本层可用（793 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 50,
+    "route": "D_table",
+    "reason": "文本层可用（1096 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 52,
+    "route": "D_table",
+    "reason": "文本层可用（427 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 61,
+    "route": "D_table",
+    "reason": "文本层可用（678 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 67,
+    "route": "D_table",
+    "reason": "文本层可用（1056 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 76,
+    "route": "D_table",
+    "reason": "文本层可用（778 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 77,
+    "route": "D_table",
+    "reason": "文本层可用（651 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 81,
+    "route": "D_table",
+    "reason": "文本层可用（1148 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 85,
+    "route": "D_table",
+    "reason": "文本层可用（836 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 86,
+    "route": "D_table",
+    "reason": "文本层可用（1029 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 90,
+    "route": "D_table",
+    "reason": "文本层可用（485 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 92,
+    "route": "D_table",
+    "reason": "文本层可用（1363 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 93,
+    "route": "D_table",
+    "reason": "文本层可用（867 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 94,
+    "route": "D_table",
+    "reason": "文本层可用（880 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 95,
+    "route": "D_table",
+    "reason": "文本层可用（648 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 98,
+    "route": "D_table",
+    "reason": "文本层可用（1059 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 99,
+    "route": "D_table",
+    "reason": "文本层可用（943 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 107,
+    "route": "D_table",
+    "reason": "文本层可用（1191 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 108,
+    "route": "D_table",
+    "reason": "文本层可用（1410 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 109,
+    "route": "D_table",
+    "reason": "文本层可用（1806 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 110,
+    "route": "D_table",
+    "reason": "文本层可用（2023 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 111,
+    "route": "D_table",
+    "reason": "文本层可用（1767 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 112,
+    "route": "D_table",
+    "reason": "文本层可用（1111 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 141,
+    "route": "D_table",
+    "reason": "文本层可用（1375 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 142,
+    "route": "D_table",
+    "reason": "文本层可用（929 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 143,
+    "route": "D_table",
+    "reason": "文本层可用（1025 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 144,
+    "route": "D_table",
+    "reason": "文本层可用（994 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 146,
+    "route": "D_table",
+    "reason": "文本层可用（1279 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 147,
+    "route": "D_table",
+    "reason": "文本层可用（763 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 148,
+    "route": "D_table",
+    "reason": "文本层可用（1227 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 149,
+    "route": "D_table",
+    "reason": "文本层可用（995 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 150,
+    "route": "D_table",
+    "reason": "文本层可用（1707 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 151,
+    "route": "D_table",
+    "reason": "文本层可用（1326 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 152,
+    "route": "D_table",
+    "reason": "文本层可用（563 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 153,
+    "route": "D_table",
+    "reason": "文本层可用（1305 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 154,
+    "route": "D_table",
+    "reason": "文本层可用（1247 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 155,
+    "route": "D_table",
+    "reason": "文本层可用（816 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 156,
+    "route": "D_table",
+    "reason": "文本层可用（987 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 157,
+    "route": "D_table",
+    "reason": "文本层可用（820 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 158,
+    "route": "D_table",
+    "reason": "文本层可用（854 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 159,
+    "route": "D_table",
+    "reason": "文本层可用（903 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 160,
+    "route": "D_table",
+    "reason": "文本层可用（774 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 161,
+    "route": "D_table",
+    "reason": "文本层可用（891 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 162,
+    "route": "D_table",
+    "reason": "文本层可用（1033 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 163,
+    "route": "D_table",
+    "reason": "文本层可用（1325 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 164,
+    "route": "D_table",
+    "reason": "文本层可用（1022 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 165,
+    "route": "D_table",
+    "reason": "文本层可用（971 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 166,
+    "route": "D_table",
+    "reason": "文本层可用（979 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 167,
+    "route": "D_table",
+    "reason": "文本层可用（819 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 168,
+    "route": "D_table",
+    "reason": "文本层可用（1701 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 169,
+    "route": "D_table",
+    "reason": "文本层可用（1180 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 170,
+    "route": "D_table",
+    "reason": "文本层可用（678 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 171,
+    "route": "D_table",
+    "reason": "文本层可用（711 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 172,
+    "route": "D_table",
+    "reason": "文本层可用（601 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 173,
+    "route": "D_table",
+    "reason": "文本层可用（825 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 174,
+    "route": "D_table",
+    "reason": "文本层可用（941 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 176,
+    "route": "D_table",
+    "reason": "文本层可用（1488 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 178,
+    "route": "D_table",
+    "reason": "文本层可用（930 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 179,
+    "route": "D_table",
+    "reason": "文本层可用（1331 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 182,
+    "route": "D_table",
+    "reason": "文本层可用（1056 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 183,
+    "route": "D_table",
+    "reason": "文本层可用（555 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 184,
+    "route": "D_table",
+    "reason": "文本层可用（480 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 200,
+    "route": "D_table",
+    "reason": "文本层可用（1264 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 201,
+    "route": "D_table",
+    "reason": "文本层可用（1509 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 204,
+    "route": "D_table",
+    "reason": "文本层可用（1377 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 225,
+    "route": "D_table",
+    "reason": "文本层可用（876 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 226,
+    "route": "D_table",
+    "reason": "文本层可用（939 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 228,
+    "route": "D_table",
+    "reason": "文本层可用（1940 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 231,
+    "route": "D_table",
+    "reason": "文本层可用（1104 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 235,
+    "route": "D_table",
+    "reason": "文本层可用（1793 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 237,
+    "route": "D_table",
+    "reason": "文本层可用（1716 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 238,
+    "route": "D_table",
+    "reason": "文本层可用（1842 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 240,
+    "route": "D_table",
+    "reason": "文本层可用（1473 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 241,
+    "route": "D_table",
+    "reason": "文本层可用（1136 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 242,
+    "route": "D_table",
+    "reason": "文本层可用（1272 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 243,
+    "route": "D_table",
+    "reason": "文本层可用（720 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 244,
+    "route": "D_table",
+    "reason": "文本层可用（1307 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 246,
+    "route": "D_table",
+    "reason": "文本层可用（910 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 247,
+    "route": "D_table",
+    "reason": "文本层可用（906 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 249,
+    "route": "D_table",
+    "reason": "文本层可用（993 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 250,
+    "route": "D_table",
+    "reason": "文本层可用（773 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 253,
+    "route": "D_table",
+    "reason": "文本层可用（594 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 257,
+    "route": "D_table",
+    "reason": "文本层可用（1208 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 258,
+    "route": "D_table",
+    "reason": "文本层可用（1408 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 259,
+    "route": "D_table",
+    "reason": "文本层可用（1090 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 264,
+    "route": "D_table",
+    "reason": "文本层可用（934 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  },
+  {
+    "doc_id": "doc_840b15aa4dc3",
+    "page": 265,
+    "route": "D_table",
+    "reason": "文本层可用（900 字符，乱码率 0.00%），跳过 OCR —— 表格结构由几何重建提供，不依赖 OCR"
+  }
+]

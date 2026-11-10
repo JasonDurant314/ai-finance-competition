@@ -1,0 +1,92 @@
+[
+  {
+    "text": "601857",
+    "value": "601857",
+    "unit": "",
+    "start": 2,
+    "end": 9,
+    "section": "",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "601857",
+    "value": "601857",
+    "unit": "",
+    "start": 36,
+    "end": 42,
+    "section": "一、公司概况",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "28644.69",
+    "value": "28644.69",
+    "unit": "亿元",
+    "start": 100,
+    "end": 111,
+    "section": "二、经营业绩",
+    "metric_hint": "revenue",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "3.20",
+    "value": "3.20",
+    "unit": "%",
+    "start": 117,
+    "end": 122,
+    "section": "二、经营业绩",
+    "metric_hint": "revenue",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "157302000000.00",
+    "value": "157302000000.00",
+    "unit": "万元",
+    "start": 139,
+    "end": 157,
+    "section": "二、经营业绩",
+    "metric_hint": "net_profit_parent",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "15730200.00",
+    "value": "15730200.00",
+    "unit": "万元",
+    "start": 219,
+    "end": 233,
+    "section": "三、盈利质量",
+    "metric_hint": "net_profit_parent_ex_nonrec",
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "45.30",
+    "value": "45.30",
+    "unit": "倍",
+    "start": 293,
+    "end": 300,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "1.62",
+    "value": "1.62",
+    "unit": "倍",
+    "start": 307,
+    "end": 313,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  },
+  {
+    "text": "15.8",
+    "value": "15.8",
+    "unit": "倍",
+    "start": 335,
+    "end": 341,
+    "section": "四、估值分析",
+    "metric_hint": null,
+    "draft_id": "synthetic_demo_draft"
+  }
+]

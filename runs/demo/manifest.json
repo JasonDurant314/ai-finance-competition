@@ -1,0 +1,135 @@
+{
+  "contract_version": "1.0.0",
+  "run_id": "demo",
+  "pipeline": "full",
+  "started_at": "2026-10-16T17:22:06.184166Z",
+  "finished_at": "2026-10-16T17:22:13.260948Z",
+  "input_files": {
+    "sample_annual_report.pdf": "ca1d00be95a83579e313eb553119e175bca97aab662714b894845a4cafda3603",
+    "sample_pledge_announcement.pdf": "a6fba35ae3cf7282d060aab8b16b701a396d332f87fe01139dd1f68d01786cfd",
+    "facts/facts.json": "7e9e03b9fbe441c7c06a20f478909071b3d2215fd55edb4b6ea723fcdde7aee6"
+  },
+  "data_dir": "data",
+  "doc_limit": null,
+  "upstream_facts_run": null,
+  "code_version": "0.1.0",
+  "python_version": "3.13.5",
+  "agent_config_hash": "82681049d6cd93f89e312c3337823396",
+  "prompts": {
+    "r1.extract_financial_facts@1.0.0": "33d66b43afce3d22a621adfb437688b0999d3326873fd68b5c1fd228cfe8c130",
+    "r1.vlm_judge_field@1.0.0": "d799e09a44d33df5cce22d04a7c44ec6a8d7df9e25103e17ae44878d9a8e41f1",
+    "r1.vlm_scan_page@1.0.0": "e5f071470ba78adcdf3ee2f3ae3c54dc25fe90dad6cec003119858008f66f77b",
+    "r4.write_valuation_report@1.0.0": "597bad6162e2e857ba04eee4870f4ed2b1370953912a3d5e9e0e7c90aa09b5ca",
+    "r5.adjudicate_caliber@1.0.0": "276fc5c187a422c20720ead9c31a93016c449528d08fac03e3e5dad068b3e7fa"
+  },
+  "skills": {
+    "r1.structured_extraction@1.0.0": "86fccf33409d001e608b84f098896d09a9c0005f4e51b9211b1fba9c9f763872",
+    "r4.valuation_modeling@1.0.0": "7216c4d8085533eb016d33e7fcace550fd689e00f2dde1282d94fd2d2caaa306",
+    "r5.report_audit@1.0.0": "748912e86224398b0eb2d406688ab91740d029fec8ed2be49731e7c760620db0"
+  },
+  "models": {
+    "default": "deepseek-flash",
+    "extractor": "deepseek-flash",
+    "vision": "deepseek-flash",
+    "writer": "deepseek-flash",
+    "planner": "deepseek-flash",
+    "critic": "deepseek-flash"
+  },
+  "provider": "mock",
+  "model_params": {
+    "default": {
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "top_p": 1.0,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "extractor": {
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "top_p": 1.0,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "vision": {
+      "temperature": 0.0,
+      "max_tokens": 16384,
+      "top_p": 1.0,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "writer": {
+      "temperature": 0.3,
+      "max_tokens": 32768,
+      "top_p": 1.0,
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "planner": {
+      "temperature": 0.0,
+      "max_tokens": 32768,
+      "top_p": 0.95,
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "high"
+    },
+    "critic": {
+      "temperature": 0.0,
+      "max_tokens": 49152,
+      "top_p": 0.95,
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "max"
+    }
+  },
+  "seed": 0,
+  "offline": false,
+  "outputs": {
+    "facts/documents.json": "a2d8d1238e7b4cb7a6b3d38b080b601a5d07eb2e1f34c0b2a09d2c4d4370bfb4",
+    "pages/index.json": "b6984aeb547d974238824a36732e070cf4562b5e6bbb4e250475c0f0e1f5650a",
+    "channels/text_layer.json": "f1ec2e9a0c03b50dd7cf0bfa425a04b0b3f89f1c06d44762a369f88522e17747",
+    "channels/ocr.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "channels/tables.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "channels/conflicts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "channels/vlm_verdicts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "channels/vlm_scans.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "channels/table_adjudications.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "facts/build_stats.json": "9bb257a71cf2178146c78497a0b2927a8c0944b8e736d0364f4cb66d0026a018",
+    "facts/facts.json": "7e9e03b9fbe441c7c06a20f478909071b3d2215fd55edb4b6ea723fcdde7aee6",
+    "facts/facts_table.json": "655d24f000fe4814c6f8175caa2114b54b8832057581b3ceda47b5f65c7ff6f5",
+    "facts/evidence.html": "dee8c9534184ee190067fc6b05c3ac29d55704e7ada674cf5b10a51bc1454d16",
+    "valuation/assumptions.json": "3018583421f820703cdd6fb56c9c39cb7efe214f74f3450075f14dba7dd4a1ee",
+    "valuation/valuation.json": "43db3a5960c971c15dfff1e50c57eb9bf1ce086901c8041606d4904490da9748",
+    "valuation/model_summary.json": "4d2c8732618374d2cbea576ad2662dcebdc8e570550fef333a89244af1110214",
+    "valuation/valuation_report.md": "f0254a8e956e28135271cd138ea3f7d67e98339b1e1c20ea16f374cb10dd53b1",
+    "valuation/report_summary.json": "9cb185a0add7f0a641a5af44d28f1c7a1f7e997d5232c26ab74dec10d0c121b9",
+    "audit/audit.json": "85c66862cce866cc4bbb13f22184d4df7156cd1e078fe5ac816764ea19ccfedf",
+    "audit/audit_report.md": "f4d259e938f1c9370eed42867681eff24a3d4ebb4ebe5a6d1ee41d9ed1920fef",
+    "audit/revision_table.xlsx": "ad3b07b0a96a5b11ebe19cce77a02da96c86fc17872e00bf5a9017c0b3a1a086",
+    "audit/annotated_draft.html": "919156a8e2594b89565d81c9f7b8f1acda95e0114b87eccf36c36357c33c2f82",
+    "audit/audit_summary.json": "2b3c2c7f6077b47d310f6e6d7cffa58c1bda80d0b1dafe9cf30ece9e7f2e5c92",
+    "audit/claims.json": "34cd1e3694458495ac4c30bf9dee7495a06f679c51ff2b066fb897bb1be7aac5",
+    "channels/ocr_skipped.json": "c8711c168d893681e49d337212ce7228780949c9160220a7bbf18678b8404ab6",
+    "channels/page_layout.json": "6ff156412c9376bd7e76d511e3815af3803bc15e65d89f3324786af698a3d1a2",
+    "facts/export_summary.json": "de74e71f764c2ae1fc891329bf26aa603aae838d302d9c736e58cc524d4bdca3",
+    "audit/draft_used.md": "d5065e542121f849f8c136da3df0585c98a482d75ea023418ad30cbf59dd0e84",
+    "facts/facts.xlsx": "4a39e60634eacc5fdc3fe804c9b7ffba366446ea7f0803832d858d295a158844",
+    "valuation/valuation_model.xlsx": "19ab7bd221924d58033c330527d96ae7973854bb8c4ea4fef94dc93a800303d2",
+    "valuation/charts/fcff_waterfall.png": "24df335a181340706eb81d32184905829016fb260798da10220b332ac3291c54",
+    "valuation/charts/sensitivity_heatmap.png": "ee462ee5bd908f478619cebf1c435604bccc45d5c4aceac18cb964b6f6d47d07",
+    "valuation/charts/tornado.png": "cd21c759471953db3fbd8afcc7279f1e59e845fedf25dbcbe015a7a0b48f93c9",
+    "valuation/charts/value_range.png": "cf74c5bbe86dc98da38d98960fae286ad897fe98fae91f69c39354c9eb1f44b1"
+  },
+  "status": "success",
+  "total_steps": 0,
+  "total_tokens": 0,
+  "total_cost_cny": 0.0,
+  "cache_hit_rate": 0.0,
+  "error": null
+}

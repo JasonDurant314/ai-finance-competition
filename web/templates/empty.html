@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}暂无运行 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="empty">
+  <h2>还没有可展示的运行</h2>
+  <p>{{ message }}</p>
+  <p class="dim small" style="margin-top:20px">
+    先跑一次完整流水线，然后刷新本页：
+  </p>
+  <pre style="text-align:left;max-width:560px;margin:12px auto">
+# 用合成样例快速跑通（无需 API Key、无需网络）
+python tools/make_sample_data.py
+python -m agent.cli run full --mock --run-id demo
+
+# 或用真实材料 + 真实模型
+python -m agent.cli run full --data agent/sample --run-id real</pre>
+  <p class="dim2 small">
+    跑完后在项目根目录会生成 <code>runs/&lt;run_id&gt;/</code>，
+    本演示台直接读取该目录下的产物。
+  </p>
+</div>
+
+{% endblock %}

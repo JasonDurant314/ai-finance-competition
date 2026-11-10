@@ -1,0 +1,11 @@
+{
+  "charts": {
+    "sensitivity_heatmap.png": true,
+    "tornado.png": true,
+    "value_range.png": true,
+    "fcff_waterfall.png": true
+  },
+  "excel": true,
+  "report_md": "valuation/valuation_report.md",
+  "is_usable": true
+}

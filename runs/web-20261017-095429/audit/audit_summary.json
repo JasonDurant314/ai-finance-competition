@@ -1,0 +1,30 @@
+{
+  "draft": "synthetic_demo_draft",
+  "drafts_checked": 1,
+  "per_draft": [
+    {
+      "draft_id": "synthetic_demo_draft",
+      "claims_checked": 10,
+      "findings": 2,
+      "by_severity": {
+        "confirmed": 2
+      },
+      "by_type": {
+        "E1_unit": 1,
+        "E5_arithmetic_consistency": 1
+      }
+    }
+  ],
+  "claims_checked": 10,
+  "findings": 2,
+  "by_severity": {
+    "confirmed": 2
+  },
+  "by_type": {
+    "E1_unit": 1,
+    "E5_arithmetic_consistency": 1
+  },
+  "metrics": null,
+  "excel": true,
+  "html": true
+}

@@ -1,0 +1,595 @@
+{% extends "base.html" %}
+{% block title %}事实库溯源 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>选题 1 · 数据结构化提取</h1>
+  <div class="sub">
+    从非标准化的 PDF 中提取关键字段，<b>按规定的数据结构输出</b> ——
+    结构化输出即交付物，明细在下方折叠页。
+  </div>
+</div>
+
+{# 材料范围 —— 每个数字都现算，见 web/app.py::material_scope 的 docstring。
+   ★ 这一段**曾经是写死的**：一张对照表，写着「非标准化公告：本轮未跑」「本 run
+     的输入只有一份年报」之类。演示 run 换成公告语料之后，那些话会继续印在
+     页面上 —— 页面在说反话，而且没有一条测试会红。现在四行全部从
+     manifest.json / pages/index.json / facts.json 现算，换任何 run 都跟着变。
+   ★ 仍然摆在正文第一段而不是收进折叠页：赛题选题 1 的原话点名了材料类型
+     （通知 p2），读者有权在第一屏就看到「这份交付物是拿什么材料做出来的」。 #}
+{# ★ 整块用 `{% if scope %}` 兜住（2026-09-27）：这一段的每个数字都来自
+   `web/app.py::material_scope()`，少传 `scope` 时整页 500 —— 现场演示最怕的
+   就是这个（见 tests/test_web.py::test_facts_template_survives_missing_context）。
+   区块里的 `scope.vlm.*` 同理，缺 `vlm` 时 Jinja 会抛 UndefinedError。 #}
+{% if scope %}
+<div class="note {{ 'ok' if scope.n_family_facts else 'warn' }}" style="margin-top:2px">
+  <b>本 run 的材料范围</b>（先看这里，再往下读数字）
+  <table class="ledger" style="margin-top:8px">
+    {# 第一列窄，全是短名词，让它不折行 —— 否则「股权变动」会被拆成
+       「股权变 / 动」这种断法（实测过），读者要回读一遍才知道是什么。 #}
+    <thead><tr><th style="white-space:nowrap">赛题点名的</th>
+      <th>本 run 的状态</th><th>证据在哪</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="t" style="white-space:nowrap"><b>公告 / 扫描件 / 复杂表格</b></td>
+        <td class="t">
+          输入 <code>{{ scope.data_dir or '(未记录)' }}</code> ——
+          <b>{{ scope.n_docs }} 份 / {{ scope.n_pages }} 页</b>{% if scope.n_dup_extra %}（其中 <b>{{ scope.n_dup_extra }} 份</b>与另一份 sha256 相同，实为 <b>{{ scope.n_uniq_docs }} 份不同文档</b>，见<a href="/library?run={{ run_id }}">文档库</a>）{% endif %}，逐页路由：
+          文本层 {{ scope.with_text }} 页 ·
+          <b>{{ scope.scanned }} 页无可靠文本层</b>（走 OCR/视觉通道）·
+          <b>{{ scope.table_pages }} 页表格页</b> ·
+          <b>{{ scope.mixed_pages }} 页混合页</b>（正文与表格同页）
+        </td>
+        <td class="t small">份数与页数见 <code>runs/{{ run_id }}/manifest.json</code>
+          的 <code>input_files</code>；逐页 <code>route</code> 见
+          <code>pages/index.json</code>，明细见
+          <a href="/extract?run={{ run_id }}">抽取工作台</a></td>
+      </tr>
+      {% for f in scope.families %}
+      <tr>
+        <td class="t" style="white-space:nowrap"><b>{{ f.label }}</b>字段</td>
+        <td class="t">
+          {{ '√' if f.n_facts else '○' }}
+          schema 定义 <b>{{ f.n_fields }}</b> 个（{{ f.field_names }}）；
+          本 run 命中 <b>{{ f.n_facts }}</b> 条
+        </td>
+        <td class="t small"><code>configs/metrics.yaml</code> 的
+          <code>{{ f.category }}</code> 类目；命中的每一条都能在下方
+          <a href="/facts?run={{ run_id }}#facts">事实清单</a>里点开，
+          看到它的原文、页码与抽取通道</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="small" style="margin-top:7px">
+    三类字段合计命中 <b>{{ scope.n_family_facts }}</b> 条，分布在
+    <b>{{ scope.n_docs_hit }} / {{ scope.n_docs }} 份</b>材料上
+    （= {{ scope.n_uniq_docs_hit }} / {{ scope.n_uniq_docs }} 份不同文档）。
+    这是<b>毛数</b>：未做质量筛选，别名表有两处已确认的误命中
+    （<code>equity_change_ratio</code> 的别名「变动比例」会命中与股权无关的同名列）；
+    未命中的材料是「确实没有可抽字段」还是「有但没抽到」，<b>没有逐份核过</b>。
+    {# ★ 视觉通道的成本闸门（2026-09-27 加）。用尽时上面的命中条数是**下界**
+       —— 闸门一旦用尽，judge.py 会静默 break 掉后面所有表格的裁决，
+       产物与日志里都不留记录。不写这一句，读者会把「抽到多少」当成
+       「材料里有多少」。见 web/app.py::vlm_budget。 #}
+    {% if scope.vlm and scope.vlm.exhausted %}
+      <br><b>⚠ 视觉通道预算已用尽</b>：本次调用
+      <b>{{ scope.vlm.used }} / {{ scope.vlm.cap }}</b> 次
+      （整页视觉扫描 {{ scope.vlm.page_scans }} 次 + 表格单元格裁决
+      {{ scope.vlm.cells }} 格）。闸门用尽后，后面还有表格<b>没有被裁决</b>。
+      因此上面三类字段的命中条数是<b>受预算约束的下界</b>，
+      不是材料里实际存在的条数。
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% if not total %}
+  <div class="note bad">
+    事实库为空。可能原因：材料中未匹配到指标别名，或全部候选都未通过单位/回读闸门。
+    请看 <a href="/extract?run={{ run_id }}">抽取工作台</a> 了解每一层的实际输出。
+  </div>
+{% else %}
+
+{# ================================================================ 首屏
+   赛题对本题写明的四条考察点（完整性 / 格式规范性 / 表格解析准确性 /
+   结果一致性）直接摆在第一屏，每条给**本次运行的实测值**。
+   顺序是刻意的：先答「考什么、考得怎么样」，再给交付物本体，最后才是明细。 #}
+<h2 style="margin-top:22px">重点考察 —— 本次运行的实测</h2>
+{% include "_criteria.html" %}
+
+{# ---------------------------------------------------- 交付物：事实清单
+   ★ 这是本题的**最终结果**，所以它必须出现在第一屏能滚到的地方。
+     此前它排在页面最底部（第 398 行），首屏全是质量汇总和图表 ——
+     正好和「马上看到想要的最终结果」相反。现在提到最前。
+
+     交付形态：结构化 JSON（facts.json）+ 表格（facts.xlsx / facts_table.json）
+     + 证据页（evidence.html）。赛题要求「不得仅提交自然语言对话记录」，
+     这几份产物就是那条要求的落点。 #}
+<h2>交付物 · 事实清单</h2>
+<div class="row" style="margin:-4px 0 10px">
+  <span class="dim2 small">
+    结构化输出落盘为
+    <code>runs/{{ run_id }}/facts/facts.json</code>（契约 v{{ contract_version }}）·
+    <code>facts.xlsx</code>（表格）·
+    <code>facts_table.json</code>（扁平表）·
+    <code>evidence.html</code>（证据页）
+  </span>
+</div>
+
+{# 分页器：显示「第 X–Y 条 / 共 N 条」，并把首末页与当前页附近的页码列出来。
+   条数多时（999 条的 run）不做省略号会撑爆一行，故只列窗口内的页码。 #}
+<div class="pager">
+  <span class="info">
+    第 <b>{{ pg.start }}–{{ pg.end }}</b> 条 ·
+    共 <b>{{ n_filtered }}</b> 条{% if n_filtered != total %}（全库 {{ total }} 条）{% endif %}
+    · 每页 {{ pg.per_page }} 条
+  </span>
+  {% if pg.page > 1 %}
+    <a href="{{ pg.url(1) }}">« 首页</a>
+    <a href="{{ pg.url(pg.page - 1) }}">‹ 上一页</a>
+  {% endif %}
+  {% set lo = [1, pg.page - 2]|max %}
+  {% set hi = [pg.n_pages, lo + 4]|min %}
+  {% for p in range(lo, hi + 1) %}
+    {% if p == pg.page %}
+      <span class="pg cur">{{ p }}</span>
+    {% else %}
+      <a href="{{ pg.url(p) }}">{{ p }}</a>
+    {% endif %}
+  {% endfor %}
+  {% if pg.page < pg.n_pages %}
+    <a href="{{ pg.url(pg.page + 1) }}">下一页 ›</a>
+    <a href="{{ pg.url(pg.n_pages) }}">末页 »</a>
+  {% endif %}
+</div>
+
+<div class="panel tight">
+<div class="tablewrap">
+<table>
+<thead><tr>
+  <th>#</th><th>来源</th><th>指标</th><th style="text-align:right">数值</th><th>单位</th>
+  <th>主体</th><th>期间</th><th>置信度</th><th>原文片段</th><th></th>
+</tr></thead>
+<tbody>
+{% for f in facts %}
+<tr {% if selected and f.fact_id == selected.fact_id %}style="background:#1f6feb18"{% endif %}>
+  <td class="dim2 small mono">{{ f.fact_id.split('_')[-1][:6] }}</td>
+  <td><span class="tag {{ f.layer_tag }}">{{ f.layer_tag }}</span></td>
+  <td><b>{{ f.metric }}</b>{% if f.needs_review %} <span class="review">◐</span>{% endif %}</td>
+  {# 千分位只影响**显示**：`facts.json` 里存的仍是机器读数，一个字符没动。
+     原文片段列本来就带千分位，这样两列才对得齐（见 FactView.value_display）。 #}
+  <td class="num">{{ f.value_display }}</td>
+  <td class="dim2">{{ f.unit }}</td>
+  <td class="small">{{ f.entity }}</td>
+  <td class="small mono">{{ f.period }}</td>
+  <td class="conf {% if f.confidence >= 0.9 %}hi{% elif f.confidence >= 0.7 %}mid{% else %}lo{% endif %}">
+    {{ f.confidence_pct }}</td>
+  <td class="small muted" style="max-width:340px">「{{ f.primary_quote[:58] }}{% if f.primary_quote|length > 58 %}…{% endif %}」</td>
+  <td>
+    <a href="{{ pg.url(pg.page) }}&fact_id={{ f.fact_id }}">溯源</a>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="pager">
+  <span class="info">翻页会保留当前的全部筛选条件</span>
+  {% if pg.page > 1 %}<a href="{{ pg.url(pg.page - 1) }}">‹ 上一页</a>{% endif %}
+  {% if pg.page < pg.n_pages %}<a href="{{ pg.url(pg.page + 1) }}">下一页 ›</a>{% endif %}
+</div>
+
+{# ================================================================== 折叠附页
+   ★ 从这里往下全部是**比对细节**，默认收起。
+     赛题要的是结构化输出；明细是支撑它的证据，不是主角。
+     每一条折叠的摘要行都自带一句话结论（`.fold` 的约定）——
+     折起来丢的是明细，不是信息：没有任何内容被删除，只是不再抢首屏。
+
+     顺序按「离结论的距离」排：先是能直接调节交付物的（筛选 / 单条溯源），
+     再是质量构成与冲突标记，最后才是过程性的抽取路径与归属纠正。 #}
+
+{# ---------------- 1. 筛选与逐条溯源 ----------------
+   这一折与交付物本体**直接相关**（用它挑指标、点开看原文），所以排在最前。 #}
+<details class="fold" {% if selected %}open{% endif %}>
+  <summary>
+    <span class="idx">F1</span>
+    <span class="ft">筛选与逐条溯源</span>
+    <span class="fsum">
+      按来源层 / 指标 / 需复核筛选；
+      点任一条的「溯源」看它在<b>原文哪一页哪一行</b>、三层引擎各读出了什么
+    </span>
+    <span class="cnt">{{ n_filtered }} / {{ total }} 条</span>
+  </summary>
+  <div class="fbody">
+    {# 各筛选维度**互相保留**：点「来源层」不该把已选的「指标」清掉。
+       每一组都把「另一组」的当前值带上，无值就不带。 #}
+    <div class="chips">
+      <a class="chip {% if not f_layer %}on{% endif %}"
+         href="/facts?run={{ run_id }}{% if f_metric %}&metric={{ f_metric }}{% endif %}{% if f_review %}&review=1{% endif %}">全部层</a>
+      {% for lk, lname in [('L1','文本层'),('L2','OCR'),('L3','VLM'),('L4','人工')] %}
+        <a class="chip {% if f_layer == lk %}on{% endif %}"
+           href="/facts?run={{ run_id }}&layer={{ lk }}{% if f_metric %}&metric={{ f_metric }}{% endif %}{% if f_review %}&review=1{% endif %}">{{ lname }} ({{ layer_counts.get(lk, 0) }})</a>
+      {% endfor %}
+      <a class="chip {% if f_review %}on{% endif %}"
+         href="/facts?run={{ run_id }}&review=1{% if f_metric %}&metric={{ f_metric }}{% endif %}{% if f_layer %}&layer={{ f_layer }}{% endif %}">◐ 需复核 ({{ review_count }})</a>
+    </div>
+
+    <div class="chips">
+      <a class="chip {% if not f_metric %}on{% endif %}"
+         href="/facts?run={{ run_id }}{% if f_layer %}&layer={{ f_layer }}{% endif %}{% if f_review %}&review=1{% endif %}">全部指标</a>
+      {% for m, n in metric_counts.items() %}
+        <a class="chip {% if f_metric == m %}on{% endif %}"
+           href="/facts?run={{ run_id }}&metric={{ m }}{% if f_layer %}&layer={{ f_layer }}{% endif %}{% if f_review %}&review=1{% endif %}">{{ m }} ({{ n }})</a>
+      {% endfor %}
+    </div>
+
+    {% if selected %}
+    <h3 style="margin-top:18px">溯源核验 —— <code>{{ selected.metric }}</code></h3>
+    <div class="trace">
+
+      {# ---------------- 左栏：原文 ---------------- #}
+      <div>
+        <div class="row" style="margin-bottom:8px">
+          <b>原文定位</b>
+          {% if evidence_context.loc %}
+            <span class="tag L1">{{ evidence_context.loc.match }}</span>
+            <span class="dim2 small">
+              相似度 {{ "%.2f"|format(evidence_context.loc.similarity) }}
+            </span>
+          {% endif %}
+          <span class="spacer"></span>
+          <span class="dim2 small">
+            第 {{ evidence_context.page }} 页 ·
+            <code>{{ evidence_context.doc_id }}</code>
+          </span>
+        </div>
+
+        <div class="pageframe">
+          {% if evidence_context.image_url %}
+            <img src="{{ evidence_context.image_url }}?run={{ run_id }}"
+                 alt="第 {{ evidence_context.page }} 页原文图像">
+          {% else %}
+            <div class="none">
+              该页没有渲染图<br>
+              <span class="small">（文本层页面不渲染图像以节省时间）</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="row" style="margin:10px 0 6px">
+          <b>页面原文</b>
+          <span class="dim2 small">高亮部分即该数字的证据锚点</span>
+        </div>
+        {% if evidence_context.parts %}
+          <div class="pagetext">{{ evidence_context.parts.before }}<mark>{{ evidence_context.parts.mark }}</mark>{{ evidence_context.parts.after }}</div>
+        {% else %}
+          <div class="pagetext">{{ evidence_context.page_text }}</div>
+          <div class="note warn small">未能精确定位 quote 在原文中的位置，已展示整页原文。</div>
+        {% endif %}
+      </div>
+
+      {# ---------------- 右栏：结构化字段 ---------------- #}
+      <div class="factdetail">
+        <div class="row" style="margin-bottom:12px">
+          <span class="tag {{ selected.layer_tag }}">{{ selected.source_layer }}</span>
+          {% if selected.needs_review %}<span class="tag sev-suspected">◐ 需人工复核</span>{% endif %}
+          <span class="spacer"></span>
+          <span class="dim2 small mono">{{ selected.fact_id }}</span>
+        </div>
+
+        <dl class="kv">
+          <dt>指标</dt><dd><b>{{ selected.metric }}</b></dd>
+          <dt>值</dt><dd class="big">{{ selected.value }} <span class="muted">{{ selected.unit }}</span></dd>
+          <dt>页面原文串</dt><dd>{{ selected.raw_text }}</dd>
+          <dt>主体</dt><dd>{{ selected.entity }}</dd>
+          <dt>报告期</dt><dd>{{ selected.period }} <span class="dim2">/ {{ selected.period_type }}</span></dd>
+          <dt>报表口径</dt><dd>{{ selected.statement_scope }}</dd>
+          <dt>利润口径</dt><dd>{{ selected.profit_basis }}</dd>
+          <dt>抽取器</dt><dd class="dim2">{{ selected.extractor }}</dd>
+        </dl>
+
+        <div class="row">
+          <span class="dim2 small">置信度</span>
+          <span class="conf big {% if selected.confidence >= 0.9 %}hi{% elif selected.confidence >= 0.7 %}mid{% else %}lo{% endif %}">{{ selected.confidence_pct }}</span>
+        </div>
+        <pre>{{ selected.confidence_explain }}</pre>
+
+        {% if selected.review_reason %}
+          <div class="note warn small" style="margin-top:10px">{{ selected.review_reason }}</div>
+        {% endif %}
+
+        <details open>
+          <summary>证据锚点（{{ selected.evidence|length }} 条）</summary>
+          {% for e in selected.evidence %}
+            <div class="small" style="margin-top:8px">
+              <span class="tag {{ e.source_layer.split('_')[0] if e.source_layer else 'L1' }}">
+                {{ e.source_layer }}</span>
+              第 {{ e.page }} 页
+              <div class="pagetext" style="max-height:130px;margin-top:5px">「{{ e.quote }}」</div>
+            </div>
+          {% endfor %}
+        </details>
+
+        <details>
+          <summary>三层引擎各自的读数（{{ selected.channel_readings|length }} 条）</summary>
+          {% if selected.channel_readings %}
+            <table class="compact" style="margin-top:8px">
+              <thead><tr><th>通道</th><th>读到的值</th><th>置信度</th></tr></thead>
+              <tbody>
+              {% for c in selected.channel_readings %}
+                <tr>
+                  <td><span class="tag L2">{{ c.channel }}</span></td>
+                  <td class="mono">{{ c.raw_text or '—' }}</td>
+                  <td class="mono">{{ "%.2f"|format(c.confidence or 0) }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <div class="dim2 small" style="margin-top:8px">单源抽取，无多通道读数。</div>
+          {% endif %}
+        </details>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</details>
+
+{# ---------------- 2. 质量构成与冲突标记 ---------------- #}
+<details class="fold">
+  <summary>
+    <span class="idx">F2</span>
+    <span class="ft">质量构成与冲突标记</span>
+    <span class="fsum">
+      全库 {{ total }} 条按来源层与抽取器分解；
+      已标记同主体冲突 <b>{{ conflicts|length }}</b> 条、待人工复核
+      <b>{{ review_count }}</b> 条 —— <b>全部保留并标记，不静默挑一个用</b>
+    </span>
+    <span class="cnt">{{ total }} 条</span>
+  </summary>
+  <div class="fbody">
+
+    {# ------------------------------------------------ 底稿汇总表
+       原为六张 KPI 卡片（= SaaS 卡片套件的典型形态）。卡片把「层号」和「好坏」
+       绑死了：L1 恒绿 / L2 恒黄 / L3 恒红，与数据无关 —— 层号是**来源**，
+       不是质量评级。底稿表让读者自己看「条数」和「依据」，不预设判断。
+       记号列：√ 常态通过 / ◐ 须过闸门或需人看 / ○ 待人工 / × 冲突。 #}
+    <table class="ledger">
+      <thead><tr>
+        <th>索引</th><th>项目</th><th class="n">条数</th><th class="mk">记号</th><th>依据</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="idx">R1·a</td><td class="t">文本层直读</td>
+          <td class="n">{{ layer_counts.get('L1', 0) }}</td>
+          <td class="mk mk-v">√</td><td class="t">结构定位，置信度 0.95 起</td></tr>
+        <tr><td class="idx">R1·b</td><td class="t">OCR 识别</td>
+          <td class="n">{{ layer_counts.get('L2', 0) }}</td>
+          <td class="mk mk-h">◐</td><td class="t">置信度 0.80 起，须过闸门</td></tr>
+        <tr><td class="idx">R1·c</td><td class="t">VLM 视觉读数</td>
+          <td class="n">{{ layer_counts.get('L3', 0) }}</td>
+          <td class="mk mk-h">◐</td><td class="t">须过 quote 回读闸门</td></tr>
+        <tr><td class="idx">R1·d</td><td class="t">待人工复核</td>
+          <td class="n">{{ review_count }}</td>
+          <td class="mk mk-o">○</td><td class="t">低置信或存在内部冲突</td></tr>
+        <tr><td class="idx">R1·e</td><td class="t">同主体指标冲突</td>
+          <td class="n">{{ conflicts|length }}</td>
+          <td class="mk {% if conflicts %}mk-x{% else %}mk-v{% endif %}">
+            {{ '×' if conflicts else '√' }}</td>
+          <td class="t">相差 ≥10 倍，需人工判定</td></tr>
+        <tr class="tot"><td class="idx"></td><td class="t">合计</td>
+          <td class="n">{{ total }}</td><td class="mk"></td>
+          <td class="t">全库条目，仅 × 上红</td></tr>
+      </tbody>
+    </table>
+
+    {# ---------------------------------------------------------- 冲突清单
+       ★ 这里其实混着**两种性质完全不同**的记录，靠 `kind` 分流：
+
+         · 同表冲突（无 kind）：同一指标在同一张表里出现两个取值。可能是抽取错误，
+           也可能是文档确实记了两次事件 —— 程序无法自行判断，所以两条都留、都标记。
+         · 量纲闸门（kind == 'scale_implausible'）：后一个值是**锚点指标**
+           （总资产 / 营业收入）的读数，不是同一指标的第二个取值。原先不分流，
+           页面把「货币资金 20.6 万亿」和「总资产 2.83 万亿」并排印成
+           「同一科目有两个值、相差 7.29 倍」—— 这句话是**错的**，
+           真相是货币资金超过了同期总资产，属量纲错误（详见
+           agent/evidence/store.py 里那次货币资金被错算 100 倍的事故）。
+           评委顺着页面读会得出一个不存在的结论，所以必须分开写。 #}
+    {% if conflicts %}
+    {% set scale_hits = conflicts|selectattr('kind', 'equalto', 'scale_implausible')|list %}
+    {% set same_table = conflicts|rejectattr('kind', 'equalto', 'scale_implausible')|list %}
+
+    {% if same_table %}
+    <div class="note warn">
+      <b>检测到 {{ same_table|length }} 处同主体指标差异</b> —— 相关事实已自动标记为「需复核」。
+      这可能是抽取错误，也可能是同一文档确实记载了多次事件，程序无法自行判断，
+      因此<b>两条都会保留并标记</b>，不静默挑一个用。
+      <ul style="margin:8px 0 0 18px">
+      {% for c in same_table %}
+        {# ⚠️ 必须用 c['values'] 而不是 c.values ——
+           后者会解析成 dict 的 .values **方法**，报
+           "TypeError: 'builtin_function_or_method' object is not iterable"。
+           Jinja2 的属性查找优先于键查找，因此凡是键名与 dict 方法同名
+           （values / items / keys / get / copy），都必须用下标访问。 #}
+        <li><code>{{ c.metric }}</code>（主体 <b>{{ c.entity }}</b>）相差 <b>{{ c.ratio }}×</b>：
+            {{ c['values']|join(' vs ') }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if scale_hits %}
+    <div class="note warn">
+      <b>量纲合理性闸门标记了 {{ scale_hits|length }} 条读数</b> ——
+      这些读数<b>超过了恒等式允许的上限</b>，是量纲（单位/倍数）问题，不是「同一科目有两个值」。
+      相关事实已标记为「需复核」，但<b>未被删除</b>：闸门只负责标出可疑，不替人做取舍。
+      <ul style="margin:8px 0 0 18px">
+      {% for c in scale_hits %}
+        <li><code>{{ c.metric }}</code>（主体 <b>{{ c.entity }}</b> · {{ c.period }}）
+            读得 <b>{{ c['values'][0] }}</b>，是同期锚点指标
+            （总资产 / 营业收入，读得 {{ c['values'][1] }}）的
+            <b>{{ c.ratio }}×</b> —— 货币资金不可能超过总资产，判定为量纲错误。</li>
+      {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {# ---------------------------------------------------------------- 图表 #}
+    {% if charts %}
+    <div class="charts pairs">
+      {% if charts.det_ratio %}
+      <div class="chart">
+        <h4>抽取路径：确定性 vs 模型</h4>{{ charts.det_ratio }}
+        <p class="cap">能从原文结构直接定位的不交给模型「读」—— 这是全项目的主张。</p>
+      </div>
+      {% endif %}
+      {% if charts.layer_mix %}
+      <div class="chart">
+        <h4>来源层构成</h4>{{ charts.layer_mix }}
+        <p class="cap">基于<b>全库 {{ total }} 条</b>统计，不随筛选与翻页变化。</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <details class="ev">
+      <summary>提取质量明细<span class="cnt">置信度分布 · 指标构成 · 复核原因</span></summary>
+      <div class="inner charts pairs">
+        {% if charts.conf_hist %}
+        <div class="chart"><h4>置信度分布</h4>{{ charts.conf_hist }}
+          <p class="cap">取值集中在高段说明没有靠低置信条目凑数。</p></div>
+        {% endif %}
+        {% if charts.metric_bar %}
+        <div class="chart"><h4>指标条目数 Top 12</h4>{{ charts.metric_bar }}</div>
+        {% endif %}
+        {% if charts.review_bar %}
+        <div class="chart"><h4>待复核原因分类</h4>{{ charts.review_bar }}
+          <p class="cap">明细在上方「事实清单」中按「需复核」筛选可见。</p></div>
+        {% endif %}
+      </div>
+    </details>
+    {% endif %}
+  </div>
+</details>
+
+{# ---------------- 3. 抽取路径构成 ---------------- #}
+{% if sources %}
+<details class="fold">
+  <summary>
+    <span class="idx">F3</span>
+    <span class="ft">抽取路径构成 —— 确定性优先</span>
+    <span class="fsum">
+      确定性 <b>{{ sources.deterministic }}</b> 条 · 模型 <b>{{ sources.model }}</b> 条 ·
+      确定性占 <b>{{ "%.0f%%"|format(sources.deterministic_ratio * 100) }}</b>
+      —— 能从原文结构直接定位的，不交给模型「读」
+    </span>
+    <span class="cnt">{{ sources.by_extractor|length }} 类抽取器</span>
+  </summary>
+  <div class="fbody">
+  <table class="compact">
+    <thead><tr><th>抽取器</th><th>条数</th><th>性质</th></tr></thead>
+    <tbody>
+    {% for name, n in sources.by_extractor.items() %}
+      <tr>
+        <td class="mono">{{ name }}</td>
+        <td class="mono">{{ n }}</td>
+        <td>
+          {% if name in ('table_grid', 'rule_engine') %}
+            <span class="tag L1">确定性</span>
+            <span class="dim2 small">
+              {%- if name == 'table_grid' %}行列定位，锚点到单元格 bbox
+              {%- else %}别名定位，锚点到原文 span{% endif -%}
+            </span>
+          {% else %}
+            <span class="tag L3">模型读数</span>
+            <span class="dim2 small">必须过 quote 回读闸门</span>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {# ★ 这一块原先断言「本 run 是离线复跑（--offline），VLM 整页扫描未命中缓存因而
+     全部失败」—— 把一种**可能的原因**写成了事实。实测：`--mock` 跑出来的 run
+     同样 model==0，页面上却照样印着「本 run 是离线复跑」，而那个 run 根本没走
+     --offline。读数（model==0）是现算的，原因不是，所以只能列成可能原因。
+     判据是 sources.model，不是「我们记得这个 run 怎么跑的」。 #}
+  {% if sources.total and sources.model == 0 %}
+  <div class="note warn small" style="margin-top:8px">
+    ◐ <b>本次运行的模型路径事实为 0 —— 不能读成「模型不需要」</b>：
+    这个比例此时不构成「两条路径并存」的证据。常见原因是<b>离线复跑</b>
+    （<code>--offline</code>，VLM 整页扫描未命中缓存而全部失败）或 <code>--mock</code> 运行
+    —— 两者都会让模型读数一条也不产生；要看两条路径并存，需要一次联网的真实运行。
+  </div>
+  {% endif %}
+
+  {# ★ 这一块原先是一篇小论文：一个跨 run 借来的轶事（「曾实测到 73%…降到 29%」）、
+     一句方法论口号（「让模型去做只有它才能做的事」），外加一整段教读者
+     「怎么读这个比例」。读者要的是下面这几个数，不是我们为什么这样设计。
+     ★ 「互证项里有几条冲突恒为 0」这个**必要条件**必须留在页面上（它是实话，
+     而且不写出来上面那个百分比会被当成「模型读数已被验证」），但压成一个括号。 #}
+  {% if crosscheck and crosscheck.model_values %}
+  <div class="note small" style="margin-top:10px">
+    <b>双路互证</b>：模型读到 <b>{{ crosscheck.model_values }}</b> 个取值，其中
+    <b>{{ crosscheck.confirmed }}</b> 个（{{ "%.0f%%"|format(crosscheck.confirmed_ratio * 100) }}）
+    被确定性路径独立复现；仅模型读到的 <b>{{ crosscheck.model_only }}</b> 个<b>没有任何独立校验</b>。
+    <span class="dim2">
+      （「互证项里有几条冲突」按定义为 0，因此不作为测量结果列示。）
+    </span>
+  </div>
+  {% endif %}
+  </div>
+</details>
+{% endif %}
+
+{# ---------------- 4. 主体归属纠正 ---------------- #}
+{% if reattribution %}
+<details class="fold">
+  <summary>
+    <span class="idx">F4</span>
+    <span class="ft">主体归属纠正 —— 改了就要留痕</span>
+    <span class="fsum">
+      <b>{{ reattribution|length }}</b> 条事实的主体被改写，每一条都能追溯到具体行列；
+      不纠正的话，被担保人/子公司的数字会被记成披露主体的财务数据，且<b>不报错</b>
+    </span>
+    <span class="cnt">{{ reattribution|length }} 条</span>
+  </summary>
+  <div class="fbody">
+  <div class="note info small">
+    文本层规则抽取把<b>整页</b>事实挂在文档主体名下。表格里常常一行一个其他主体
+    （被担保人、子公司、股东），那些值其实不是本主体的 ——
+    修正前它们会被记成披露主体的财务数据，而且<b>不报错</b>。
+    下面每一条都能追溯到具体行列。
+  </div>
+  <div class="tablewrap" style="max-height:320px">
+    <table class="compact">
+      <thead><tr><th>页</th><th>位置</th><th>指标</th><th>原文</th>
+        <th>原主体</th><th>改为</th></tr></thead>
+      <tbody>
+      {% for x in reattribution[:80] %}
+        <tr>
+          <td class="mono dim2">{{ x.page }}</td>
+          <td class="mono dim2">r{{ x.row }}c{{ x.col }}</td>
+          <td class="mono">{{ x.metric }}</td>
+          <td class="mono">{{ x.raw_text }}</td>
+          <td class="dim2">{{ x['from'] }}</td>
+          <td>{{ x.to }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if reattribution|length > 80 %}
+  <div class="small dim2" style="margin-top:6px">
+    仅展示前 80 条，完整记录见 <code>facts/entity_reattribution.json</code>。
+  </div>
+  {% endif %}
+  </div>
+</details>
+{% endif %}
+
+{% endif %}
+{% endblock %}

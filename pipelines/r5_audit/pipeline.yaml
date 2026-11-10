@@ -1,0 +1,16 @@
+name: r5_audit
+description: >
+  R5 研究报告纠错核查 —— 五类错误的确定性规则引擎。
+  以 R1 的事实库为唯一数字真源，独立重算后比对，
+  不使用「让大模型通读找错」的方式。
+
+stages:
+  - name: check
+    run: pipelines.r5_audit.check:run
+    description: E1 单位 / E2 倍数 / E3 口径 / E4 引用 / E5 算术 五类核查
+    produces:
+      - audit/audit.json
+      - audit/audit_report.md
+      - audit/audit_summary.json
+      - audit/revision_table.xlsx
+      - audit/annotated_draft.html

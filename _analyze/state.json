@@ -1,0 +1,14 @@
+{
+  "run_id": "web-20261017-095429",
+  "pid": 16256,
+  "started_at": "2026-10-17T01:54:34+00:00",
+  "mock": false,
+  "resume": false,
+  "inbox": "C:\\Users\\HUAWEI\\Desktop\\1\\inbox",
+  "command": "D:\\Python\\python.exe -m agent.cli run full --data C:\\Users\\HUAWEI\\Desktop\\1\\inbox --run-id web-20261017-095429 --runs-root C:\\Users\\HUAWEI\\Desktop\\1\\runs",
+  "r4_provisioned": {
+    "comps": 0,
+    "market": 0
+  },
+  "log": "C:\\Users\\HUAWEI\\Desktop\\1\\_analyze\\logs\\web-20261017-095429.log"
+}

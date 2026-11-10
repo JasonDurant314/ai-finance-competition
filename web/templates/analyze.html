@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+{% block title %}开始分析 — 金融投研智能体{% endblock %}
+{% block content %}
+
+<div class="pagehead">
+  <h1>开始分析</h1>
+  <div class="sub">
+    PDF 放进 <code>{{ inv.inbox }}/raw/</code>，点一次「开始分析」——
+    用<b>真实模型</b>跑完 R1 → R4 → R5，产物与命令行 <code>agent run</code> 同源。
+  </div>
+</div>
+
+{# ------------------------------------------------------------ 材料清单 #}
+<h2>一、收件目录里有什么</h2>
+
+<div class="cards">
+  <div class="card {% if inv.pdf_count %}ok{% else %}warn{% endif %}">
+    <div class="k">PDF 材料</div><div class="v">{{ inv.pdf_count }}</div>
+    <div class="note">{{ inv.est_pages }} 页（{{ inv.pages_known }} 份已数出页数）</div></div>
+  <div class="card {% if inv.drafts %}ok{% endif %}">
+    <div class="k">研究报告草稿</div><div class="v">{{ inv.drafts }}</div>
+    <div class="note">R5 纠错核查用{% if not inv.drafts %}（缺失时退化为合成草稿）{% endif %}</div></div>
+  <div class="card {% if inv.r4_ready %}ok{% else %}warn{% endif %}">
+    <div class="k">R4 输入</div>
+    <div class="v">{{ inv.comps }} / {{ inv.market }}</div>
+    <div class="note">可比公司 / 市场利率{% if not inv.r4_ready %} —— 启动时自动补齐{% endif %}</div></div>
+  <div class="card">
+    <div class="k">预计耗时</div><div class="v">≈{{ inv.est_minutes }} 分</div>
+    <div class="note">按 185 页 ≈18 分钟实测折算</div></div>
+  <div class="card">
+    <div class="k">预计费用</div><div class="v">≈¥{{ "%.2f"|format(inv.est_cny) }}</div>
+    <div class="note">按 185 页 ≈¥0.96 实测折算</div></div>
+</div>
+
+{% if inv.pdfs %}
+<div class="panel tight">
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>材料</th><th>相对路径</th><th style="text-align:right">大小</th>
+      <th style="text-align:right">页数</th></tr></thead>
+    <tbody>
+    {% for p in inv.pdfs[:40] %}
+      <tr><td>{{ p.name }}</td><td class="dim2 small"><code>{{ p.rel }}</code></td>
+        <td style="text-align:right">{{ p.size_mb }} MB</td>
+        <td style="text-align:right">{{ p.pages if p.pages else '—' }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% if inv.pdfs|length > 40 %}
+<div class="dim2 small">… 另有 {{ inv.pdfs|length - 40 }} 份未列出</div>
+{% endif %}
+{% else %}
+<div class="note warn">
+  <b>收件目录里还没有 PDF</b><br>
+  把年报 / 公告 PDF 放进 <code>{{ inv.raw_dir }}</code>（直接放在
+  <code>{{ inv.inbox }}</code> 下也可以），刷新本页即可。
+</div>
+{% endif %}
+
+{% if not inv.drafts %}
+<div class="note info">
+  <b>没有研究报告草稿</b>：R5 会退化为「自动合成一份含已知错误的演示草稿」，
+  流程照跑，但<b>覆盖率与准确率失去意义</b>。要真实评测，把草稿放进
+  <code>{{ inv.inbox }}/drafts/</code>（<code>.md</code> / <code>.txt</code>）。
+</div>
+{% endif %}
+
+{% if inv.codes_without_comps %}
+<div class="note warn">
+  <b>R4 可能取不到可比公司快照</b><br>
+  材料文件名里出现了这些主体代码：<code>{{ inv.codes_without_comps|join('、') }}</code>，
+  但没有对应的快照（现有快照：<code>{{ inv.comps_targets|join('、') or '无' }}</code>）。
+  R4 的快照按主体命名（<code>&lt;代码&gt;_&lt;年份&gt;A.json</code>），缺了它会<b>显式失败</b> ——
+  这是刻意的：宁可失败，也不让报告里出现看起来正常、其实是编造的倍数。<br>
+  补齐方式：<code>python tools/fetch_comps.py --target {{ inv.codes_without_comps[0] }} --as-of &lt;报告期&gt;</code>
+  （从公开接口取真实行情与年报财务，并与人工核对真值比对后才落盘）。
+</div>
+{% endif %}
+
+{# 费用一节压成一行读数：基准数字与「以实测为准」的承诺留，
+   「这是刻意的 / LLM 只做只有它能做的事」是替自己表白，删。 #}
+<div class="note info small">
+  估算基准 185 页 ≈18 分钟 ≈¥0.96（实测）。文本层干净、无需表格裁决的材料
+  可能一次模型都不调用 —— 费用与耗时以实测为准。
+</div>
+
+{# ------------------------------------------------------------ 启动 #}
+<h2>二、开始分析</h2>
+
+{% if error %}
+<div class="note bad"><b>没有启动</b><br>{{ error }}</div>
+{% endif %}
+
+{% if task.phase == 'running' %}
+<div class="note info">
+  已有一个分析在跑（<code>{{ task.run_id }}</code>）。同一时刻只允许一个任务 ——
+  真实模型跑一份年报约 18 分钟，并发只会让「现在到底在跑什么」变得含糊。
+</div>
+{% elif task.resumable %}
+<div class="note warn">
+  <b>上次的运行中断了（run <code>{{ task.run_id }}</code>），但进度没丢。</b><br>
+  已完成 {{ task.completed|length }} / {{ task.stages|length }} 个阶段，
+  断点与已调用过的模型结果都在 run 目录里。<b>不要新建</b>（那会把做过的事再做一遍）——
+  点下面这个按钮接着跑：跳过的阶段不会重算，模型调用直接命中缓存。
+  {% if task.failed %}<br>上次失败在阶段：<code>{{ task.failed|join('、') }}</code>{% endif %}
+  <form method="post" action="/analyze/resume" style="margin-top:10px">
+    <div class="row">
+      <input type="hidden" name="run_id" value="{{ task.run_id }}">
+      <label class="small">
+        <input type="checkbox" name="confirm" value="1" required>
+        我知道续跑会继续调用真实模型（只补没做完的部分）
+      </label>
+      <button type="submit">▶ 继续未完成的运行（{{ task.run_id }}）</button>
+    </div>
+  </form>
+</div>
+{% endif %}
+
+{% if task.phase != 'running' %}
+<form class="stack" method="post" action="/analyze/start">
+  <div class="row">
+    <label class="small dim">run 名</label>
+    <input type="text" name="run_id" value="{{ default_run_id }}" size="30"
+           placeholder="留空则自动生成" class="mono">
+    <span class="dim2 small">产物落在 <code>runs/&lt;run 名&gt;/</code>，完成后可在上方运行选择器里切换</span>
+  </div>
+  <div class="row">
+    <label class="small">
+      <input type="checkbox" name="confirm" value="1" required>
+      我知道这会调用<b>真实模型</b>（DeepSeek）并产生 token 费用
+      {% if inv.pdf_count %}，本次约 ¥{{ "%.2f"|format(inv.est_cny) }}、约 {{ inv.est_minutes }} 分钟{% endif %}
+    </label>
+  </div>
+  <div class="row">
+    <button type="submit" {% if not inv.pdf_count %}disabled{% endif %}>▶ 开始分析</button>
+    <button type="button" class="ghost" id="probe">测试模型连接</button>
+    <span class="dim small" id="probeout">真实全流程要跑十几分钟，先花十几 token 确认模型可用</span>
+  </div>
+  <div class="row">
+    <span class="dim small">
+      与命令行 <code>agent run full --data inbox --run-id &lt;名字&gt;</code> 是同一条路径，
+      Web 端不另起一套执行逻辑。
+    </span>
+  </div>
+</form>
+
+<script>
+// 「测试模型连接」：一次最小真实调用。不做任何自动触发 ——
+// 每次页面加载都打一次模型既不礼貌也花钱。
+(function () {
+  const btn = document.getElementById("probe");
+  const out = document.getElementById("probeout");
+  if (!btn || !out) return;
+  btn.addEventListener("click", function () {
+    btn.disabled = true;
+    out.textContent = "正在调用模型…";
+    fetch("/analyze/probe-model", {method: "POST"})
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        out.textContent = d.ok
+          ? "√ 模型可用：" + d.provider + " / " + d.model + " · " +
+            d.elapsed_s + "s · " + d.tokens + " token · 回复「" + d.text + "」"
+          : "× 模型不可用：" + d.error;
+      })
+      .catch(function (e) { out.textContent = "× 探测失败：" + e; })
+      .finally(function () { btn.disabled = false; });
+  });
+})();
+</script>
+{% endif %}
+
+{# ------------------------------------------------------------ 进度 #}
+<h2>三、进度</h2>
+
+<div id="job" class="panel" data-run="{{ task.run_id or '' }}">
+  <div class="row">
+    <span id="phase" class="pill {{ task.run_status or ('partial' if task.phase == 'interrupted' else '') }}">
+      {% if task.phase == 'running' %}▶ 运行中
+      {% elif task.phase == 'finished' %}√ 已完成
+      {% elif task.phase == 'interrupted' %}⏸ 已中断（可续跑）
+      {% elif task.phase == 'failed' %}× 失败
+      {% else %}— 尚未启动{% endif %}
+    </span>
+    <span class="meta">run <b id="runid">{{ task.run_id or '—' }}</b></span>
+    <span class="meta">耗时 <b id="elapsed">{{ task.elapsed_s }}s</b></span>
+    <span class="meta">模型调用 <b id="calls">{{ task.run_summary.llm_calls if task.run_summary else 0 }}</b> 次</span>
+    <span class="meta">Token <b id="tokens">{{ "{:,}".format(task.run_summary.total_tokens) if task.run_summary else 0 }}</b></span>
+    <span class="meta">费用 <b id="cost">¥{{ "%.4f"|format(task.run_summary.total_cost_cny) if task.run_summary else "0.0000" }}</b>
+      <span class="dim2 small" id="livenote">{% if task.phase == 'running' %}（实时，来自 trace）{% endif %}</span></span>
+  </div>
+  <div class="bar"><span id="pbar" style="width:{{ (task.progress * 100)|round(1) }}%"></span></div>
+
+  <ol id="stages" class="stages">
+    {% for s in task.stages %}
+      {% set state = 'done' if s.name in task.completed else
+                     ('failed' if s.name in task.failed else
+                     ('skipped' if s.name in task.skipped else
+                     ('running' if s.name == task.current else 'pending'))) %}
+      <li class="stage {{ state }}" data-stage="{{ s.name }}">
+        <span class="ic">{% if state == 'done' %}√{% elif state == 'failed' %}×
+          {% elif state == 'skipped' %}○{% elif state == 'running' %}▶{% else %}·{% endif %}</span>
+        <code>{{ s.name }}</code>
+        <span class="dim2 small">{{ s.description }}</span>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <div id="links" class="row" style="margin-top:12px">
+    {% if task.phase == 'finished' %}
+      <a class="chip on" href="{{ task.links.library }}">文档库</a>
+      <a class="chip on" href="{{ task.links.extract }}">抽取工作台</a>
+      <a class="chip on" href="{{ task.links.facts }}">事实库溯源</a>
+      <a class="chip on" href="{{ task.links.valuation }}">估值建模</a>
+      <a class="chip on" href="{{ task.links.audit }}">核查报告</a>
+      <a class="chip" href="{{ task.links.runs }}">运行与复现</a>
+    {% endif %}
+  </div>
+
+  <details {% if task.phase in ('running', 'failed') %}open{% endif %} style="margin-top:12px">
+    <summary class="dim small">运行日志（末尾 40 行）</summary>
+    {# `marks` 而不是裸输出：日志行里的 ✅ / ⚠ 是管线打给终端的彩色 emoji，
+       全站别处一律用记号（√ / ◐），这里不能是唯一的例外。
+       同时它会转义 —— 日志里出现 `<` 时不会撕开标签。 #}
+    <pre id="log" class="mono logtail">{% for line in task.log %}{{ line|marks }}
+{% endfor %}</pre>
+  </details>
+</div>
+
+<script>
+// 进度轮询：只读 /analyze/status 的 JSON，不引入任何前端构建链与 CDN
+//（断网也能演示，与整个项目的取舍一致）。
+(function () {
+  const ICON = {done: "√", failed: "×", skipped: "○", running: "▶", pending: "·"};
+  const PHASE = {idle: "— 尚未启动", running: "▶ 运行中",
+                 finished: "√ 已完成", interrupted: "‖ 已中断（可续跑）",
+                 failed: "× 失败"};
+  const box = document.getElementById("job");
+  if (!box) return;
+
+  function paint(s) {
+    document.getElementById("runid").textContent = s.run_id || "—";
+    document.getElementById("elapsed").textContent = s.elapsed_s + "s";
+    const rs = s.run_summary || {};
+    document.getElementById("tokens").textContent =
+      (rs.total_tokens || 0).toLocaleString();
+    document.getElementById("cost").textContent =
+      "¥" + (rs.total_cost_cny || 0).toFixed(4);
+    const calls = document.getElementById("calls");
+    if (calls) calls.textContent = rs.llm_calls || 0;
+    document.getElementById("pbar").style.width = Math.round(s.progress * 100) + "%";
+    const ph = document.getElementById("phase");
+    ph.textContent = PHASE[s.phase] || s.phase;
+    ph.className = "pill " + (s.run_status || "");
+    const done = new Set((s.completed || []).concat(s.skipped || []));
+    const failed = new Set(s.failed || []);
+    document.querySelectorAll("#stages .stage").forEach(function (li) {
+      const n = li.dataset.stage;
+      const st = failed.has(n) ? "failed"
+        : done.has(n) ? (s.skipped.includes(n) ? "skipped" : "done")
+        : (n === s.current ? "running" : "pending");
+      li.className = "stage " + st;
+      li.querySelector(".ic").textContent = ICON[st];
+    });
+    const lg = document.getElementById("log");
+    if (lg && s.log) lg.textContent = s.log.join("\n");
+    const links = document.getElementById("links");
+    if (links && s.phase === "finished" && !links.dataset.filled) {
+      links.dataset.filled = "1";
+      const names = {library: "文档库", extract: "抽取工作台", facts: "事实库溯源",
+                     valuation: "估值建模", audit: "核查报告", runs: "运行与复现"};
+      links.innerHTML = Object.keys(names).map(function (k) {
+        return '<a class="chip' + (k === "runs" ? "" : " on") + '" href="' +
+               s.links[k] + '">' + names[k] + "</a>";
+      }).join("");
+    }
+  }
+
+  function tick() {
+    fetch("/analyze/status", {cache: "no-store"})
+      .then(function (r) { return r.json(); })
+      .then(function (s) {
+        paint(s);
+        if (s.phase === "running") setTimeout(tick, 3000);
+      })
+      .catch(function () { setTimeout(tick, 6000); });
+  }
+
+  const first = {{ 'true' if task.phase == 'running' else 'false' }};
+  if (first) setTimeout(tick, 1500);
+})();
+</script>
+{# 原 297-305 是一段「这一页与其它页面的关系」自述：本页负责启动、别页负责解读。
+   那是导航该做的事，不是正文该说的话 —— 顶栏已经写着六个入口，正文再讲一遍
+   等于让读者读一份说明书。整段删。 #}
+
+{% endblock %}
+

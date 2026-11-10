@@ -1,0 +1,58 @@
+{
+  "contract_version": "1.0.0",
+  "run_id": "demo",
+  "draft_doc_id": "synthetic_demo_draft",
+  "checked_at": "2026-10-16T17:22:06.184166Z",
+  "per_draft_metrics": [],
+  "findings": [
+    {
+      "finding_id": "E1-001",
+      "error_type": "E1_unit",
+      "severity": "confirmed",
+      "location": {
+        "section": "二、经营业绩",
+        "char_range": [
+          137,
+          153
+        ],
+        "page": null,
+        "quote": "收入 120.04 亿元，同比增长 3.20%；\n实现归属于母公司股东的净利润 2456000000.00 万元。\n\n> 上述数据引自公司 2025 年度报告。\n\n## 三、盈利质量\n\n公司扣"
+      },
+      "draft_id": "synthetic_demo_draft",
+      "reported_value": "2456000000.00万元",
+      "correct_value": "2456000000.00 元",
+      "source_evidence": [
+        "evd_94be57767e7dac3b"
+      ],
+      "caliber": "net_profit_parent|元|2025A|consolidated|net_parent",
+      "reason": "数值 2456000000.00 与原始材料一致，但单位标注为 『万元』，原始材料为『元』。换算后相差 10000.0000 倍",
+      "suggestion": "改为『2456000000.00 元』",
+      "confidence": 0.95,
+      "detector": "rule.E1.unit_mismatch"
+    },
+    {
+      "finding_id": "E4-001",
+      "error_type": "E4_citation",
+      "severity": "suspected",
+      "location": {
+        "section": "4. 控股股东质押情况：",
+        "char_range": [
+          413,
+          424
+        ],
+        "page": null,
+        "quote": "期风险；\n3. 控股股东质押比例较高，需关注质押风险。\n4. 控股股东质押情况：15,230.00万股（来源：evd_176a7948fa6fced8）。\n"
+      },
+      "draft_id": "synthetic_demo_draft",
+      "reported_value": "15,230.00万股",
+      "correct_value": null,
+      "source_evidence": [],
+      "caliber": null,
+      "reason": "报告值 15,230.00万股 在已提交的原始材料中无任何来源记录",
+      "suggestion": "补充出处（公告名称/报告期/页码），或删除该数字",
+      "confidence": 0.55,
+      "detector": "rule.E4.unsourced_number"
+    }
+  ],
+  "metrics": null
+}

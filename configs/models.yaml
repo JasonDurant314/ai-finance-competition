@@ -1,0 +1,130 @@
+# ==========================================================================
+# 模型与角色配置
+# --------------------------------------------------------------------------
+# 主模型：DeepSeek-V4.1-Flash（官方模型名 deepseek-flash）
+#   * 原生多模态视觉理解 —— 三层解析引擎的第三层「VLM 裁判」复用同一模型
+#   * 1M 上下文，最大输出 384K
+#   * 思考档位 low / high / max 可按角色分档
+# API Key 只从环境变量读取，绝不写入本文件或任何产物。
+# ==========================================================================
+
+provider:
+  type: openai_compat
+  name: deepseek
+  base_url: https://api.deepseek.com/v1
+  # 默认展开为空串：mock / offline 模式无需 Key。
+  # 真实调用时若为空，ModelGateway 会抛出 MissingCredentialError 并给出配置指引。
+  api_key: ${DEEPSEEK_API_KEY:-}
+  default_params: {}
+
+# ---------------------------------------------------------------------------
+# 多角色配置
+#
+# ⚠️⚠️ 关于 thinking（思考模式）—— 这是本项目最重要的模型配置决策
+#
+#   DeepSeek 官方文档明确：思考模式下 temperature **不生效**
+#   （"setting these parameters will not trigger an error but will also
+#     have no effect"），而思维链本身是随机的。
+#
+#   后果：开着思考 + temperature=0，同一输入两次运行仍可能不同 ——
+#        直接违背赛题的「运行结果可复现」要求。
+#
+#   因此本项目**默认关闭思考**（thinking: false）：
+#     · 抽取、裁判类任务本质是"读出页面上的字符"，不需要思维链
+#     · 关闭后 temperature=0 生效，产物逐字节可复现
+#     · 顺带解决"max_tokens 被思考耗尽 → content 为空但不报错"的问题
+#       （实测：开思考时一句简单问话就烧掉 30–3000 个推理 token）
+#
+#   仅 critic / planner 开启思考：它们产出的是**判断与计划**，
+#   不直接作为数字进入产物，且结论会经过确定性校验兜底。
+#
+# ⚠️ 关于 max_tokens：即使关闭思考也要留有余量（JSON 长输出可能较大）。
+# ---------------------------------------------------------------------------
+roles:
+  default:
+    model: deepseek-flash
+    temperature: 0.0
+    max_tokens: 16384
+    thinking: false
+    top_p: 1.0
+
+  # 字段抽取：量大、任务确定（读出页面上的字符）→ 关闭思考，最快最省
+  extractor:
+    model: deepseek-flash
+    temperature: 0.0
+    max_tokens: 16384
+    thinking: false
+    top_p: 1.0
+
+  # 多模态裁判：读图/读表 → 关闭思考（视觉感知不需要思维链，且要可复现）
+  vision:
+    model: deepseek-flash
+    temperature: 0.0
+    max_tokens: 16384
+    thinking: false
+    supports_vision: true
+    top_p: 1.0
+
+  # 报告撰写：需要文字质量，允许轻微随机性（0.3）
+  writer:
+    model: deepseek-flash
+    temperature: 0.3
+    max_tokens: 32768
+    thinking: false
+    top_p: 1.0
+
+  # 任务规划：需要推理，开启思考
+  planner:
+    model: deepseek-flash
+    temperature: 0.0
+    max_tokens: 32768
+    thinking: true
+    reasoning_effort: high
+    top_p: 0.95
+
+  # 复核裁决：需要最强推理，开启思考
+  critic:
+    model: deepseek-flash
+    temperature: 0.0
+    max_tokens: 49152
+    thinking: true
+    reasoning_effort: max
+    top_p: 0.95
+
+# ---------------------------------------------------------------------------
+# 预算闸门 —— 超限时优雅降级为 status=partial，而非崩溃
+# ---------------------------------------------------------------------------
+budget:
+  max_steps: 300
+  max_tokens: 3000000
+  max_wall_seconds: 2400
+  max_cost_cny: 50.0
+
+max_retries: 2
+timeout_s: 120.0
+
+# ---------------------------------------------------------------------------
+# 图片 token 折算 —— **已由 P0 实测回填**
+#
+# 实测方法（tools/p0_probe.py --tokens）：同一 prompt 发两次，
+# 一次纯文本、一次带图，`prompt_tokens` 之差即为图片折算量。
+# 这是唯一可靠的测法 —— 官方未公开图像 token 计算规则。
+#
+# 实测结果（2026-09，deepseek-flash，A4 公告页@200dpi，PNG 436KB）：
+#     单页折算 1001 token（三次测量完全一致，方差为 0）
+#     单次 VLM 调用成本约 ¥0.0048
+#     100 页全页裁决成本约 ¥0.48
+#
+# 结论：**全页 VLM 裁决在经济上完全可行**，无需为省成本而牺牲第三层。
+#       这正是「三层解析引擎」能落地的关键前提。
+# ---------------------------------------------------------------------------
+image_tokens:
+  per_page_a4_200dpi: 1001
+  measured_at: "2026-09"
+  measured_on: "agent/sample/质押_001_300339.pdf p1 @200dpi"
+  variance: 0
+  cost_per_page_cny: 0.0048
+  cost_per_100_pages_cny: 0.48
+  note: >
+    三次测量方差为 0，说明折算规则是确定性的尺寸映射，可按页数线性外推。
+    低 DPI 页面折算更少；高 DPI 页面按面积近似线性增长。

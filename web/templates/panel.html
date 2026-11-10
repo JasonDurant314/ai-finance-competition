@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>控制台 · 金融投研智能体</title>
+<link rel="stylesheet" href="/static/panel.css">
+</head>
+<body>
+
+<header class="top">
+  <span class="brand">金融投研智能体</span>
+  <span class="sub small">控制台</span>
+  <span class="grow"></span>
+  <form method="get" action="/" class="row tight">
+    <input type="hidden" name="tab" value="{{ tab }}">
+    <select name="run" aria-label="选择运行">
+      {% for r in runs %}
+        <option value="{{ r.run_id }}" {% if r.run_id == run_id %}selected{% endif %}>
+          {{ r.status_icon }} {{ r.run_id }} · {{ r.status }}
+        </option>
+      {% endfor %}
+      {% if not runs %}<option value="">（runs/ 下还没有运行）</option>{% endif %}
+    </select>
+    <button type="submit" class="ghost small">切换</button>
+  </form>
+  <span class="pill" id="phase">{{ task.phase }}{% if task.run_status %} · {{ task.run_status }}{% endif %}</span>
+  {% if provider == 'mock' %}
+    <span class="pill warn" title="这次运行的 provider 是 mock：模型回答是罐头，不是真模型的输出">离线自检</span>
+  {% endif %}
+</header>
+
+<nav class="tabs">
+  {% for t in tabs %}
+    <a class="tab{% if t.on %} on{% endif %}{% if not t.n_stages %} off{% endif %}"
+       href="/?run={{ run_id|urlencode }}&tab={{ t.key }}">
+      <span class="tl">{{ t.label }}</span>
+      <span class="tb">{{ t.badge }}</span>
+    </a>
+  {% endfor %}
+</nav>
+
+<div class="layout">
+<div class="wrap">
+
+{% if err %}<div class="note bad">{{ err }}</div>{% endif %}
+{% if uploaded is not none and uploaded is defined %}
+  <div class="note ok">已收入 {{ uploaded }} 份 PDF → <code>{{ inv.raw_dir }}</code></div>
+{% endif %}
+
+{% if tab == 'run' %}
+<section>
+
+  <h2 class="sec">① 传入数据</h2>
+  <form method="post" action="/upload" enctype="multipart/form-data" class="row">
+    <input type="file" name="files" accept=".pdf,application/pdf" multiple>
+    <button type="submit">收进收件目录</button>
+  </form>
+
+  <div class="row tight">
+    <span class="dim small">收件目录</span><code class="small">{{ inv.raw_dir }}</code>
+  </div>
+
+  {% if inv.pdfs %}
+    <table class="tight">
+      <thead><tr><th>待处理材料</th><th class="n">大小</th><th class="n">页数</th></tr></thead>
+      <tbody>
+        {% for p in inv.pdfs %}
+        <tr>
+          <td class="mono">{{ p.name }}</td>
+          <td class="n">{{ p.size_mb }} MB</td>
+          <td class="n">{{ p.pages if p.pages else '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="row tight">
+      <span class="pill">{{ inv.pdf_count }} 份</span>
+      <span class="pill">{{ inv.est_pages }} 页</span>
+      <span class="pill">约 {{ inv.est_minutes }} 分钟</span>
+      <span class="pill">约 ¥{{ inv.est_cny }}</span>
+      <span class="pill">可比快照 {{ inv.comps }}</span>
+      <span class="pill">行情快照 {{ inv.market }}</span>
+      <span class="pill">草稿 {{ inv.drafts }}</span>
+    </div>
+  {% else %}
+    <div class="empty">收件目录为空</div>
+  {% endif %}
+
+  {% if inv.codes_without_comps %}
+    <div class="note bad small">
+      材料文件名里的主体代码 {{ inv.codes_without_comps|join('、') }} 没有对应的可比公司快照 —— R4 会显式失败。
+    </div>
+  {% elif not inv.r4_ready %}
+    <div class="note bad small">可比公司 / 行情快照不齐 —— R4 会显式失败。</div>
+  {% endif %}
+
+  <h2 class="sec">② 运行</h2>
+  <form method="post" action="/start" class="row">
+    <label class="small">运行名
+      <input type="text" name="run_id" value="{{ new_run_id }}" size="22" spellcheck="false">
+    </label>
+    <label class="small"><input type="checkbox" name="confirm" value="1"> 真实模型，会产生费用</label>
+    <label class="small"><input type="checkbox" name="mock" value="1"> 离线自检（不调模型）</label>
+    {% if task.resumable %}
+      <label class="small"><input type="checkbox" name="resume" value="1"> 接着上次跑</label>
+    {% endif %}
+    <button type="submit">开始运行</button>
+  </form>
+
+  {% set done = task.completed + task.skipped %}
+  <div class="stages" id="stages">
+    {% for s in task.stages %}
+      <span class="st{% if s.name in done %} done{% elif s.name in task.failed %} fail{% elif s.name == task.current %} run{% endif %}"
+            data-stage="{{ s.name }}" title="{{ s.description }}">{{ s.name }}</span>
+    {% endfor %}
+  </div>
+  <div class="row tight">
+    <span class="dim small">已完成 {{ done|length }} / {{ task.stages|length }}
+      {%- if task.failed %} · 失败 {{ task.failed|length }}{% endif %}
+      {%- if task.skipped %} · 跳过 {{ task.skipped|length }}{% endif %}</span>
+    {% if task.mock %}<span class="pill warn">离线自检</span>{% endif %}
+    {% if task.resume %}<span class="pill">续跑</span>{% endif %}
+    <span class="grow"></span>
+    <span class="pill" id="p-cur">当前 {{ task.current or '—' }}</span>
+    <span class="pill" id="p-elapsed">{{ task.elapsed_s }} s</span>
+    <span class="pill" id="p-tokens">{{ '{:,}'.format(task.run_summary.total_tokens) }} tok</span>
+    <span class="pill" id="p-cost">¥{{ '%.4f'|format(task.run_summary.total_cost_cny) }}</span>
+    <span class="pill" id="p-calls">{{ task.run_summary.llm_calls }} 次模型调用</span>
+  </div>
+  {% if task.command %}<div class="row tight"><span class="dim small mono">{{ task.command }}</span></div>{% endif %}
+
+  <h2 class="sec">③ 流水线状态</h2>
+  {% if run_stages %}
+    <table class="tight">
+      <thead><tr>
+        <th>阶段</th><th class="n">用时</th><th class="n">模型</th><th class="n">花费</th>
+        <th>这一步的计数</th>
+      </tr></thead>
+      <tbody>
+        {% for s in run_stages %}
+        <tr>
+          <td class="mono"><span class="dot {{ s.cls }}"></span>{{ s.name }}</td>
+          <td class="n">{{ s.secs }}</td>
+          <td class="n">{{ s.calls or '—' }}</td>
+          <td class="n">{{ s.cost_s or '—' }}</td>
+          <td class="dt">{{ s.note or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="empty">没有阶段明细</div>
+  {% endif %}
+
+  <h2 class="sec">④ 事件</h2>
+  <div class="chips" id="chips"></div>
+  <ol class="trail" id="trail"></ol>
+  <div class="row tight">
+    <span class="dim small" id="trail-state">未连接</span>
+  </div>
+  <details>
+    <summary>日志（<span id="log-n">{{ task.log|length }}</span> 行）</summary>
+    <div class="inner"><pre class="log" id="log">{{ log_text|marks }}</pre></div>
+  </details>
+</section>
+{% endif %}
+
+{# 产物入口那一行。三题共用同一个形状，所以只写一次、按位置调用两次 ——
+   R1 排在**评分点表下面**，R4 / R5 排在**这一节的末尾**。 #}
+{% macro files_row(files, rid) %}{% if files %}
+  <div class="dl">
+    {% for f in files %}
+      <a href="/artifact?run={{ rid }}&path={{ f.path|urlencode }}">{{ f.name }}</a>
+    {% endfor %}
+  </div>
+{% endif %}{% endmacro %}
+
+{% for tv in [task_views.r1, task_views.r4, task_views.r5] %}
+{% if tab == tv.task %}
+<section>
+  <div class="row tight">
+    <span class="strong">{{ tv.label }}</span>
+    <span class="dim small">{{ tv.rollup.n_stages }} 个阶段</span>
+    {% if tv.rollup.seconds is not none %}<span class="pill">{{ tv.rollup.seconds }} s</span>{% endif %}
+    {% if tv.rollup.calls %}<span class="pill">{{ tv.rollup.calls }} 次模型调用</span>{% endif %}
+    {% if tv.rollup.cost %}<span class="pill">¥{{ '%.4f'|format(tv.rollup.cost) }}</span>{% endif %}
+    {% if tv.rollup.fail %}<span class="pill bad">{{ tv.rollup.fail }} 个阶段失败</span>{% endif %}
+    {% if tv.rollup.warn %}<span class="pill warn">{{ tv.rollup.warn }} 个阶段有部分失败</span>{% endif %}
+  </div>
+
+  {# 第一块永远是**评分点表**：赛题「重点考察」什么，先说这个，再说这一步跑了
+     什么、跑出了什么。★ 用 `{% with %}` 传变量而不是 `{% set %}` ——
+     `include` 拿的是 context 变量表，循环体里的 `set` 进不了那张表，
+     `_criteria.html` 会读到空的 `criteria` 然后整块不渲染（页面照常 200）。 #}
+  {% if tv.criteria %}
+    {% with criteria = tv.criteria %}{% include "_criteria.html" %}{% endwith %}
+  {% endif %}
+
+  {# R1 的产物入口就守在评分点表下面。这一页的读数是「356 条事实」，全量在
+     `facts.json` 里 —— 入口隔着一张阶段表和几颗药丸，读者要先滚过一堆过程
+     数据才够得着结论的出处。R1 上「结论」和「出处」是挨着的，那就让它们挨着。 #}
+  {% if tv.task == 'r1' %}{{ files_row(tv.files, run_id) }}{% endif %}
+
+  {% if tv.stages %}
+    <table class="tight">
+      <thead><tr><th>阶段</th><th class="n">用时</th><th class="n">模型</th>
+        <th class="n">token</th><th class="n">花费</th><th>这一步的计数</th></tr></thead>
+      <tbody>
+        {% for s in tv.stages %}
+        <tr>
+          <td class="mono"><span class="dot {{ s.cls }}"></span>{{ s.name }}</td>
+          <td class="n">{{ s.secs }}</td>
+          <td class="n">{{ s.calls or '—' }}</td>
+          <td class="n">{{ s.tokens_s or '—' }}</td>
+          <td class="n">{{ s.cost_s or '—' }}</td>
+          <td class="dt">{{ s.note or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="empty">这一步没跑</div>
+  {% endif %}
+
+  {% if tv.empty %}
+    <div class="empty">该 run 没有这一块的产物</div>
+
+  {% elif tv.task == 'r1' %}
+    {# 逐条事实（指标/值/单位/期间/页码/置信度/是否需复核）不再印在页面上 ——
+       三百多行的表属于产物，看全量点下面那个 `facts.json` 链接。这里留两个
+       现读出来的数：总条数，以及其中多少条自己报了「需复核」。 #}
+    <div class="row tight">
+      <span class="pill">{{ tv.view.n_facts }} 条事实</span>
+      <span class="pill">{{ tv.view.n_docs }} 份材料</span>
+      {% if tv.view.n_review %}<span class="pill warn">{{ tv.view.n_review }} 条需复核</span>{% endif %}
+    </div>
+
+  {% elif tv.task == 'r4' %}
+    <div class="hero">
+      <b>{{ tv.view.mid }}</b>
+      <span>元/股（区间中值） · 区间 {{ tv.view.low }} – {{ tv.view.high }}
+        · 主体 {{ tv.view.entity }} · 基准日 {{ tv.view.as_of }}</span>
+    </div>
+
+    {# 四张**交付图**（`valuation/charts/` 里真实存在的那几张）。原先这里摆着
+       7×7 敏感性网格表与摆幅表，两者印的正是热力图与龙卷风图里的同一批数 ——
+       同一批数印两遍，读者要做的第一件事就是核对两处是否一致，所以撤了。
+       图小的时候点开看原图（新标签页，本页不动）。 #}
+    {% if tv.view.charts %}
+      <h3 class="blk">图表
+        <span class="dim small">估值交付图 {{ tv.view.charts|length }} 张 · 点开看原图</span>
+      </h3>
+      <div class="charts">
+        {% for c in tv.view.charts %}
+        <figure class="chart">
+          <a href="/artifact?run={{ run_id }}&path={{ c.path|urlencode }}"
+             target="_blank" rel="noopener">
+            <img src="/artifact?run={{ run_id }}&path={{ c.path|urlencode }}"
+                 alt="{{ c.title }}" loading="lazy">
+          </a>
+          <figcaption>{{ c.title }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if tv.view.assumptions %}
+      <h3 class="blk">关键假设</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>假设</th><th class="n">取值</th><th>单位</th>
+          <th class="n">依据事实</th><th>来源</th></tr></thead>
+        <tbody>
+          {% for a in tv.view.assumptions %}
+          <tr>
+            <td class="mono">{{ a.name }}</td>
+            <td class="n">{{ a.value }}</td>
+            <td>{{ a.unit }}</td>
+            <td class="n">{{ a.n_facts }}</td>
+            <td>{% if a.judgment %}判断{% else %}计算{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    {% endif %}
+
+    {% if tv.view.peers %}
+      <h3 class="blk">可比公司
+        <span class="dim small">{{ tv.view.peers|length }} 家 · 中位 PE {{ tv.view.comps_median_pe }}
+          · 中位 PB {{ tv.view.comps_median_pb }}
+          · 隐含每股 {{ tv.view.comps_low }} – {{ tv.view.comps_mid }} – {{ tv.view.comps_high }}</span>
+      </h3>
+      <div class="scroll"><table>
+        <thead><tr><th>名称</th><th>代码</th><th class="n">市值（元）</th>
+          <th class="n">PE</th><th class="n">PB</th><th class="n">EV/EBITDA</th></tr></thead>
+        <tbody>
+          {% for p in tv.view.peers %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td class="mono">{{ p.ticker }}</td>
+            <td class="n">{{ p.cap or '—' }}</td>
+            <td class="n">{{ p.pe or '—' }}</td>
+            <td class="n">{{ p.pb or '—' }}</td>
+            <td class="n">{{ p.ev_ebitda or '—' }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    {% endif %}
+
+    {% if tv.view.assertions %}
+      <details>
+        <summary>勾稽断言 {{ tv.view.assertions|sum(attribute='pass') }} 通过
+          · {{ tv.view.assertions|sum(attribute='fail') }} 失败
+          · {{ tv.view.assertions|sum(attribute='skipped') }} 未校验（缺明细无法独立重算）</summary>
+        <div class="inner">
+          <table>
+            <thead><tr><th>断言</th><th>名称</th><th>结果</th></tr></thead>
+            <tbody>
+              {% for a in tv.view.assertions %}
+              <tr>
+                <td class="mono">{{ a.code }}</td>
+                <td>{{ a.name }}</td>
+                <td class="mono">{{ a.mark }} {{ a.pass }}/{{ a.n }}{% if a.skipped %} · 未校验 {{ a.skipped }}{% endif %}{% if a.fail %} · 失败 {{ a.fail }}{% endif %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    {% endif %}
+
+  {% elif tv.task == 'r5' %}
+    <div class="row tight">
+      <span class="pill{{ ' bad' if tv.view.n_findings else '' }}">{{ tv.view.n_findings }} 处问题</span>
+      <span class="dim small">草稿 {{ tv.view.draft or '—' }}</span>
+      {% for k, v in tv.view.metrics.items() %}
+        <span class="pill">{{ k }} {{ v }}</span>
+      {% endfor %}
+    </div>
+    {% if tv.view.findings %}
+      <div class="scroll tall"><table>
+        <thead><tr><th>编号</th><th>类型</th><th>严重度</th><th>章节</th>
+          <th class="n">页</th><th>草稿写的</th><th>应为</th></tr></thead>
+        <tbody>
+          {% for f in tv.view.findings %}
+          <tr>
+            <td class="mono">{{ f.id }}</td>
+            <td class="mono">{{ f.type }}</td>
+            <td><span class="sev {{ f.severity }}">{{ f.severity }}</span></td>
+            <td>{{ f.section }}</td>
+            <td class="n">{{ f.page or '—' }}</td>
+            <td class="mono">{{ f.reported }}</td>
+            <td class="mono">{{ f.correct }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table></div>
+    {% else %}
+      <div class="empty">未检出问题</div>
+    {% endif %}
+  {% endif %}
+
+  {# R4 / R5 的产物链接排在**最后**：这一块是「读数」，读到的东西在上面；
+     论证过程、全量明细在产物里。R4 那句「估值报告」就是要落在这里 ——
+     报告放在图表之前，读者会先点进报告，这一页的读数就白排了。
+     （R1 那一行在上面，紧跟评分点表，见前。） #}
+  {% if tv.task != 'r1' %}{{ files_row(tv.files, run_id) }}{% endif %}
+</section>
+{% endif %}
+{% endfor %}
+
+</div>
+
+<aside class="rail" id="rail">
+  <div class="rail-head">
+    <span class="rtitle">Agent 活动</span>
+  </div>
+  <div class="rail-sub small dim" id="rail-state">未连接</div>
+  <div class="chips" id="rail-chips"></div>
+  <div class="rail-note small" id="rail-note" hidden></div>
+  <ol class="activity" id="activity"></ol>
+</aside>
+
+</div>
+
+{% include "_trail.html" %}
+<script src="/static/trail.js"></script>
+<script src="/static/activity.js"></script>
+<script>
+(function () {
+  var rid = {{ run_id|tojson }};
+  var onRunTab = {{ (tab == 'run')|tojson }};
+  if (!onRunTab) { return; }
+
+  var tpl = document.getElementById('trail-row');
+  var trail = document.getElementById('trail');
+  var stateEl = document.getElementById('trail-state');
+  var chipsBox = document.getElementById('chips');
+  var logEl = document.getElementById('log');
+  var logN = document.getElementById('log-n');
+  var KINDS = Trail.KINDS;
+  var on = Trail.defaultOn();
+  var LANDING = {};
+  var PAGE = 1000;
+  var offset = 0, counts = null;
+
+  function drawChips(c) {
+    Trail.drawChips(chipsBox, on, c, function (kind) {
+      on[kind] = !on[kind];
+      offset = 0; counts = null; trail.innerHTML = '';
+      drawChips(counts); load();
+    });
+  }
+  function append(ev) {
+    trail.appendChild(Trail.render(ev, tpl, { rid: rid, landing: LANDING }));
+  }
+  function load() {
+    var kinds = Trail.activeKinds(on);
+    fetch('/api/trace?run=' + encodeURIComponent(rid) + '&offset=' + offset
+          + '&limit=' + PAGE + '&kinds=' + encodeURIComponent(kinds.join(',')),
+          { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.error) { stateEl.textContent = d.error; return; }
+        offset = d.next_offset;
+        counts = d.stats.by_kind;
+        drawChips(counts);
+        d.rows.forEach(append);
+        if (d.rows.length) { trail.scrollTop = trail.scrollHeight; }
+        stateEl.textContent = '共 ' + d.stats.total_events + ' 条事件 · '
+          + (d.live ? '正在写' : '已结束');
+        if (d.rows.length >= PAGE) { setTimeout(load, 0); return; }
+        if (d.live) { setTimeout(load, 2000); }
+      })
+      .catch(function () { stateEl.textContent = '取事件失败'; });
+  }
+
+  var stageEls = {};
+  Array.prototype.forEach.call(document.querySelectorAll('[data-stage]'), function (el) {
+    stageEls[el.getAttribute('data-stage')] = el;
+  });
+  var cur = document.getElementById('p-cur'),
+      el2 = document.getElementById('p-elapsed'),
+      tok = document.getElementById('p-tokens'),
+      cost = document.getElementById('p-cost'),
+      calls = document.getElementById('p-calls'),
+      phase = document.getElementById('phase');
+
+  function loadStatus() {
+    fetch('/api/status', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        phase.textContent = d.phase + (d.run_status ? ' · ' + d.run_status : '');
+        ['done', 'fail', 'run'].forEach(function (c) {
+          Array.prototype.forEach.call(document.querySelectorAll('[data-stage]'),
+            function (el) { el.classList.remove(c); });
+        });
+        (d.completed || []).concat(d.skipped || []).forEach(function (n) {
+          if (stageEls[n]) { stageEls[n].classList.add('done'); }
+        });
+        (d.failed || []).forEach(function (n) {
+          if (stageEls[n]) { stageEls[n].classList.add('fail'); }
+        });
+        if (d.current && stageEls[d.current]) { stageEls[d.current].classList.add('run'); }
+        cur.textContent = '当前 ' + (d.current || '—');
+        el2.textContent = d.elapsed_s + ' s';
+        if (d.tokens != null) { tok.textContent = d.tokens.toLocaleString() + ' tok'; }
+        if (d.cost_cny != null) { cost.textContent = '¥' + d.cost_cny.toFixed(4); }
+        if (d.llm_calls != null) { calls.textContent = d.llm_calls + ' 次模型调用'; }
+        if (logEl && d.log) {
+          logEl.textContent = d.log.join('\n');
+          if (logN) { logN.textContent = d.log.length; }
+        }
+      })
+      .catch(function () { /* 轮询失败不改页面 */ });
+  }
+
+  load();
+  drawChips(null);
+  loadStatus();
+  setInterval(loadStatus, 2000);
+}());
+
+(function () {
+  var rid = {{ run_id|tojson }};
+  var list = document.getElementById('activity');
+  var stateEl = document.getElementById('rail-state');
+  var chipsBox = document.getElementById('rail-chips');
+  var noteEl = document.getElementById('rail-note');
+  if (!list) { return; }
+
+  var on = Activity.defaultOn();
+  var offset = -1, source = null, timer = null;
+
+  function drawChips(stats) {
+    Activity.drawChips(chipsBox, on, stats, function (kind) {
+      on[kind] = !on[kind];
+      if (!Activity.activeKinds(on).length) { on[kind] = true; return; }
+      offset = -1; source = null; list.textContent = '';
+      load();
+    });
+  }
+
+  function status(d) {
+    var s = d.stats || {};
+    var bits = [];
+    if (s.tokens) { bits.push(s.tokens.toLocaleString() + ' tok'); }
+    if (s.cost_cny) { bits.push('¥' + Number(s.cost_cny).toFixed(4)); }
+    if (s.failed) { bits.push(s.failed + ' 次失败'); }
+    if (s.cache_hits) { bits.push(s.cache_hits + ' 次缓存命中'); }
+    bits.push(d.live ? '正在写' : '已结束');
+    stateEl.textContent = bits.join(' · ');
+    var note = d.note || '';
+    if (d.provider === 'mock' && (s.llm_calls || s.tool_calls)) {
+      note = (note ? note + '；' : '') + '离线自检：这些回答来自 mock provider，不是真模型的输出';
+    }
+    if (note) { noteEl.hidden = false; noteEl.textContent = note; }
+    else { noteEl.hidden = true; }
+  }
+
+  function load() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    var kinds = Activity.activeKinds(on).join(',');
+    fetch('/api/agent-log?run=' + encodeURIComponent(rid) + '&offset=' + offset
+          + '&limit=80&kinds=' + encodeURIComponent(kinds), { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.error) {
+          stateEl.textContent = d.error;
+          if (d.live) { timer = setTimeout(load, 2000); }
+          return;
+        }
+        if (source !== null && d.source !== source) { offset = -1; list.textContent = ''; }
+        source = d.source;
+        offset = d.next_offset;
+        drawChips(d.stats);
+        for (var i = 0; i < d.rows.length; i++) {
+          list.appendChild(Activity.render(d.rows[i]));
+        }
+        while (list.children.length > 200) { list.removeChild(list.firstChild); }
+        if (d.rows.length) { list.scrollTop = list.scrollHeight; }
+        status(d);
+        if (d.live) { timer = setTimeout(load, 2000); }
+      })
+      .catch(function () { stateEl.textContent = '取活动流失败'; });
+  }
+
+  drawChips(null);
+  load();
+}());
+</script>
+</body>
+</html>

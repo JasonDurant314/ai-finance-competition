@@ -1,0 +1,18 @@
+{
+  "tables": 48,
+  "tables_with_total_label": 1,
+  "before": {
+    "failures": 40,
+    "checked": 40,
+    "tables_with_claims": 10
+  },
+  "after": {
+    "failures": 0,
+    "checked_rows": 0,
+    "checked_cols": 0,
+    "checked": 0,
+    "soft_nested": 0,
+    "tables_with_claims": 0
+  },
+  "failures_top": []
+}
